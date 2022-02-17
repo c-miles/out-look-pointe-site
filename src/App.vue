@@ -165,6 +165,10 @@ li {
       display: inline;
     }
 
+    #phone {
+      font-size: 15px;
+    }
+
     img {
   width: 15em;
   border-radius: 40%;
