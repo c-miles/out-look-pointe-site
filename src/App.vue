@@ -172,6 +172,12 @@ li {
   height: 15em;
   margin-left: 10%;
   border: 5px solid #555;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #footer {
@@ -188,6 +194,8 @@ img {
 
 #body {
   font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
