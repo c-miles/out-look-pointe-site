@@ -18,14 +18,14 @@
       </ul>
 
       <ul id="body" class="left">
-        <li>$600/Month</li>
+        <li>$600/Month.</li>
         <li>Utilities included in rent (electric, water, sewer, trash).</li>
         <li>
           Within a mile from grocery stores, post office, physician’s office,
           several restaurants & chruches.
         </li>
         <li>No worries of flooding.</li>
-        <li>No train tracks near the grounds</li>
+        <li>No train tracks near the grounds.</li>
       </ul>
 
       <img
@@ -37,7 +37,6 @@
     <div></div>
     <div id="footer">
       <p id="con">Contact Us</p>
-
       <a id="phone" href="tel:+13047433035"> Phone: (304) 743-3035</a>
       <div></div>
       <a id="phone" href="mailto: danajenkinswalters@yahoo.com">
@@ -64,6 +63,13 @@ html,
 body {
   margin: 0px;
 }
+
+ * {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -82,7 +88,7 @@ body {
   padding-top: 30px;
   text-shadow: 2px 2px #000;
   background-color: rgba(128, 0, 0, 0.521);
-  margin-bottom: 20px;
+  margin-bottom: 4%;
   padding-bottom: 20px;
   text-align: center;
 }
@@ -94,6 +100,7 @@ body {
   background-color: rgba(128, 0, 0, 0.842);
   width: 60%;
   border: 5px solid rgba(128, 0, 0, 0.932);
+  margin-bottom: 29%;
 }
 
 span {
@@ -101,12 +108,13 @@ span {
 }
 
 img {
-  width: 25em;
+  width: 27em;
   border-radius: 40%;
   margin-left: 5%;
-  height: 25em;
+  height: 27em;
   margin-left: 10%;
-  border: 5px solid #555;
+  border: 5px solid rgba(128, 0, 0, 0.932);
+  margin-bottom: 20%;
 }
 
 #flex {
@@ -115,6 +123,7 @@ img {
 }
 li {
   padding-bottom: 5px;
+  margin-left: 7%;
 }
 
 #footer {
@@ -126,7 +135,7 @@ li {
   width: 30%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 26px;
+  font-size: 29px;
 }
 
 .left {
@@ -152,10 +161,11 @@ li {
 #con {
   margin-top: 19px;
   padding-top: 20px;
+  margin-bottom: 1%;
 }
 
 #end {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -190,6 +200,7 @@ li {
 
 img {
   align-self: center;
+  margin-bottom: 10%;
 }
 
 .left {
@@ -200,8 +211,8 @@ img {
   font-size: 18px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10%;
 }
-
 
 
 }
