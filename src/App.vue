@@ -1,5 +1,8 @@
 <template>
-<title>Outlook Pointe CampGround in Milton, West Virgina</title>
+<head>
+  <title>Outlook Pointe CampGround in Milton, West Virgina</title>
+  <meta name=”description” content="Private RV campground in beautiful Milton, West Virgina"/>
+  </head>
   <div id="app">
     <h1 id="top">Outlook Pointe Campground</h1>
     <div></div>
@@ -37,19 +40,22 @@
     <div></div>
     <div id="footer">
       <p id="con">Contact Us</p>
-      <a id="phone" href="tel:+13047433035"> Phone: (304) 743-3035</a>
+      <a id="phone" href="tel:+13047433035"> <ion-icon name="phone-portrait-outline"></ion-icon>: (304) 743-3035</a>
       <div></div>
-      <a id="phone" href="mailto: danajenkinswalters@yahoo.com">
-        Click for Email</a
-      >
+      <a id="phone" href="mailto: danajenkinswalters@yahoo.com"><ion-icon name="mail-outline"></ion-icon></a>
+        <div></div>
+        
+        <a id="phone" href="https://www.facebook.com/MiltonWV"><ion-icon name="logo-facebook"></ion-icon></a>
 
       <span id="spanny"></span>
       <div></div>
       <p id="end">Located in beautiful Milton, West Virgina. We pride ourselves in providing quiet and safe campgrounds.   
-        * Aggresive dogs not permitted</p>
+        *Aggresive dogs not permitted</p>
     </div>
   </div>
 </template>
+
+
 
 <script>
 export default {
@@ -124,6 +130,10 @@ img {
 li {
   padding-bottom: 5px;
   margin-left: 7%;
+}
+
+ion-icon {
+  font-size: 38px;
 }
 
 #footer {
