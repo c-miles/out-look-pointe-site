@@ -217,6 +217,10 @@ img {
   margin-left: 0%;
 }
 
+li {
+  margin-left: 15%;
+}
+
 #body {
   font-size: 18px;
   margin-left: auto;
