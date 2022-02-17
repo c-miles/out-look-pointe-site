@@ -1,26 +1,160 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<title>Outlook Pointe CampGround in Milton, West Virgina</title>
+  <div id="app">
+    <h1 id="top">Outlook Pointe Campground</h1>
+    <div></div>
+    <div id="flex">
+      <img
+        src="https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?stp=dst-jpg_s526x395&_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=y0MmXgZInbwAX_PZ9lI&_nc_ht=scontent-ort2-2.xx&oh=00_AT9Gkx2nijpWJ5LQLfYGyUcfx5H9XjeSLqTYFBiBhb3fXA&oe=6213396B"
+        alt=""
+      />
+      <ul id="body">
+        <li>Private (quiet) graveled lots.</li>
+        <li>3/10th a mile from town.</li>
+        <li>35-50 amp hookups.</li>
+        <li>10 acres of grassy areas for activities.</li>
+        <li>Scenic views overlooking the City of Milton.</li>
+        <li>Pet friendly*</li>
+      </ul>
+
+      <ul id="body" class="left">
+        <li>$600/Month</li>
+        <li>Utilities included in rent (electric, water, sewer, trash).</li>
+        <li>
+          Within a mile from grocery stores, post office, physician’s office,
+          several restaurants & chruches.
+        </li>
+        <li>No worries of flooding.</li>
+        <li>No train tracks near the grounds</li>
+      </ul>
+
+      <img
+        id="pics"
+        src="https://scontent.fric1-2.fna.fbcdn.net/v/t39.30808-6/p180x540/274011990_10161627369068065_4323838683353613075_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=666b5a&_nc_ohc=dGL9MHn5eaAAX-bjb6k&_nc_ht=scontent.fric1-2.fna&oh=00_AT-zS-5_wTNqZ49TmlQl0Ms9xALbz5O7Z34Ax3TfgZJIng&oe=620EBEC0"
+        alt=""
+      />
+    </div>
+    <div></div>
+    <div id="footer">
+      <p id="con">Contact Us</p>
+
+      <a id="phone" href="tel:+13047433035"> Phone: (304) 743-3035</a>
+      <div></div>
+      <a id="phone" href="mailto: danajenkinswalters@yahoo.com">
+        Click for Email</a
+      >
+
+      <span id="spanny"></span>
+      <div></div>
+      <p id="end">Located in beautiful Milton, West Virgina. We pride ourselves in providing quiet and safe campgrounds.   
+        * Aggresive dogs not permitted</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style>
+html,
+body {
+  margin: 0px;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://wallpaperbat.com/img/61708-virginia-wallpaper-top-free-virginia-background.jpg");
+}
+
+#top {
+  color: whitesmoke;
+  font-size: 50px;
+  padding-top: 30px;
+  text-shadow: 2px 2px #000;
+  background-color: rgba(128, 0, 0, 0.521);
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+#body {
+  color: whitesmoke;
+  text-shadow: 2px 2px #000;
+  font-size: 28px;
+  background-color: rgba(128, 0, 0, 0.842);
+  width: 60%;
+  border: 5px solid rgba(128, 0, 0, 0.932);
+}
+
+span {
+  background-color: rgba(128, 0, 0, 0.753);
+}
+
+img {
+  width: 25em;
+  border-radius: 40%;
+  margin-left: 5%;
+  height: 25em;
+  margin-left: 10%;
+  border: 5px solid #555;
+}
+
+#flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+li {
+  padding-bottom: 5px;
+}
+
+#footer {
+  /* display: block; */
+  background-color: rgba(54, 48, 48, 0.884);
+  text-align: center;
+
+  color: whitesmoke;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 26px;
+}
+
+.left {
+  margin-left: 5%;
+}
+
+#phone {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+#phone:hover {
+  color: rgb(65, 148, 148);
+  font-size: 30px;
+}
+
+#spanny {
+  display: block;
+  width: 100%; /*or whatever width you want the effect of <hr>*/
+  border-top: 1px solid #ccc;
+}
+
+#con {
+  margin-top: 19px;
+  padding-top: 20px;
+}
+
+#end {
+  font-size: 14px;
 }
 </style>
