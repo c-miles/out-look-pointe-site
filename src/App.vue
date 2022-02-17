@@ -157,4 +157,40 @@ li {
 #end {
   font-size: 14px;
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+    
+    #flex {
+      display: inline;
+    }
+
+    img {
+  width: 15em;
+  border-radius: 40%;
+  margin-left: 5%;
+  height: 15em;
+  margin-left: 10%;
+  border: 5px solid #555;
+}
+
+#footer {
+  width: 60%;
+}
+
+img {
+  align-self: center;
+}
+
+.left {
+  margin-left: 0%;
+}
+
+#body {
+  font-size: 18px;
+}
+
+
+
+}
 </style>
