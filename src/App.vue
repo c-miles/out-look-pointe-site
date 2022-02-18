@@ -1,59 +1,63 @@
 <template>
-<head>
-  <title>Outlook Pointe CampGround in Milton, West Virgina</title>
-  <meta name=”description” content="Private RV campground in beautiful Milton, West Virgina"/>
+  <head>
+    <title>Outlook Pointe RV CampGrounds in Milton, West Virgina</title>
+    <meta
+      name="”description”"
+      content="Private RV campground in beautiful Milton, West Virgina"
+    />
   </head>
   <div id="app">
-    <h1 id="top">Outlook Pointe Campground</h1>
+    <!-- <header> -->
+      <h1>Outlook Pointe Campground</h1>
+    <!-- </header> -->
     <div></div>
     <section>
-    <div id="flex">
-      <img
-        src="https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?stp=dst-jpg_s526x395&_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=y0MmXgZInbwAX_PZ9lI&_nc_ht=scontent-ort2-2.xx&oh=00_AT9Gkx2nijpWJ5LQLfYGyUcfx5H9XjeSLqTYFBiBhb3fXA&oe=6213396B"
-        alt="RVs in the campground"
-      />
-      
-      <ul id="body">
-        <li>Private (quiet) graveled lots.</li>
-        <li>3/10th a mile from town.</li>
-        <li>35-50 amp hookups.</li>
-        <li>10 acres of grassy areas for activities.</li>
-        <li>Scenic views overlooking the City of Milton.</li>
-        <li>Pet friendly*</li>
-      </ul>
-
-      <ul id="body" class="left">
-        <li>$600/Month.</li>
-        <li>Utilities included in rent (electric, water, sewer, trash).</li>
-        <li>
-          Within a mile from grocery stores, post office, physician’s office,
-          several restaurants & churches.
-        </li>
-        <li>No worries of flooding.</li>
-        <li>No train tracks near the grounds.</li>
-      </ul>
-
-      <img
-        id="pics"
-        src="./assets/camp3.png" 
-        alt="picture of RVs in graveled lot"
-      />
-    </div>
+      <div id="flex">
+        <img
+          src="https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?stp=dst-jpg_s526x395&_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=y0MmXgZInbwAX_PZ9lI&_nc_ht=scontent-ort2-2.xx&oh=00_AT9Gkx2nijpWJ5LQLfYGyUcfx5H9XjeSLqTYFBiBhb3fXA&oe=6213396B"
+          alt="RVs in the campground"
+        />
+        <ul class="lists">
+          <li>Private (quiet) graveled lots.</li>
+          <li>3/10th a mile from town.</li>
+          <li>35-50 amp hookups.</li>
+          <li>10 acres of grassy areas for activities.</li>
+          <li>Scenic views overlooking the City of Milton.</li>
+          <li>Pet friendly*</li>
+        </ul>
+        <ul class="lists left">
+          <li>$600/Month.</li>
+          <li>Utilities included in rent (electric, water, sewer, trash).</li>
+          <li>
+            Within a mile from grocery stores, post office, physician’s office,
+            several restaurants & churches.
+          </li>
+          <li>No worries of flooding.</li>
+          <li>No train tracks near the grounds.</li>
+        </ul>
+        <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
+      </div>
     </section>
     <div></div>
     <div id="footer">
-      <p id="con">Contact Us</p>
-      <a id="phone" href="tel:+13047433035"> <ion-icon name="phone-portrait-outline"></ion-icon>: (304) 743-3035</a>
+      <h2>Contact Us</h2>
+      <a class="contact" href="tel:+13047433035">
+        <ion-icon name="phone-portrait-outline"></ion-icon>: (304) 743-3035</a
+      >
       <div></div>
-      <a id="phone" href="mailto: danajenkinswalters@yahoo.com"><ion-icon name="mail-outline"></ion-icon></a>
-        <div></div>
-        
-        <a id="phone" href="https://www.facebook.com/MiltonWV"><ion-icon name="logo-facebook"></ion-icon></a>
-
+      <a class="contact" href="mailto: danajenkinswalters@yahoo.com"
+        ><ion-icon name="mail-outline"></ion-icon
+      ></a>
+      <div></div>
+      <a class="contact" href="https://www.facebook.com/MiltonWV"
+        ><ion-icon name="logo-facebook"></ion-icon
+      ></a>
       <span id="spanny"></span>
       <div></div>
-      <p id="end">Located in beautiful Milton, West Virgina. We pride ourselves in providing quiet and safe campgrounds.   
-        *Aggresive dogs not permitted</p>
+      <p>
+        Located in beautiful Milton, West Virgina. We pride ourselves in
+        providing quiet and safe campgrounds. *Aggresive dogs not permitted
+      </p>
     </div>
   </div>
 </template>
@@ -68,12 +72,7 @@ export default {
 </script>
 
 <style>
-html,
-body {
-  margin: 0px;
-}
-
- * {
+* {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
@@ -83,7 +82,6 @@ body {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* border: 1px solid black; */
   width: 100%;
   height: 100%;
   background-position: center;
@@ -91,9 +89,9 @@ body {
   background-image: url("https://wallpaperbat.com/img/61708-virginia-wallpaper-top-free-virginia-background.jpg");
 }
 
-#top {
+h1 {
   color: whitesmoke;
-  font-size: 50px;
+  font-size: 45px;
   padding-top: 30px;
   text-shadow: 2px 2px #000;
   background-color: rgba(128, 0, 0, 0.521);
@@ -102,18 +100,9 @@ body {
   text-align: center;
 }
 
-#body {
-  color: whitesmoke;
-  text-shadow: 2px 2px #000;
-  font-size: 28px;
-  background-color: rgba(128, 0, 0, 0.842);
-  width: 60%;
-  border: 5px solid rgba(128, 0, 0, 0.932);
-  margin-bottom: 29%;
-}
-
-span {
-  background-color: rgba(128, 0, 0, 0.753);
+#flex {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 img {
@@ -126,24 +115,32 @@ img {
   margin-bottom: 20%;
 }
 
-#flex {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.lists {
+  color: whitesmoke;
+  text-shadow: 2px 2px #000;
+  font-size: 28px;
+  background-color: rgba(128, 0, 0, 0.842);
+  width: 60%;
+  border: 5px solid rgba(128, 0, 0, 0.932);
+  margin-bottom: 29%;
 }
+
+.left {
+  margin-left: 5%;
+}
+
 li {
   padding-bottom: 5px;
   margin-left: 7%;
 }
 
-ion-icon {
-  font-size: 38px;
+span {
+  background-color: rgba(128, 0, 0, 0.753);
 }
 
 #footer {
-  /* display: block; */
   background-color: rgba(54, 48, 48, 0.884);
   text-align: center;
-
   color: whitesmoke;
   width: 30%;
   margin-left: auto;
@@ -151,86 +148,71 @@ ion-icon {
   font-size: 29px;
 }
 
-.left {
-  margin-left: 5%;
+h2 {
+  margin-top: 19px;
+  padding-top: 20px;
+  margin-bottom: 1%;
+  font-weight: normal;
+  font-size: 35px;
 }
 
-#phone {
+ion-icon {
+  font-size: 38px;
+}
+
+.contact {
   color: whitesmoke;
   text-decoration: none;
 }
 
-#phone:hover {
+.contact:hover {
   color: rgb(65, 148, 148);
   font-size: 30px;
 }
 
 #spanny {
   display: block;
-  width: 100%; /*or whatever width you want the effect of <hr>*/
+  width: 100%;
   border-top: 1px solid #ccc;
 }
 
-#con {
-  margin-top: 19px;
-  padding-top: 20px;
-  margin-bottom: 1%;
-}
-
-#end {
+p {
   font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-    
-    #flex {
-      display: inline;
-    }
 
-    #phone {
-      font-size: 15px;
-    }
+  #flex {
+    display: inline;
+  }
 
-    img {
-  width: 15em;
-  border-radius: 40%;
-  margin-left: 5%;
-  height: 15em;
-  margin-left: 10%;
-  border: 5px solid #555;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .contact {
+    font-size: 15px;
+  }
 
-#footer {
-  width: 60%;
-}
+  img {
+    width: 15em;
+    height: 15em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+  }
 
-img {
-  align-self: center;
-  margin-bottom: 10%;
-}
+  #footer {
+    width: 60%;
+  }
 
-.left {
-  margin-left: 0%;
-}
+  li {
+    margin-left: 15%;
+  }
 
-li {
-  margin-left: 15%;
-}
-
-#body {
-  font-size: 18px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10%;
-}
-
-
+  .lists {
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+  }
 }
 </style>
