@@ -33,7 +33,7 @@
 
       <img
         id="pics"
-        src="https://scontent.fric1-2.fna.fbcdn.net/v/t39.30808-6/p180x540/274011990_10161627369068065_4323838683353613075_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=666b5a&_nc_ohc=dGL9MHn5eaAAX-bjb6k&_nc_ht=scontent.fric1-2.fna&oh=00_AT-zS-5_wTNqZ49TmlQl0Ms9xALbz5O7Z34Ax3TfgZJIng&oe=620EBEC0"
+        src="./assets/camp3.png"
         alt=""
       />
     </div>
