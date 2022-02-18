@@ -9,7 +9,7 @@
     <div id="flex">
       <img
         src="https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?stp=dst-jpg_s526x395&_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=y0MmXgZInbwAX_PZ9lI&_nc_ht=scontent-ort2-2.xx&oh=00_AT9Gkx2nijpWJ5LQLfYGyUcfx5H9XjeSLqTYFBiBhb3fXA&oe=6213396B"
-        alt=""
+        alt="RVs in the campground"
       />
       <ul id="body">
         <li>Private (quiet) graveled lots.</li>
@@ -33,8 +33,8 @@
 
       <img
         id="pics"
-        src="./assets/camp3.png"
-        alt=""
+        src="./assets/camp3.png" 
+        alt="picture of RVs in graveled lot"
       />
     </div>
     <div></div>
