@@ -25,7 +25,7 @@
         <li>Utilities included in rent (electric, water, sewer, trash).</li>
         <li>
           Within a mile from grocery stores, post office, physician’s office,
-          several restaurants & chruches.
+          several restaurants & churches.
         </li>
         <li>No worries of flooding.</li>
         <li>No train tracks near the grounds.</li>
