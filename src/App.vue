@@ -111,7 +111,6 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-top: 1.9em;
-  align-items: center;
   justify-items: center;
 }
 
