@@ -53,6 +53,9 @@
       <a class="contact" href="https://www.facebook.com/MiltonWV"
         ><ion-icon name="logo-facebook"></ion-icon
       ></a>
+      <div></div>
+      <a class="contact" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006">
+      <ion-icon name="map-outline"></ion-icon></a>
       </div>
       <span id="spanny"></span>
       <div></div>
