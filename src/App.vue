@@ -7,16 +7,17 @@
     />
   </head>
   <div id="app">
-    <!-- <header> -->
+    <header>
       <h1>Outlook Pointe Campground</h1>
-    <!-- </header> -->
-    <div></div>
+    </header>
+    <div id="body">
     <section>
-      <div id="flex">
+      <div id="grid">
         <img
           src="https://scontent-ort2-2.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?stp=dst-jpg_s526x395&_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=y0MmXgZInbwAX_PZ9lI&_nc_ht=scontent-ort2-2.xx&oh=00_AT9Gkx2nijpWJ5LQLfYGyUcfx5H9XjeSLqTYFBiBhb3fXA&oe=6213396B"
           alt="RVs in the campground"
         />
+        <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
         <ul class="lists">
           <li>Private (quiet) graveled lots.</li>
           <li>3/10th a mile from town.</li>
@@ -25,7 +26,7 @@
           <li>Scenic views overlooking the City of Milton.</li>
           <li>Pet friendly*</li>
         </ul>
-        <ul class="lists left">
+        <ul class="lists">
           <li>$600/Month.</li>
           <li>Utilities included in rent (electric, water, sewer, trash).</li>
           <li>
@@ -35,14 +36,14 @@
           <li>No worries of flooding.</li>
           <li>No train tracks near the grounds.</li>
         </ul>
-        <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
       </div>
     </section>
-    <div></div>
+    </div>
     <div id="footer">
-      <h2>Contact Us</h2>
+      <h2>Contact us</h2>
+      <div id="icons">
       <a class="contact" href="tel:+13047433035">
-        <ion-icon name="phone-portrait-outline"></ion-icon>: (304) 743-3035</a
+        <ion-icon name="phone-portrait-outline"></ion-icon></a
       >
       <div></div>
       <a class="contact" href="mailto: danajenkinswalters@yahoo.com"
@@ -52,6 +53,7 @@
       <a class="contact" href="https://www.facebook.com/MiltonWV"
         ><ion-icon name="logo-facebook"></ion-icon
       ></a>
+      </div>
       <span id="spanny"></span>
       <div></div>
       <p>
@@ -84,35 +86,41 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100%;
-  background-position: center;
-  background-size: cover;
-  background-image: url("https://wallpaperbat.com/img/61708-virginia-wallpaper-top-free-virginia-background.jpg");
 }
 
-h1 {
+header {
   color: whitesmoke;
-  font-size: 45px;
   padding-top: 30px;
   text-shadow: 2px 2px #000;
-  background-color: rgba(128, 0, 0, 0.521);
-  margin-bottom: 4%;
+  background-color: rgba(128, 0, 0, 0.842);
   padding-bottom: 20px;
   text-align: center;
 }
 
-#flex {
+h1 {
+  font-size: 45px;
+}
+
+#body {
+  background-image: url("https://wallpaperbat.com/img/61708-virginia-wallpaper-top-free-virginia-background.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+#grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-top: 1.9em;
+  align-items: center;
+  justify-items: center;
 }
 
 img {
   width: 27em;
   border-radius: 40%;
-  margin-left: 5%;
   height: 27em;
-  margin-left: 10%;
   border: 5px solid rgba(128, 0, 0, 0.932);
-  margin-bottom: 20%;
+  margin-bottom: 10%;
 }
 
 .lists {
@@ -122,15 +130,10 @@ img {
   background-color: rgba(128, 0, 0, 0.842);
   width: 60%;
   border: 5px solid rgba(128, 0, 0, 0.932);
-  margin-bottom: 29%;
-}
-
-.left {
-  margin-left: 5%;
+  margin-bottom: 7%;
 }
 
 li {
-  padding-bottom: 5px;
   margin-left: 7%;
 }
 
@@ -142,27 +145,32 @@ span {
   background-color: rgba(54, 48, 48, 0.884);
   text-align: center;
   color: whitesmoke;
-  width: 30%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   font-size: 29px;
 }
 
+#icons {
+  display: flex;
+  justify-content: center;
+}
+
 h2 {
-  margin-top: 19px;
   padding-top: 20px;
-  margin-bottom: 1%;
   font-weight: normal;
   font-size: 35px;
 }
 
 ion-icon {
-  font-size: 38px;
+  font-size: 40px;
+  padding: 28px;
 }
 
 .contact {
   color: whitesmoke;
   text-decoration: none;
+  display: inline;
 }
 
 .contact:hover {
@@ -177,14 +185,15 @@ ion-icon {
 }
 
 p {
-  font-size: 16px;
+  font-size: 19px;
+  padding-bottom: 1%;
 }
 
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
 
-  #flex {
-    display: inline;
+  #grid {
+    display: inline-block;
   }
 
   .contact {
@@ -197,11 +206,11 @@ p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10%;
+    margin-bottom: 7%;
   }
 
   #footer {
-    width: 60%;
+    width: 100%;
   }
 
   li {
@@ -212,7 +221,15 @@ p {
     font-size: 18px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10%;
+    margin-bottom: 7%;
+  }
+
+  #body {
+    background-size: cover;
+  }
+
+  p {
+    font-size: 16px;
   }
 }
 </style>
