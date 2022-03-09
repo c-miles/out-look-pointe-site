@@ -27,7 +27,7 @@
           <li>Pet friendly*</li>
         </ul>
         <ul class="lists">
-          <li>$600/Month.</li>
+          <li>$500-$600/Month.</li>
           <li>Utilities included in rent (electric, water, sewer, trash).</li>
           <li>
             Within a mile from grocery stores, post office, physician’s office,
@@ -175,9 +175,8 @@ ion-icon {
   display: inline;
 }
 
-.contact:hover {
+ion-icon:hover {
   color: rgb(65, 148, 148);
-  font-size: 30px;
 }
 
 #spanny {
