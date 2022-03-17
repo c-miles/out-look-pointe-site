@@ -14,7 +14,7 @@
     <section>
       <div id="grid">
         <img
-          src="./assests/camp3.jpg"
+          src="./assets/camp.png"
           alt="RVs in the campground"
         />
         <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
