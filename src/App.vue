@@ -14,7 +14,7 @@
     <section>
       <div id="grid">
         <img
-          src="https://scontent-ort2-1.xx.fbcdn.net/v/t39.30808-6/273893047_950994822217066_9014884811519726725_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=pNBcOhC3E8sAX9gkv_f&tn=uFuLSmY1-ox5qdSo&_nc_ht=scontent-ort2-1.xx&oh=00_AT_PndRqpWr_pUz2ZpKYGYxY5ZfLNmJyPyo8Grzra2EiGw&oe=622CEEAB"
+          src="./assests/camp3.jpg"
           alt="RVs in the campground"
         />
         <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
