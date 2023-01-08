@@ -130,9 +130,9 @@ h1 {
 }
 
 img {
-  width: 70%;
+  width: 26rem;
+  height: 26rem;
   border-radius: 2%;
-  height: 27em;
   border: 1px solid rgba(54, 48, 48, 0.884);
   margin-bottom: 10%;
 }
@@ -216,6 +216,7 @@ ion-icon:hover {
 
   #grid {
     display: inline-block;
+    text-align: center;
   }
 
   .contact {
