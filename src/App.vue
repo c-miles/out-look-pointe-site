@@ -22,6 +22,9 @@
         <div class="deets">
           <div class="child">
             <p class="merp">Private (quiet) graveled lots.</p>
+            <p class="merp">
+              Office hours 7am - 8pm everyday, 24/7 campground access.
+            </p>
             <p class="merp">3/10th a mile from town.</p>
             <p class="merp">35-50 amp hookups.</p>
             <p class="merp">10 acres of grassy areas for activities.</p>
@@ -130,8 +133,8 @@ h1 {
 }
 
 img {
-  width: 26rem;
-  height: 26rem;
+  width: 70%;
+  height: 27rem;
   border-radius: 2%;
   border: 1px solid rgba(54, 48, 48, 0.884);
   margin-bottom: 10%;
@@ -158,6 +161,7 @@ img {
   margin-left: 3%;
   padding-bottom: 3%;
   padding-top: 1%;
+  margin-right: 9%;
 }
 
 span {
@@ -223,29 +227,17 @@ ion-icon:hover {
     font-size: 15px;
   }
 
-  d {
-    width: 15em;
-    height: 15em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 7%;
-  }
-
   #footer {
     width: 100%;
   }
 
-  li {
-    margin-left: 15%;
+  img {
+    width: 90%;
   }
 
-  .lists {
-    font-size: 18px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 7%;
-  }
+  /* .deets {
+    width: 90%;
+  } */
 
   #body {
     background-size: cover;
