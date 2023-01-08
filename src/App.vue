@@ -99,7 +99,7 @@ export default {
 }
 
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
@@ -119,6 +119,10 @@ h1 {
   font-size: 45px;
 }
 
+h2 {
+  text-shadow: 0.5px 0.5px #000;
+}
+
 #body {
   background-position: center;
   background-size: cover;
@@ -135,9 +139,10 @@ h1 {
 img {
   width: 70%;
   height: 27rem;
-  border-radius: 2%;
-  border: 1px solid rgba(54, 48, 48, 0.884);
+  border-radius: 6px;
+  /* border: 1px solid rgba(54, 48, 48, 0.884); */
   margin-bottom: 10%;
+  box-shadow: 3px 3px 10px rgba(54, 48, 48, 0.884);
 }
 
 .deets {
@@ -148,9 +153,10 @@ img {
   font-size: 28px;
   background-color: rgba(54, 48, 48, 0.884);
   margin-bottom: 7%;
-  border-radius: 1%;
+  border-radius: 6px;
   margin-right: 7%;
   margin-left: 7%;
+  box-shadow: 3px 3px 15px rgba(54, 48, 48, 0.884);
 }
 
 .child {
