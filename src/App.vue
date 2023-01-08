@@ -11,55 +11,67 @@
       <h1>Outlook Pointe Campground</h1>
     </header>
     <div id="body">
-    <section>
-      <div id="grid">
-        <img
-          src="./assets/camp.png"
-          alt="RVs in the campground"
-        />
-        <img src="./assets/camp3.png" alt="picture of RVs in graveled lot" />
-        <ul class="lists">
-          <li>Private (quiet) graveled lots.</li>
-          <li>3/10th a mile from town.</li>
-          <li>35-50 amp hookups.</li>
-          <li>10 acres of grassy areas for activities.</li>
-          <li>Scenic views overlooking the City of Milton.</li>
-          <li>Pet friendly*</li>
-        </ul>
-        <ul class="lists">
-          <li>$500-$600/Month.</li>
-          <li>Utilities included in rent (electric, water, sewer, trash).</li>
-          <li>
-            Within a mile from grocery stores, post office, physician’s office,
-            several restaurants & churches.
-          </li>
-          <li>No worries of flooding.</li>
-          <li>No train tracks near the grounds.</li>
-        </ul>
-      </div>
-    </section>
+      <section>
+        <div id="grid">
+          <img src="./assets/camp.png" alt="RVs in the campground" />
+          <img
+            src="./assets/drone_1.jpeg"
+            alt="picture of RVs in graveled lot"
+          />
+        </div>
+        <div class="deets">
+          <div class="child">
+            <p class="merp">Private (quiet) graveled lots.</p>
+            <p class="merp">3/10th a mile from town.</p>
+            <p class="merp">35-50 amp hookups.</p>
+            <p class="merp">10 acres of grassy areas for activities.</p>
+            <p class="merp">Scenic views overlooking the City of Milton.</p>
+            <p class="merp">Pet friendly*</p>
+          </div>
+          <div class="child">
+            <p class="merp">$500-$600/Month.</p>
+            <p class="merp">
+              Utilities included in rent (electric, water, sewer, trash).
+            </p>
+            <p class="merp">
+              Within a mile from grocery stores, post office, physician’s
+              office, several restaurants & churches.
+            </p>
+            <p class="merp">No worries of flooding.</p>
+            <p class="merp">No train tracks near the grounds.</p>
+          </div>
+        </div>
+        <div id="grid">
+          <img src="./assets/camp3.png" />
+          <img src="./assets/drone_2.jpeg" />
+        </div>
+      </section>
     </div>
     <div id="footer">
       <h2>Contact us</h2>
       <div id="icons">
-      <a class="contact" href="tel:+13047433035">
-        <ion-icon name="phone-portrait-outline"></ion-icon></a
-      >
-      <div></div>
-      <a class="contact" href="mailto: danajenkinswalters@yahoo.com"
-        ><ion-icon name="mail-outline"></ion-icon
-      ></a>
-      <div></div>
-      <a class="contact" href="https://www.facebook.com/MiltonWV"
-        ><ion-icon name="logo-facebook"></ion-icon
-      ></a>
-      <div></div>
-      <a class="contact" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006">
-      <ion-icon name="map-outline"></ion-icon></a>
+        <a class="contact" href="tel:+13047433035">
+          <ion-icon name="phone-portrait-outline"></ion-icon
+        ></a>
+        <div></div>
+        <a class="contact" href="mailto: danajenkinswalters@yahoo.com"
+          ><ion-icon name="mail-outline"></ion-icon
+        ></a>
+        <div></div>
+        <a class="contact" href="https://www.facebook.com/MiltonWV"
+          ><ion-icon name="logo-facebook"></ion-icon
+        ></a>
+        <div></div>
+        <a
+          class="contact"
+          href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006"
+        >
+          <ion-icon name="map-outline"></ion-icon
+        ></a>
       </div>
       <span id="spanny"></span>
       <div></div>
-      <p>
+      <p class="footer-p">
         Located in beautiful Milton, West Virgina. We pride ourselves in
         providing quiet and safe campgrounds. *Aggresive dogs not permitted
       </p>
@@ -95,7 +107,7 @@ header {
   color: whitesmoke;
   padding-top: 30px;
   text-shadow: 2px 2px #000;
-  background-color: rgba(128, 0, 0, 0.842);
+  background-color: rgba(54, 48, 48, 0.884);
   padding-bottom: 20px;
   text-align: center;
 }
@@ -105,9 +117,9 @@ h1 {
 }
 
 #body {
-  background-image: url("https://wallpaperbat.com/img/61708-virginia-wallpaper-top-free-virginia-background.jpg");
   background-position: center;
   background-size: cover;
+  background-color: white;
 }
 
 #grid {
@@ -118,25 +130,34 @@ h1 {
 }
 
 img {
-  width: 27em;
-  border-radius: 40%;
+  width: 70%;
+  border-radius: 2%;
   height: 27em;
-  border: 5px solid rgba(128, 0, 0, 0.932);
+  border: 1px solid rgba(54, 48, 48, 0.884);
   margin-bottom: 10%;
 }
 
-.lists {
+.deets {
+  display: flex;
+  justify-content: center;
   color: whitesmoke;
-  text-shadow: 2px 2px #000;
+  text-shadow: 2px 2px 4px #000;
   font-size: 28px;
-  background-color: rgba(128, 0, 0, 0.842);
-  width: 60%;
-  border: 5px solid rgba(128, 0, 0, 0.932);
+  background-color: rgba(54, 48, 48, 0.884);
   margin-bottom: 7%;
+  border-radius: 1%;
+  margin-right: 7%;
+  margin-left: 7%;
 }
 
-li {
-  margin-left: 7%;
+.child {
+  flex: 1;
+}
+
+.merp {
+  margin-left: 3%;
+  padding-bottom: 3%;
+  padding-top: 1%;
 }
 
 span {
@@ -185,7 +206,7 @@ ion-icon:hover {
   border-top: 1px solid #ccc;
 }
 
-p {
+.footer-p {
   font-size: 19px;
   padding-bottom: 1%;
 }
@@ -201,7 +222,7 @@ p {
     font-size: 15px;
   }
 
-  img {
+  d {
     width: 15em;
     height: 15em;
     display: block;
