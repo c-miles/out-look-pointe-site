@@ -235,16 +235,17 @@ ion-icon:hover {
     width: 90%;
   }
 
-  /* .deets {
-    width: 90%;
-  } */
-
   #body {
     background-size: cover;
   }
 
   p {
     font-size: 16px;
+  }
+
+  .merp {
+    padding-bottom: 12%;
+    font-size: 19px;
   }
 }
 </style>
