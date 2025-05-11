@@ -108,11 +108,11 @@
           <div class="contact-grid">
             <a class="contact-item" href="tel:+13047433035">
               <ion-icon name="phone-portrait-outline"></ion-icon>
-              <span>Call Us</span>
+              <span>Call</span>
             </a>
             <a class="contact-item" href="mailto:danajenkinswalters@yahoo.com">
               <ion-icon name="mail-outline"></ion-icon>
-              <span>Email Us</span>
+              <span>Email</span>
             </a>
             <a class="contact-item" href="https://www.facebook.com/MiltonWV">
               <ion-icon name="logo-facebook"></ion-icon>
@@ -237,10 +237,12 @@ h1 {
   background-color: #2980b9;
 }
 
-.welcome-section {
-  padding: calc(var(--spacing-unit) * 6) 0;
-  text-align: center;
-  background-color: #f8f9fa;
+.welcome-section,
+.features-section,
+.gallery-section,
+.rates-section,
+.contact-section {
+  padding: calc(var(--spacing-unit) * 3) 0;
 }
 
 .welcome-text {
@@ -251,7 +253,6 @@ h1 {
 }
 
 .features-section {
-  padding: calc(var(--spacing-unit) * 6) 0;
   background-color: white;
 }
 
@@ -281,7 +282,6 @@ h1 {
 }
 
 .gallery-section {
-  padding: calc(var(--spacing-unit) * 6) 0;
   background-color: #f8f9fa;
 }
 
@@ -312,7 +312,6 @@ h1 {
 }
 
 .rates-section {
-  padding: calc(var(--spacing-unit) * 6) 0;
   background-color: white;
 }
 
@@ -337,14 +336,14 @@ h1 {
 }
 
 .contact-section {
-  padding: calc(var(--spacing-unit) * 6) 0;
   background-color: var(--primary-color);
   color: var(--text-light);
 }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: calc(var(--spacing-unit) * 2);
   margin: calc(var(--spacing-unit) * 3) 0;
 }
@@ -356,6 +355,8 @@ h1 {
   color: var(--text-light);
   text-decoration: none;
   transition: color var(--transition-speed);
+  min-width: 120px;
+  padding: var(--spacing-unit);
 }
 
 .contact-item:hover {
@@ -407,6 +408,24 @@ h3 {
   .rates-content {
     grid-template-columns: 1fr;
   }
+
+  .welcome-section,
+  .features-section,
+  .gallery-section,
+  .rates-section,
+  .contact-section {
+    padding: calc(var(--spacing-unit) * 1.5) 0;
+  }
+
+  .contact-grid {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 var(--spacing-unit);
+  }
+
+  .contact-item {
+    min-width: 100px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -416,10 +435,6 @@ h3 {
 
   .tagline {
     font-size: 1.2rem;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
   }
 }
 </style>
