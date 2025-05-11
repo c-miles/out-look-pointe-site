@@ -65,5 +65,8 @@ export default {
     grid-template-columns: 1fr;
     gap: var(--spacing-unit);
   }
+  .price {
+    font-size: 1.5rem;
+  }
 }
 </style>

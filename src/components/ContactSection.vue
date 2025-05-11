@@ -11,13 +11,13 @@
           <ion-icon name="mail-outline"></ion-icon>
           <span>Email</span>
         </a>
-        <a class="contact-item" href="https://www.facebook.com/MiltonWV" target="_blank" rel="noopener noreferrer">
-          <ion-icon name="logo-facebook"></ion-icon>
-          <span>Facebook</span>
-        </a>
         <a class="contact-item" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006" target="_blank" rel="noopener noreferrer">
           <ion-icon name="map-outline"></ion-icon>
           <span>Directions</span>
+        </a>
+        <a class="contact-item" href="https://www.facebook.com/MiltonWV" target="_blank" rel="noopener noreferrer">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <span>Facebook</span>
         </a>
       </div>
       <p class="footer-text">
@@ -77,14 +77,15 @@ export default {
 
 @media only screen and (max-width: 768px) {
   .contact-grid {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 0 var(--spacing-unit);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-unit);
+    justify-items: center;
+    padding: 0 var(--spacing-unit);
   }
-
   .contact-item {
     min-width: 100px;
+    padding: var(--spacing-unit);
   }
 }
 
@@ -92,9 +93,9 @@ export default {
   .contact-grid {
     gap: calc(var(--spacing-unit) * 0.5);
   }
-
   .contact-item {
     min-width: 80px;
+    padding: calc(var(--spacing-unit) * 0.5);
   }
 }
 </style>
