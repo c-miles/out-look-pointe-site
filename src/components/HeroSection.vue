@@ -5,12 +5,26 @@
       <p class="tagline">Your Home Away From Home in Milton, West Virginia</p>
       <a href="#contact" class="cta-button">Book Your Stay</a>
     </div>
+    <button @click="scrollToFeatures" class="scroll-indicator" aria-label="Scroll to features">
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </button>
   </header>
 </template>
 
 <script>
 export default {
-  name: 'HeroSection'
+  name: 'HeroSection',
+  methods: {
+    scrollToFeatures() {
+      const featuresSection = document.getElementById('features');
+      if (featuresSection) {
+        featuresSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  }
 }
 </script>
 
@@ -55,7 +69,7 @@ h1 {
 }
 
 .tagline {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 300;
   margin-bottom: calc(var(--spacing-unit) * 2);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -65,13 +79,13 @@ h1 {
 
 .cta-button {
   display: inline-block;
-  padding: 1.2rem 2.5rem;
+  padding: 1rem 2rem;
   background-color: var(--accent-color);
   color: var(--text-light);
   text-decoration: none;
   border-radius: var(--border-radius-lg);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transition: all var(--transition-speed);
   box-shadow: var(--shadow-md);
   letter-spacing: 0.5px;
@@ -84,13 +98,54 @@ h1 {
   background-color: var(--accent-hover);
 }
 
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0.8;
+  transition: all var(--transition-speed) ease;
+  animation: bounce 2s infinite;
+  padding: 0.5rem;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.scroll-indicator:focus {
+  outline: none;
+}
+
+.scroll-indicator ion-icon {
+  font-size: 2rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 3rem;
   }
 
   .tagline {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -100,7 +155,11 @@ h1 {
   }
 
   .tagline {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .scroll-indicator {
+    bottom: 1.5rem;
   }
 }
 </style>
