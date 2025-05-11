@@ -116,6 +116,11 @@ h1 {
   transition: all var(--transition-speed) ease;
   animation: bounce 2s infinite;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
 }
 
 .scroll-indicator:hover {
@@ -129,6 +134,8 @@ h1 {
 
 .scroll-indicator ion-icon {
   font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 @keyframes bounce {
@@ -164,6 +171,14 @@ h1 {
 
   .scroll-indicator {
     bottom: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .scroll-indicator ion-icon {
+    font-size: 1.75rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 </style>
