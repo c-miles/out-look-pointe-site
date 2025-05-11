@@ -136,6 +136,26 @@
 export default {
   name: "App",
   components: {},
+  mounted() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    // Observe only main content sections (welcome, features, gallery, rates)
+    document.querySelectorAll('.welcome-section, .features-section, .gallery-section, .rates-section').forEach((section, index) => {
+      section.classList.add('scroll-animate');
+      section.classList.add(index % 2 === 0 ? 'slide-left' : 'slide-right');
+      observer.observe(section);
+    });
+  }
 };
 </script>
 
@@ -397,34 +417,39 @@ h3 {
     font-size: 1.4rem;
   }
 
+  .container {
+    padding: 0 calc(var(--spacing-unit) * 1.5);
+  }
+
+  section {
+    padding: calc(var(--spacing-unit) * 2) 0;
+  }
+
   .gallery-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-unit);
   }
 
   .features-grid {
     grid-template-columns: 1fr;
+    gap: var(--spacing-unit);
   }
 
   .rates-content {
     grid-template-columns: 1fr;
-  }
-
-  .welcome-section,
-  .features-section,
-  .gallery-section,
-  .rates-section,
-  .contact-section {
-    padding: calc(var(--spacing-unit) * 1.5) 0;
+    gap: var(--spacing-unit);
   }
 
   .contact-grid {
     flex-direction: row;
     justify-content: space-around;
     padding: 0 var(--spacing-unit);
+    gap: var(--spacing-unit);
   }
 
   .contact-item {
     min-width: 100px;
+    padding: calc(var(--spacing-unit) * 0.5);
   }
 }
 
@@ -436,5 +461,36 @@ h3 {
   .tagline {
     font-size: 1.2rem;
   }
+
+  .container {
+    padding: 0 var(--spacing-unit);
+  }
+
+  section {
+    padding: calc(var(--spacing-unit) * 1.5) 0;
+  }
+
+  .contact-grid {
+    gap: calc(var(--spacing-unit) * 0.5);
+  }
+
+  .contact-item {
+    min-width: 80px;
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-right {
+  transform: translateX(100px);
+}
+
+.animate-in {
+  opacity: 1;
+  transform: translateX(0);
 }
 </style>
