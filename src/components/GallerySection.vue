@@ -4,40 +4,52 @@
       <h2>Our Campground</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img
-            src="../assets/camp1.png"
-            alt="Spacious RV lots at Outlook Pointe Campground with modern hookups"
-            loading="lazy"
-            width="800"
-            height="450"
-          />
+          <picture>
+            <source srcset="../assets/camp1.webp" type="image/webp" />
+            <img
+              src="../assets/camp1.png"
+              alt="Spacious RV lots at Outlook Pointe Campground with modern hookups"
+              loading="lazy"
+              width="800"
+              height="450"
+            />
+          </picture>
         </div>
         <div class="gallery-item">
-          <img
-            src="../assets/camp2.png"
-            alt="Aerial view of Outlook Pointe Campground showing the beautiful natural setting"
-            loading="lazy"
-            width="800"
-            height="450"
-          />
+          <picture>
+            <source srcset="../assets/camp2.webp" type="image/webp" />
+            <img
+              src="../assets/camp2.png"
+              alt="Aerial view of Outlook Pointe Campground showing the beautiful natural setting"
+              loading="lazy"
+              width="800"
+              height="450"
+            />
+          </picture>
         </div>
         <div class="gallery-item">
-          <img
-            src="../assets/camp3.png"
-            alt="Modern amenities and facilities at Outlook Pointe Campground"
-            loading="lazy"
-            width="800"
-            height="450"
-          />
+          <picture>
+            <source srcset="../assets/camp3.webp" type="image/webp" />
+            <img
+              src="../assets/camp3.png"
+              alt="Modern amenities and facilities at Outlook Pointe Campground"
+              loading="lazy"
+              width="800"
+              height="450"
+            />
+          </picture>
         </div>
         <div class="gallery-item">
-          <img
-            src="../assets/camp4.png"
-            alt="Scenic views and natural surroundings of Outlook Pointe Campground"
-            loading="lazy"
-            width="800"
-            height="450"
-          />
+          <picture>
+            <source srcset="../assets/camp4.webp" type="image/webp" />
+            <img
+              src="../assets/camp4.png"
+              alt="Scenic views and natural surroundings of Outlook Pointe Campground"
+              loading="lazy"
+              width="800"
+              height="450"
+            />
+          </picture>
         </div>
       </div>
     </div>
