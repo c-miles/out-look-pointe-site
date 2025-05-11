@@ -1,88 +1,96 @@
 <template>
   <head>
-    <title>Outlook Pointe RV CampGrounds in Milton, West Virgina</title>
+    <title>Outlook Pointe RV CampGrounds in Milton, West Virginia</title>
     <meta
-      name="”description”"
-      content="Private RV campground in beautiful Milton, West Virgina"
+      name="description"
+      content="Private RV campground in beautiful Milton, West Virginia"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
   </head>
   <div id="app">
-    <header>
-      <h1>Outlook Pointe Campground</h1>
+    <header class="site-header">
+      <div class="header-content">
+        <h1>Outlook Pointe Campground</h1>
+        <p class="tagline">Your Home Away From Home in Milton, West Virginia</p>
+      </div>
     </header>
-    <div id="body">
-      <section>
-        <div id="grid">
-          <img src="./assets/camp.png" alt="RVs in the campground" />
-          <img
-            src="./assets/drone_1.jpeg"
-            alt="picture of RVs in graveled lot"
-          />
-        </div>
-        <div class="deets">
-          <div class="child">
-            <p class="merp">Private (quiet) graveled lots.</p>
-            <p class="merp">
-              Office hours 7am - 8pm everyday, 24/7 campground access.
-            </p>
-            <p class="merp">3/10th a mile from town.</p>
-            <p class="merp">35-50 amp hookups.</p>
-            <p class="merp">10 acres of grassy areas for activities.</p>
-            <p class="merp">Scenic views overlooking the City of Milton.</p>
-            <p class="merp">Pet friendly*</p>
+
+    <main id="body">
+      <section class="hero-section">
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="./assets/camp.png" alt="RVs in the campground" />
           </div>
-          <div class="child">
-            <p class="merp">$500-$600/Month.</p>
-            <p class="merp">
-              Utilities included in rent (electric, water, sewer, trash).
-            </p>
-            <p class="merp">
-              Within a mile from grocery stores, post office, physician’s
-              office, several restaurants & churches.
-            </p>
-            <p class="merp">No worries of flooding.</p>
-            <p class="merp">No train tracks near the grounds.</p>
+          <div class="image-container">
+            <img src="./assets/drone_1.jpeg" alt="Aerial view of the campground" />
           </div>
         </div>
-        <div id="grid">
-          <img src="./assets/camp3.png" />
-          <img src="./assets/drone_2.jpeg" />
+
+        <div class="features">
+          <div class="feature-column">
+            <h3>Campground Features</h3>
+            <ul>
+              <li>Private (quiet) graveled lots</li>
+              <li>Office hours 7am - 8pm everyday, 24/7 campground access</li>
+              <li>3/10th a mile from town</li>
+              <li>35-50 amp hookups</li>
+              <li>10 acres of grassy areas for activities</li>
+              <li>Scenic views overlooking the City of Milton</li>
+              <li>Pet friendly*</li>
+            </ul>
+          </div>
+
+          <div class="feature-column">
+            <h3>Rates & Amenities</h3>
+            <ul>
+              <li>$500-$600/Month</li>
+              <li>Utilities included (electric, water, sewer, trash)</li>
+              <li>Within a mile from essential services</li>
+              <li>No flooding concerns</li>
+              <li>Peaceful location away from train tracks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="./assets/camp3.png" alt="Campground facilities" />
+          </div>
+          <div class="image-container">
+            <img src="./assets/drone_2.jpeg" alt="Scenic view of the campground" />
+          </div>
         </div>
       </section>
-    </div>
-    <div id="footer">
-      <h2>Contact us</h2>
-      <div id="icons">
-        <a class="contact" href="tel:+13047433035">
-          <ion-icon name="phone-portrait-outline"></ion-icon
-        ></a>
-        <div></div>
-        <a class="contact" href="mailto: danajenkinswalters@yahoo.com"
-          ><ion-icon name="mail-outline"></ion-icon
-        ></a>
-        <div></div>
-        <a class="contact" href="https://www.facebook.com/MiltonWV"
-          ><ion-icon name="logo-facebook"></ion-icon
-        ></a>
-        <div></div>
-        <a
-          class="contact"
-          href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006"
-        >
-          <ion-icon name="map-outline"></ion-icon
-        ></a>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-content">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+          <a class="contact-item" href="tel:+13047433035">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+            <span>Call Us</span>
+          </a>
+          <a class="contact-item" href="mailto:danajenkinswalters@yahoo.com">
+            <ion-icon name="mail-outline"></ion-icon>
+            <span>Email Us</span>
+          </a>
+          <a class="contact-item" href="https://www.facebook.com/MiltonWV">
+            <ion-icon name="logo-facebook"></ion-icon>
+            <span>Facebook</span>
+          </a>
+          <a class="contact-item" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006">
+            <ion-icon name="map-outline"></ion-icon>
+            <span>Directions</span>
+          </a>
+        </div>
+        <p class="footer-text">
+          Located in beautiful Milton, West Virginia. We pride ourselves in providing quiet and safe campgrounds. *Aggressive dogs not permitted
+        </p>
       </div>
-      <span id="spanny"></span>
-      <div></div>
-      <p class="footer-p">
-        Located in beautiful Milton, West Virgina. We pride ourselves in
-        providing quiet and safe campgrounds. *Aggresive dogs not permitted
-      </p>
-    </div>
+    </footer>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -92,166 +100,214 @@ export default {
 </script>
 
 <style>
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --accent-color: #3498db;
+  --text-light: #ecf0f1;
+  --text-dark: #2c3e50;
+  --spacing-unit: 1rem;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
 * {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 #app {
-  font-family: serif;
+  font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  height: 100%;
+  color: var(--text-dark);
+  line-height: 1.6;
 }
 
-header {
-  color: whitesmoke;
-  padding-top: 30px;
-  text-shadow: 2px 2px #000;
-  background-color: rgba(54, 48, 48, 0.884);
-  padding-bottom: 20px;
+.site-header {
+  background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)),
+              url('./assets/camp.png') center/cover;
+  color: var(--text-light);
+  padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
   text-align: center;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 45px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-unit);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-  text-shadow: 0.5px 0.5px #000;
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
-#body {
-  background-position: center;
-  background-size: cover;
-  background-color: white;
+.hero-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 2);
 }
 
-#grid {
+.image-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 1.9em;
-  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(var(--spacing-unit) * 2);
+  margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
-img {
-  width: 70%;
-  height: 27rem;
-  border-radius: 6px;
-  /* border: 1px solid rgba(54, 48, 48, 0.884); */
-  margin-bottom: 10%;
-  box-shadow: 3px 3px 10px rgba(54, 48, 48, 0.884);
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed);
 }
 
-.deets {
-  display: flex;
-  justify-content: center;
-  color: whitesmoke;
-  text-shadow: 2px 2px 4px #000;
-  font-size: 28px;
-  background-color: rgba(54, 48, 48, 0.884);
-  margin-bottom: 7%;
-  border-radius: 6px;
-  margin-right: 7%;
-  margin-left: 7%;
-  box-shadow: 3px 3px 15px rgba(54, 48, 48, 0.884);
+.image-container:hover {
+  transform: translateY(-5px);
 }
 
-.child {
-  flex: 1;
+.image-container img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
 }
 
-.merp {
-  margin-left: 3%;
-  padding-bottom: 3%;
-  padding-top: 1%;
-  margin-right: 9%;
+.image-container:hover img {
+  transform: scale(1.05);
 }
 
-span {
-  background-color: rgba(128, 0, 0, 0.753);
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(var(--spacing-unit) * 3);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: calc(var(--spacing-unit) * 3);
+  border-radius: var(--border-radius);
+  margin: calc(var(--spacing-unit) * 3) 0;
+}
+
+.feature-column h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-unit);
+  color: var(--text-light);
+}
+
+.feature-column ul {
+  list-style: none;
+}
+
+.feature-column li {
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
+  padding-left: calc(var(--spacing-unit) * 1.5);
+  position: relative;
+}
+
+.feature-column li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
 }
 
 #footer {
-  background-color: rgba(54, 48, 48, 0.884);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: calc(var(--spacing-unit) * 3) var(--spacing-unit);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
-  color: whitesmoke;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 29px;
 }
 
-#icons {
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-unit);
+  margin: calc(var(--spacing-unit) * 2) 0;
+}
+
+.contact-item {
   display: flex;
-  justify-content: center;
-}
-
-h2 {
-  padding-top: 20px;
-  font-weight: normal;
-  font-size: 35px;
-}
-
-ion-icon {
-  font-size: 40px;
-  padding: 28px;
-}
-
-.contact {
-  color: whitesmoke;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-light);
   text-decoration: none;
-  display: inline;
+  transition: color var(--transition-speed);
 }
 
-ion-icon:hover {
-  color: rgb(65, 148, 148);
+.contact-item:hover {
+  color: var(--accent-color);
 }
 
-#spanny {
-  display: block;
-  width: 100%;
-  border-top: 1px solid #ccc;
+.contact-item ion-icon {
+  font-size: 2rem;
+  margin-bottom: calc(var(--spacing-unit) * 0.5);
 }
 
-.footer-p {
-  font-size: 19px;
-  padding-bottom: 1%;
+.contact-item span {
+  font-size: 0.9rem;
+}
+
+.footer-text {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1rem;
+  opacity: 0.9;
 }
 
 @media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-
-  #grid {
-    display: inline-block;
-    text-align: center;
+  h1 {
+    font-size: 2.5rem;
   }
 
-  .contact {
-    font-size: 15px;
+  .tagline {
+    font-size: 1.2rem;
   }
 
-  #footer {
-    width: 100%;
+  .image-grid {
+    grid-template-columns: 1fr;
   }
 
-  img {
-    width: 90%;
+  .features {
+    grid-template-columns: 1fr;
+    padding: calc(var(--spacing-unit) * 2);
   }
 
-  #body {
-    background-size: cover;
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  p {
-    font-size: 16px;
+  .image-container img {
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
   }
 
-  .merp {
-    padding-bottom: 12%;
-    font-size: 19px;
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-container img {
+    height: 250px;
   }
 }
 </style>
