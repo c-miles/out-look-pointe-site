@@ -4,16 +4,40 @@
       <h2>Our Campground</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="../assets/camp.png" alt="RVs in the campground" />
+          <img
+            src="../assets/camp.png"
+            alt="Spacious RV lots at Outlook Pointe Campground with modern hookups"
+            loading="lazy"
+            width="800"
+            height="450"
+          />
         </div>
         <div class="gallery-item">
-          <img src="../assets/drone_1.jpeg" alt="Aerial view of the campground" />
+          <img
+            src="../assets/drone_1.jpeg"
+            alt="Aerial view of Outlook Pointe Campground showing the beautiful natural setting"
+            loading="lazy"
+            width="800"
+            height="450"
+          />
         </div>
         <div class="gallery-item">
-          <img src="../assets/camp3.png" alt="Campground facilities" />
+          <img
+            src="../assets/camp3.png"
+            alt="Modern amenities and facilities at Outlook Pointe Campground"
+            loading="lazy"
+            width="800"
+            height="450"
+          />
         </div>
         <div class="gallery-item">
-          <img src="../assets/drone_2.jpeg" alt="Scenic view of the campground" />
+          <img
+            src="../assets/drone_2.jpeg"
+            alt="Scenic views and natural surroundings of Outlook Pointe Campground"
+            loading="lazy"
+            width="800"
+            height="450"
+          />
         </div>
       </div>
     </div>
