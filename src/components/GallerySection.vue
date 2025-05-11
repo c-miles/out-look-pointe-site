@@ -42,16 +42,39 @@ export default {
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-lg);
   aspect-ratio: 16/9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-speed) ease;
+}
+
+.gallery-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3));
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+  z-index: 1;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.gallery-item:hover::before {
+  opacity: 1;
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-speed);
+  transition: transform var(--transition-speed) ease;
 }
 
 .gallery-item:hover img {

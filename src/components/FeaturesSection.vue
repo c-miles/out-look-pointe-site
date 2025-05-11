@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .features-section {
-  background-color: white;
+  background-color: #f8f9fa;
   padding: calc(var(--spacing-unit) * 3) 0;
 }
 
@@ -49,19 +49,55 @@ export default {
 .feature-card {
   text-align: center;
   padding: calc(var(--spacing-unit) * 2);
-  background-color: #f8f9fa;
-  border-radius: var(--border-radius);
-  transition: transform var(--transition-speed);
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform var(--transition-speed) ease;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
 }
 
 .feature-card ion-icon {
   font-size: 2.5rem;
   color: var(--accent-color);
   margin-bottom: var(--spacing-unit);
+  transition: transform var(--transition-speed) ease;
+}
+
+.feature-card:hover ion-icon {
+  transform: scale(1.1);
+}
+
+.feature-card h3 {
+  margin: var(--spacing-unit) 0;
+  color: var(--primary-color);
+}
+
+.feature-card p {
+  color: var(--secondary-color);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 @media only screen and (max-width: 768px) {
