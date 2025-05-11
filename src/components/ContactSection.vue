@@ -3,7 +3,7 @@
     <div class="container">
       <h2>Contact Us</h2>
       <div class="contact-grid">
-        <a class="contact-item" href="tel:+13047433035">
+        <a class="contact-item" href="tel:+13046174610">
           <ion-icon name="phone-portrait-outline"></ion-icon>
           <span>Call</span>
         </a>

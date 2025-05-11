@@ -6,7 +6,7 @@
         <div class="rates-card">
           <div class="header-row">
             <h3>Monthly Stay</h3>
-            <span class="price">$500 - $600</span>
+            <span class="price">$600</span>
           </div>
           <ul>
             <li>Utilities included (electric, water, sewer, trash)</li>
