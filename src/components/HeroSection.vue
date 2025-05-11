@@ -3,7 +3,7 @@
     <div class="hero-content">
       <h1>Outlook Pointe Campground</h1>
       <p class="tagline">Your Home Away From Home in Milton, West Virginia</p>
-      <a href="#contact" class="cta-button">Contact Us to Book</a>
+      <button @click="scrollToContact" class="cta-button">Contact Us to Book</button>
     </div>
     <button @click="scrollToFeatures" class="scroll-indicator" aria-label="Scroll to features">
       <ion-icon name="chevron-down-outline"></ion-icon>
@@ -19,6 +19,15 @@ export default {
       const featuresSection = document.getElementById('features');
       if (featuresSection) {
         featuresSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    },
+    scrollToContact() {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
@@ -94,6 +103,8 @@ h1 {
   box-shadow: var(--shadow-md);
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  border: none;
+  cursor: pointer;
 }
 
 .cta-button:hover {
