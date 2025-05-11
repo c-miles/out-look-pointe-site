@@ -86,10 +86,12 @@ export default {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: var(--text-dark);
   background-color: #f8f9fa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -102,6 +104,7 @@ h1, h2, h3 {
   margin-bottom: var(--spacing-unit);
   line-height: 1.2;
   font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 h1 {
@@ -121,6 +124,7 @@ h2 {
 p {
   margin-bottom: var(--spacing-unit);
   line-height: 1.7;
+  font-size: 1.125rem;
 }
 
 section {

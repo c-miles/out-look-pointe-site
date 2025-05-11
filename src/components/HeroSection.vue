@@ -60,32 +60,36 @@ export default {
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 4.5rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 4rem;
   margin-bottom: var(--spacing-unit);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 1px;
+  letter-spacing: -0.5px;
   line-height: 1.1;
+  font-weight: 800;
 }
 
 .tagline {
-  font-size: 1.6rem;
-  font-weight: 300;
+  font-size: 1.25rem;
+  font-weight: 400;
   margin-bottom: calc(var(--spacing-unit) * 2);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-button {
   display: inline-block;
-  padding: 1rem 2rem;
+  padding: 0.875rem 2rem;
   background-color: var(--accent-color);
   color: var(--text-light);
   text-decoration: none;
   border-radius: var(--border-radius-lg);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all var(--transition-speed);
   box-shadow: var(--shadow-md);
   letter-spacing: 0.5px;
@@ -141,21 +145,21 @@ h1 {
 
 @media only screen and (max-width: 768px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   .tagline {
-    font-size: 1.3rem;
+    font-size: 1.125rem;
   }
 }
 
 @media only screen and (max-width: 480px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .tagline {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .scroll-indicator {
