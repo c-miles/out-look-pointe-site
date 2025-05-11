@@ -5,7 +5,7 @@
       <div class="gallery-grid">
         <div class="gallery-item">
           <img
-            src="../assets/camp.png"
+            src="../assets/camp1.png"
             alt="Spacious RV lots at Outlook Pointe Campground with modern hookups"
             loading="lazy"
             width="800"
@@ -14,7 +14,7 @@
         </div>
         <div class="gallery-item">
           <img
-            src="../assets/drone_1.jpeg"
+            src="../assets/camp2.png"
             alt="Aerial view of Outlook Pointe Campground showing the beautiful natural setting"
             loading="lazy"
             width="800"
@@ -32,7 +32,7 @@
         </div>
         <div class="gallery-item">
           <img
-            src="../assets/drone_2.jpeg"
+            src="../assets/camp4.png"
             alt="Scenic views and natural surroundings of Outlook Pointe Campground"
             loading="lazy"
             width="800"
