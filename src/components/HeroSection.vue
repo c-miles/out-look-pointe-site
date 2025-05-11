@@ -3,7 +3,7 @@
     <div class="hero-content">
       <h1>Outlook Pointe Campground</h1>
       <p class="tagline">Your Home Away From Home in Milton, West Virginia</p>
-      <a href="#contact" class="cta-button">Book Your Stay</a>
+      <a href="#contact" class="cta-button">Contact Us to Book</a>
     </div>
     <button @click="scrollToFeatures" class="scroll-indicator" aria-label="Scroll to features">
       <ion-icon name="chevron-down-outline"></ion-icon>
