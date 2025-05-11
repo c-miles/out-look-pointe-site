@@ -31,7 +31,7 @@ export default {
 <style scoped>
 .hero {
   height: 100vh;
-  background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.8)),
+  background: linear-gradient(rgba(44, 62, 80, 0.5), rgba(44, 62, 80, 0.6)),
               url('../assets/appalachia.jpg') center/cover;
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.3));
   z-index: 1;
 }
 
