@@ -44,8 +44,8 @@ export default {
       threshold: 0.1
     })
 
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
+    // Observe all sections except the footer
+    document.querySelectorAll('section:not(.contact-section)').forEach(section => {
       section.classList.add('scroll-animate')
       if (section.id === 'features' || section.id === 'rates') {
         section.classList.add('slide-right')
