@@ -1,0 +1,212 @@
+/* Element defaults and the few shared patterns. Anything that appears in more
+   than one component lives here once. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-variant-numeric: lining-nums proportional-nums;
+  color: var(--ink);
+  background-color: var(--bone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--heading-color);
+  text-wrap: balance;
+  /* No measure cap on headings. Measure is a prose concern: headings are short
+     by nature and balance already shapes them. A cap here did three bad things
+     at once. It made the box narrower than a centred card, and since a block
+     with max-width does not centre itself the title sat flush left. It forced
+     the hero headline to wrap at any viewport, because a ch cap is deliberately
+     viewport independent. And it wrapped some card titles but not others, which
+     read as uneven. Prose keeps its cap, on p. */
+  /* Asymmetric: a heading belongs to the text below it, so it takes far more
+     space above than below. Equal margins on every level is the templated
+     signature, and it leaves every heading floating equidistant. */
+  margin-block: 0 var(--heading-margin-after);
+}
+
+/* Type steps. Size, leading and tracking always travel together, so they are
+   one class each. The elements share their step with the class of the same
+   name, which lets a non-heading (a price, a phone number) sit on the scale
+   without restating three declarations. */
+.type-display { font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: var(--ls-display); }
+h1, .type-h1  { font-size: var(--fs-h1);      line-height: var(--lh-h1);      letter-spacing: var(--ls-h1); }
+h2, .type-h2  { font-size: var(--fs-h2);      line-height: var(--lh-h2);      letter-spacing: var(--ls-h2); }
+h3, .type-h3  { font-size: var(--fs-h3);      line-height: var(--lh-h3);      letter-spacing: var(--ls-h3); }
+.lede, .type-lede { font-size: var(--fs-lede); line-height: var(--lh-lede);   letter-spacing: var(--ls-lede); }
+.type-small   { font-size: var(--fs-small);   line-height: var(--lh-narrow); }
+.type-caption { font-size: var(--fs-caption); line-height: var(--lh-caption); }
+
+h1 {
+  font-weight: var(--fw-display);
+  font-stretch: var(--width-display);
+}
+
+h2 {
+  font-weight: var(--fw-bold);
+  font-stretch: var(--width-heading);
+  margin-block-end: var(--heading-gap);
+}
+
+h3 {
+  font-weight: var(--fw-bold);
+}
+
+p {
+  /* Opt out, not opt in. The container caps layout width, not measure. */
+  max-width: var(--measure-prose);
+  margin-block-end: var(--paragraph-gap);
+  text-wrap: pretty;
+}
+
+section {
+  padding-block: var(--section-y);
+}
+
+/* The one small label allowed above a headline. Budgeted: at most one per three
+   sections, or it becomes its own template rhythm. */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-eyebrow);
+  line-height: var(--lh-caption);
+  text-transform: uppercase;
+  margin-block-end: var(--space-xs);
+}
+
+/* The paragraph that introduces a section. Narrower measure than body so it
+   reads as a different register even at a similar size. */
+.lede {
+  max-width: var(--measure-lede);
+}
+
+/* Standard visually-hidden pattern: present for screen readers and the heading
+   outline, absent visually. The 1px values are the technique itself, not a
+   design decision, which is why they are literal. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* A range or a measurement is one unit of meaning and must not break across
+   lines: "35-" on one line and "50 amp" on the next reads as a typo. */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* A number set as display type: price, phone, rig length, a stat. Tabular
+   figures so digits align, the display face, its wide cut and heaviest weight. */
+.figure {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-stretch: var(--width-heading);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Muted supporting text, right for its context (see .on-panel). */
+.muted {
+  color: var(--text-muted);
+}
+
+/* A deep green surface. It re-points the contextual tokens, so headings, muted
+   text, rules and focus rings inside it are right without per-component
+   overrides. */
+.on-panel {
+  background-color: var(--panel);
+  color: var(--on-panel);
+  --heading-color: var(--on-panel);
+  --text-muted:    var(--on-panel-muted);
+  --rule-color:    var(--panel-hairline);
+}
+
+/* Rows separated by hairlines, closed off at the bottom. */
+.ruled > * {
+  padding-block: var(--space-s);
+  border-top: var(--border-hair) solid var(--rule-color);
+}
+
+.ruled > *:last-child {
+  border-bottom: var(--border-hair) solid var(--rule-color);
+}
+
+/* Columns that wrap on their own, with no breakpoints. --auto-min is the
+   narrowest a column may get. The default gap suits two wide columns; --tight
+   suits a row of small facts. */
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--auto-min, var(--card-min)), 1fr));
+  gap: var(--space-xl) var(--space-2xl);
+  align-items: start;
+}
+
+.auto-grid--tight {
+  gap: var(--space-l) var(--grid-gap);
+}
+
+/* One focus ring for everything interactive. Surfaces over photography set
+   --focus-color to white; nothing else needs to restate the ring. */
+:where(a, button, [tabindex]):focus-visible {
+  outline: var(--focus-ring) solid var(--focus-color);
+  outline-offset: var(--focus-ring);
+}
+
+/* Scroll Animation Styles */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--dur-4) var(--ease-out),
+              transform var(--dur-4) var(--ease-out);
+}
+
+/* none, not translateY(0). A zero transform is still a transform, and any
+   transform makes the element the containing block for position: fixed
+   descendants, which is how overlays end up needing !important to escape. */
+.animate-in {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* The scroll reveal ran unconditionally. Anyone who has asked their OS to
+   reduce motion was getting it anyway. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

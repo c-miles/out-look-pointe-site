@@ -1,113 +1,148 @@
 <template>
-  <section id="features" class="features-section">
+  <section id="features" class="features">
     <div class="container">
+      <h2>Why people stay</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <IconHome :size="28" />
-          <h3>Private Lots</h3>
-          <p>Spacious, quiet graveled lots with <span class="nowrap">35-50 amp</span> hookups</p>
-        </div>
-        <div class="feature-card">
-          <IconClock :size="28" />
-          <h3>24/7 Access</h3>
-          <p>Office hours <span class="nowrap">7am - 8pm</span>, with <span class="nowrap">24/7</span> campground access</p>
-        </div>
-        <div class="feature-card">
-          <IconLeaf :size="28" />
-          <h3>Natural Setting</h3>
-          <p>10 acres of grassy areas for activities and scenic views</p>
-        </div>
-        <div class="feature-card">
-          <IconPin :size="28" />
-          <h3>Prime Location</h3>
-          <p>Just <span class="nowrap">3/10th mile</span> from town, close to all amenities</p>
-        </div>
+        <article
+          v-for="(feature, i) in features"
+          :key="feature.title"
+          class="feature-card"
+          :class="{ 'feature-card--lead on-panel': i === 0 }"
+        >
+          <AppIcon :name="feature.icon" class="feature-icon" />
+          <h3 :class="i === 0 ? 'type-h3' : 'type-lede'">{{ feature.title }}</h3>
+          <p class="muted" :class="{ 'type-small': i !== 0 }">{{ feature.body }}</p>
+          <p v-if="feature.stat" class="feature-stat">
+            <span class="figure type-h2 nowrap">{{ feature.stat.value }}</span>
+            <span class="type-small muted">{{ feature.stat.label }}</span>
+          </p>
+        </article>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import IconHome from './icons/IconHome.vue'
-import IconClock from './icons/IconClock.vue'
-import IconLeaf from './icons/IconLeaf.vue'
-import IconPin from './icons/IconPin.vue'
+import AppIcon from './AppIcon.vue'
+import { site } from '../data/site'
 
 export default {
   name: 'FeaturesSection',
-  components: { IconHome, IconClock, IconLeaf, IconPin }
+  components: { AppIcon },
+  data() {
+    return {
+      // The first entry is the lead card. "Quiet" leads because it is the word
+      // guests reach for most often in their own reviews.
+      features: [
+        {
+          icon: 'home',
+          title: 'Quiet, private lots',
+          body: 'Spacious graveled lots with 35-50 amp hookups, and owners who live on site. Guests call it quiet, and they are right.',
+          stat: { value: '3 years', label: 'is how long our longest resident stayed' },
+        },
+        {
+          icon: 'clock',
+          title: 'Open around the clock',
+          body: `Come and go on your own schedule. The office is open ${site.officeHours}.`,
+        },
+        {
+          icon: 'leaf',
+          title: 'Ten acres',
+          body: 'Open grassy ground to walk the dog or stretch your legs without leaving the property.',
+        },
+        {
+          icon: 'pin',
+          title: 'Close to town',
+          body: 'Three tenths of a mile to groceries, the post office, a doctor, restaurants and churches.',
+        },
+      ],
+    }
+  },
 }
 </script>
 
 <style scoped>
-.features-section {
-  background-color: var(--bone);
-  padding: var(--section-y) 0;
+.features {
+  background-color: var(--surface);
 }
 
+/* Four items, four cells, deliberately unequal. One card leads and spans both
+   rows, the last spans two columns. A row of identical cards is the most
+   templated layout on the web. */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: var(--grid-lead) 1fr 1fr;
+  grid-template-areas:
+    "lead b c"
+    "lead d d";
   gap: var(--grid-gap);
 }
 
 .feature-card {
-  text-align: center;
   padding: var(--card-pad);
-  background-color: var(--surface);
+  background-color: var(--bone);
   border-radius: var(--r-card);
-  /* The hairline lives in the shadow stack rather than as a border: no box
-     model cost, follows the radius, and cross-fades into the hover elevation
-     instead of snapping an outline on. */
-  box-shadow: var(--elev-raised);
-  transition: transform var(--dur-2) var(--ease-out-snap),
-              box-shadow var(--dur-2) var(--ease-out-snap);
-  position: relative;
-  overflow: hidden;
-}
-
-
-/* Hover moves exactly one elevation level. Going rest to lifted made the
-   shadow behave as if the card rose 30px while it actually rose 3px, which is
-   why it read as cheap. Gated so it does not stick after a tap on a phone. */
-@media (hover: hover) and (pointer: fine) {
-  .feature-card:hover {
-    transform: translateY(calc(var(--lift-card) * -1));
-    box-shadow: var(--elev-lifted);
-  }
-}
-
-.feature-card:active {
-  transform: translateY(0) scale(var(--press-card));
   box-shadow: var(--elev-rest);
-  transition-duration: var(--dur-1);
 }
 
+.feature-card:nth-child(1) { grid-area: lead; }
+.feature-card:nth-child(2) { grid-area: b; }
+.feature-card:nth-child(3) { grid-area: c; }
+.feature-card:nth-child(4) { grid-area: d; }
 
-.feature-card svg {
+/* Content starts at the top so its icon shares a line with the cards beside it.
+   The card is two rows tall, and rather than leave that height empty the stat
+   is pinned to the bottom. Colours come from .on-panel. */
+.feature-card--lead {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--panel);
+  box-shadow: var(--elev-raised);
+}
+
+.feature-icon {
   color: var(--forest);
+  margin-bottom: var(--space-s);
+}
+
+.feature-card--lead .feature-icon {
+  color: var(--text-muted);
+}
+
+/* A title at the lede size still wants heading leading, not paragraph leading. */
+h3 {
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-h3);
   margin-bottom: var(--space-2xs);
 }
 
-
-.feature-card h3 {
-  margin: var(--space-2xs) 0;
-  color: var(--forest);
-  font-size: var(--fs-lede);
-  font-weight: var(--fw-semi);
-  line-height: var(--lh-h3);
+.feature-card p {
+  max-width: var(--measure-card);
+  margin-bottom: 0;
 }
 
-.feature-card p {
-  color: var(--gravel);
-  font-size: var(--fs-small);
-  line-height: var(--lh-narrow);
+.feature-card--lead .feature-stat {
+  margin-top: auto;
+  padding-top: var(--space-m);
+  border-top: var(--border-hair) solid var(--rule-color);
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+/* Room between the body copy and the stat's rule when the card is short, as it
+   is once the grid stacks on a phone. */
+.feature-card--lead > p:not(.feature-stat) {
+  margin-bottom: var(--space-l);
 }
 
 @media only screen and (max-width: 768px) {
   .features-grid {
     grid-template-columns: 1fr;
+    grid-template-areas: none;
+  }
+
+  .feature-card:nth-child(n) {
+    grid-area: auto;
   }
 }
-
 </style>

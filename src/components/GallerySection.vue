@@ -1,171 +1,193 @@
 <template>
-  <div>
-    <section class="gallery-section">
-      <div class="container">
-        <h2>Our Campground</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item"
-               v-for="(img, i) in images" :key="i"
-               :class="{ clickable: !isMobile }"
-               :role="isMobile ? null : 'button'"
-               :tabindex="isMobile ? null : 0"
-               :aria-label="isMobile ? null : `Open larger view: ${img.alt}`"
-               @click="maybeOpenLightbox(i)"
-               @keyup.enter="maybeOpenLightbox(i)"
-               @keyup.space.prevent="maybeOpenLightbox(i)">
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2>Take a look around</h2>
+      <div class="gallery-grid">
+        <figure v-for="(photo, i) in photos" :key="photo.src" class="shot" :class="{ 'shot--lead': i === 0 }">
+          <!-- A real button where it opens the viewer. On a phone the viewer is
+               off, so it is a plain div and does not claim to be interactive. -->
+          <component
+            :is="viewerEnabled ? 'button' : 'div'"
+            class="shot-frame"
+            :type="viewerEnabled ? 'button' : null"
+            :aria-label="viewerEnabled ? `Open larger view: ${photo.alt}` : null"
+            @click="open(i)"
+          >
             <img
-              :src="img.src"
-              :alt="img.alt"
+              :src="photo.src"
+              :alt="photo.alt"
+              :width="photo.width"
+              :height="photo.height"
+              :style="{ objectPosition: photo.position }"
               loading="lazy"
               decoding="async"
-              width="800"
-              height="450"
             />
-          </div>
-        </div>
+          </component>
+          <figcaption class="type-small muted">{{ photo.caption }}</figcaption>
+        </figure>
       </div>
-    </section>
-    <transition name="fade">
-      <div v-if="lightboxIndex !== null && !isMobile" class="lightbox-overlay"
-           role="dialog" aria-modal="true" aria-label="Photo viewer"
-           @click.self="closeLightbox">
-        <div class="lightbox-img-wrapper">
-          <img
-            class="lightbox-img"
-            :src="images[lightboxIndex].src"
-            :alt="images[lightboxIndex].alt"
-          />
-          <button class="lightbox-close" @click="closeLightbox" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Teleported to body so no ancestor's transform, overflow or stacking
+         context can trap a position: fixed overlay. -->
+    <Teleport to="body">
+      <Transition name="fade">
+        <div
+          v-if="current"
+          class="lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo viewer"
+          @click.self="close"
+        >
+          <img class="lightbox-img" :src="current.src" :alt="current.alt" />
+          <button ref="closeButton" type="button" class="lightbox-close type-h3" aria-label="Close" @click="close">
+            &times;
+          </button>
         </div>
-      </div>
-    </transition>
-  </div>
+      </Transition>
+    </Teleport>
+  </section>
 </template>
 
 <script>
+// Below this width the viewer adds nothing: the photos are already full width.
+const VIEWER_QUERY = '(min-width: 769px)'
+
 export default {
   name: 'GallerySection',
   data() {
     return {
-      images: [
-        {
-          src: require('../assets/outlook-pointe-aerial-milton-wv.webp'),
-          alt: 'Aerial view of Outlook Pointe Campground showing the graveled lots, the access road and the owners house on site',
-        },
+      // Order matters: the first photo is the wide lead. Captions say only what
+      // is visibly in the frame, which is something a stock photo cannot carry.
+      photos: [
         {
           src: require('../assets/outlook-pointe-rv-lots-aerial.webp'),
           alt: 'The graveled RV lots at Outlook Pointe seen from above, with rigs parked along the loop',
+          caption: 'Level gravel lots, with rigs in for the season.',
+          width: 1104, height: 850, position: '50% 40%',
+        },
+        {
+          src: require('../assets/outlook-pointe-aerial-milton-wv.webp'),
+          alt: 'Aerial view of Outlook Pointe Campground showing the graveled lots, the access road and the owners house on site',
+          caption: 'From above: the gravel road in, and the owners’ house on site.',
+          width: 1026, height: 804, position: '50% 55%',
         },
         {
           src: require('../assets/outlook-pointe-hillside-milton-wv.webp'),
           alt: 'Outlook Pointe Campground on the hillside above Milton, West Virginia, surrounded by trees and open fields',
+          caption: 'On the hill above Milton, with open ground all around.',
+          width: 1104, height: 848, position: '50% 45%',
         },
         {
           src: require('../assets/outlook-pointe-rv-sites.webp'),
           alt: 'Fifth-wheel trailers parked on the level gravel sites at Outlook Pointe under an open sky',
+          caption: 'Fifth-wheels on the gravel, under a big sky.',
+          width: 796, height: 572, position: '50% 60%',
         },
       ],
-      lightboxIndex: null,
-      isMobile: false,
+      openIndex: null,
+      viewerEnabled: false,
       lastFocused: null,
-    };
+    }
   },
-  methods: {
-    maybeOpenLightbox(i) {
-      if (!this.isMobile) {
-        this.openLightbox(i);
-      }
-    },
-    openLightbox(i) {
-      this.lastFocused = document.activeElement;
-      this.lightboxIndex = i;
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', this.handleKeydown);
-      this.$nextTick(() => {
-        const close = this.$el.querySelector('.lightbox-close');
-        if (close) close.focus();
-      });
-    },
-    closeLightbox() {
-      this.lightboxIndex = null;
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', this.handleKeydown);
-      // Send focus back where it came from, otherwise a keyboard user lands
-      // at the top of the document every time they close a photo.
-      if (this.lastFocused && typeof this.lastFocused.focus === 'function') {
-        this.lastFocused.focus();
-        this.lastFocused = null;
-      }
-    },
-    trapFocus(e) {
-      if (this.lightboxIndex === null) return;
-      const close = this.$el.querySelector('.lightbox-close');
-      if (!close) return;
-      // The dialog holds exactly one focusable control, so the trap is simply
-      // to keep focus on it.
-      e.preventDefault();
-      close.focus();
-    },
-    handleKeydown(e) {
-      if (e.key === 'Tab') this.trapFocus(e);
-      if (e.key === 'Escape') this.closeLightbox();
-      if (e.key === 'ArrowRight' && this.lightboxIndex < this.images.length - 1) this.lightboxIndex++;
-      if (e.key === 'ArrowLeft' && this.lightboxIndex > 0) this.lightboxIndex--;
-    },
-    checkMobile() {
-      this.isMobile = window.innerWidth <= 768;
+  computed: {
+    current() {
+      return this.openIndex === null ? null : this.photos[this.openIndex]
     },
   },
   mounted() {
-    this.checkMobile();
-    window.addEventListener('resize', this.checkMobile);
+    this.viewerQuery = window.matchMedia(VIEWER_QUERY)
+    this.syncViewer()
+    this.viewerQuery.addEventListener('change', this.syncViewer)
   },
   beforeUnmount() {
-    window.removeEventListener('keydown', this.handleKeydown);
-    window.removeEventListener('resize', this.checkMobile);
-    document.body.style.overflow = '';
+    this.viewerQuery.removeEventListener('change', this.syncViewer)
+    this.close()
   },
-};
+  methods: {
+    syncViewer() {
+      this.viewerEnabled = this.viewerQuery.matches
+      if (!this.viewerEnabled) this.close()
+    },
+    open(i) {
+      if (!this.viewerEnabled) return
+      this.lastFocused = document.activeElement
+      this.openIndex = i
+      document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', this.onKeydown)
+      this.$nextTick(() => this.$refs.closeButton?.focus())
+    },
+    close() {
+      if (this.openIndex === null) return
+      this.openIndex = null
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', this.onKeydown)
+      // Send focus back where it came from, otherwise a keyboard user lands at
+      // the top of the document every time they close a photo.
+      this.lastFocused?.focus?.()
+      this.lastFocused = null
+    },
+    onKeydown(e) {
+      const last = this.photos.length - 1
+      if (e.key === 'Escape') this.close()
+      else if (e.key === 'ArrowRight') this.openIndex = Math.min(this.openIndex + 1, last)
+      else if (e.key === 'ArrowLeft') this.openIndex = Math.max(this.openIndex - 1, 0)
+      else if (e.key === 'Tab') {
+        // The dialog holds exactly one focusable control, so the trap is simply
+        // to keep focus on it.
+        e.preventDefault()
+        this.$refs.closeButton?.focus()
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>
-.gallery-section {
+.gallery {
   background-color: var(--bone);
-  padding: var(--section-y) 0;
-  position: static !important;
-  overflow: visible !important;
 }
 
-.container {
-  position: static !important;
-  overflow: visible !important;
-}
-
+/* One wide lead, three supporting. All four photos are landscape, so the lead
+   earns its place by width, not by a tall crop it could not survive. */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--grid-gap);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-l) var(--grid-gap);
 }
 
-.gallery-item {
-  position: relative;
+.shot {
+  margin: 0;
+}
+
+.shot--lead {
+  grid-column: 1 / -1;
+}
+
+.shot-frame {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
   overflow: hidden;
+  aspect-ratio: var(--ratio-photo);
   border-radius: var(--r-media);
-  aspect-ratio: 16/9;
-  box-shadow: var(--shadow-md);
-  transition: box-shadow var(--dur-2) var(--ease-out-snap),
-              transform var(--dur-2) var(--ease-out-snap);
   background: var(--surface);
+  box-shadow: var(--elev-rest);
+  transition: box-shadow var(--dur-2) var(--ease-out-snap);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .gallery-item:hover {
-    box-shadow: var(--shadow-lg);
-    z-index: var(--z-raised);
-  }
+.shot--lead .shot-frame {
+  aspect-ratio: var(--ratio-lead);
 }
 
-.gallery-item img {
+button.shot-frame {
+  cursor: pointer;
+}
+
+.shot-frame img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -173,103 +195,100 @@ export default {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .gallery-item:hover img {
+  button.shot-frame:hover {
+    box-shadow: var(--elev-lifted);
+  }
+
+  button.shot-frame:hover img {
     transform: scale(var(--zoom-image));
   }
 }
 
-.gallery-item.clickable {
-  cursor: pointer;
-}
-
-/* Lightbox styles */
-.lightbox-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  background: var(--overlay-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: var(--z-overlay);
-}
-
-.lightbox-img-wrapper {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 80vh;
-  border-radius: var(--r-overlay);
-  box-shadow: var(--elev-overlay);
-  background: var(--surface);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: var(--space-2xs);
-  right: var(--space-2xs);
-  width: var(--control-md);
-  height: var(--control-md);
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--overlay-control-bg);
-  color: var(--on-photo);
-  border: none;
-  border-radius: var(--r-round);
-  font-size: var(--fs-h3);
-  line-height: var(--lh-flat);
-  box-shadow: var(--elev-overlay);
-  cursor: pointer;
-  z-index: var(--z-overlay-control);
-  transition: background-color var(--dur-1) var(--ease-out);
-}
-.lightbox-close:hover {
-  background: var(--overlay-control-bg-hover);
-}
-
-.gallery-item.clickable:active {
+button.shot-frame:active img {
   transform: scale(var(--press-card));
   transition-duration: var(--dur-1);
 }
 
-.gallery-item:focus-visible {
-  outline: var(--focus-ring) solid var(--amber);
-  outline-offset: var(--focus-ring);
+figcaption {
+  margin-top: var(--space-2xs);
+  max-width: var(--measure-card);
+  text-wrap: pretty;
 }
 
-.lightbox-close:focus-visible {
-  outline: var(--focus-ring) solid var(--on-photo);
-  outline-offset: var(--focus-ring);
+/* The lead caption has the whole photo width to sit under. */
+.shot--lead figcaption {
+  max-width: var(--measure-prose);
 }
 
-/* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
-   matches nothing in Vue 3, so the overlay appeared instantly instead of fading
-   in. Closing always worked: `.fade-leave-to` is valid in both versions. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: var(--overlay-bg);
+  --focus-color: var(--on-photo);
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  border-radius: var(--r-overlay);
+  box-shadow: var(--elev-overlay);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: var(--gutter);
+  right: var(--gutter);
+  z-index: var(--z-overlay-control);
+  display: grid;
+  place-items: center;
+  width: var(--control-md);
+  height: var(--control-md);
+  padding: 0;
+  border: none;
+  border-radius: var(--r-round);
+  background: var(--overlay-control-bg);
+  color: var(--on-photo);
+  line-height: var(--lh-flat);
+  box-shadow: var(--elev-overlay);
+  cursor: pointer;
+  transition: background-color var(--dur-1) var(--ease-out);
+}
+
+.lightbox-close:hover {
+  background: var(--overlay-control-bg-hover);
+}
+
+/* Vue 3 class names. The original used Vue 2's .fade-enter, which matches
+   nothing in Vue 3, so the overlay appeared instantly instead of fading in. */
 .fade-enter-active {
   transition: opacity var(--dur-3) var(--ease-out);
 }
+
 .fade-leave-active {
   transition: opacity var(--dur-2) var(--ease-in);
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 
 @media only screen and (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .shot-frame {
+    aspect-ratio: var(--ratio-photo-mobile);
+  }
+
+  .shot--lead .shot-frame {
+    aspect-ratio: var(--ratio-lead-mobile);
   }
 }
 </style>
