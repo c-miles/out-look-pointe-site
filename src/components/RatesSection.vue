@@ -6,7 +6,7 @@
         <div class="rates-card">
           <div class="header-row">
             <h3>Monthly Stay</h3>
-            <span class="price">$600</span>
+            <span class="price">$600-$700</span>
           </div>
           <ul>
             <li>Utilities included (electric, water, sewer, trash)</li>
@@ -107,6 +107,7 @@ export default {
   letter-spacing: 0.5px;
   margin: 0 0 0 0.5rem;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .rates-card ul, .amenities-card ul {
