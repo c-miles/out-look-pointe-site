@@ -43,34 +43,37 @@ export default {
 .contact-section {
   background-color: var(--panel);
   color: var(--on-panel);
-  padding: calc(var(--spacing-unit) * 3.5) 0;
+  padding: var(--section-y) 0;
 }
 
 .contact-section h2 {
   color: var(--on-panel);
-  margin-bottom: calc(var(--spacing-unit) * 1.5);
+  margin-bottom: var(--heading-gap);
 }
 
 .contact-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 0.75rem;
-  margin: 0 0 calc(var(--spacing-unit) * 1.75);
+  gap: var(--grid-gap);
+  margin: 0 0 var(--space-l);
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2xs);
   color: var(--on-panel);
   text-decoration: none;
-  min-width: 108px;
-  padding: 0.85rem 0.75rem;
-  border: 1px solid var(--panel-hairline);
-  border-radius: var(--r-md);
-  font-size: 0.95rem;
+  min-width: var(--chip-min);
+  /* Text-adjacent padding does not scale with the viewport; it is tied to the
+     label, whose size barely moves. One value at every width. */
+  padding: var(--space-xs);
+  border: var(--border-hair) solid var(--panel-hairline);
+  border-radius: var(--r-control);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
   transition: background-color var(--dur-2) var(--ease-out),
               border-color var(--dur-2) var(--ease-out),
               transform var(--dur-2) var(--ease-out-snap);
@@ -80,25 +83,25 @@ export default {
    hue, which on this panel was both noisy and low contrast. */
 @media (hover: hover) and (pointer: fine) {
   .contact-item:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: var(--panel-hover);
     border-color: var(--on-panel-muted);
   }
 }
 
 .contact-item:focus-visible {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: var(--panel-hover);
   border-color: var(--on-panel-muted);
 }
 
 .contact-item:active {
-  background-color: rgba(255, 255, 255, 0.14);
-  transform: scale(0.985);
+  background-color: var(--panel-active);
+  transform: scale(var(--press-control));
   transition-duration: var(--dur-1);
 }
 
 .contact-item:focus-visible {
-  outline: 3px solid var(--amber);
-  outline-offset: 3px;
+  outline: var(--focus-ring) solid var(--amber);
+  outline-offset: var(--focus-ring);
 }
 
 .contact-item svg {
@@ -106,11 +109,11 @@ export default {
 }
 
 .footer-text {
-  max-width: 62ch;
+  max-width: var(--measure-prose);
   margin: 0;
   text-align: left;
   color: var(--on-panel-muted);
-  font-size: 1rem;
+  font-size: var(--fs-small);
   margin-bottom: 0;
 }
 
@@ -118,22 +121,9 @@ export default {
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
-    padding: 0;
   }
   .contact-item {
     min-width: 0;
-    width: 100%;
-    padding: 0.8rem 0.5rem;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .contact-grid {
-    gap: calc(var(--spacing-unit) * 0.5);
-  }
-  .contact-item {
-    padding: 0.7rem 0.4rem;
   }
 }
 </style>

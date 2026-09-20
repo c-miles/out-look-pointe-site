@@ -131,7 +131,7 @@ export default {
 <style scoped>
 .gallery-section {
   background-color: var(--bone);
-  padding: calc(var(--spacing-unit) * 3) 0;
+  padding: var(--section-y) 0;
   position: static !important;
   overflow: visible !important;
 }
@@ -144,24 +144,24 @@ export default {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: calc(var(--spacing-unit) * 2);
-  margin-top: calc(var(--spacing-unit) * 3);
+  gap: var(--grid-gap);
 }
 
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: var(--r-md);
+  border-radius: var(--r-media);
   aspect-ratio: 16/9;
   box-shadow: var(--shadow-md);
-  transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+  transition: box-shadow var(--dur-2) var(--ease-out-snap),
+              transform var(--dur-2) var(--ease-out-snap);
   background: var(--surface);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .gallery-item:hover {
-  box-shadow: var(--shadow-lg);
-  z-index: 2;
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-raised);
   }
 }
 
@@ -169,13 +169,12 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--r-md);
   transition: transform var(--dur-3) var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .gallery-item:hover img {
-  transform: scale(1.03);
+    transform: scale(var(--zoom-image));
   }
 }
 
@@ -193,11 +192,11 @@ export default {
   width: 100vw !important;
   height: 100vh !important;
   height: 100dvh !important;
-  background: rgba(30, 40, 60, 0.92);
+  background: var(--overlay-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99999 !important;
+  z-index: var(--z-overlay);
 }
 
 .lightbox-img-wrapper {
@@ -210,57 +209,59 @@ export default {
 .lightbox-img {
   max-width: 90vw;
   max-height: 80vh;
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-overlay);
+  box-shadow: var(--elev-overlay);
   background: var(--surface);
 }
 
 .lightbox-close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: rgba(30, 40, 60, 0.85);
-  border: none;
-  color: #fff;
-  font-size: 2.2rem;
-  cursor: pointer;
-  z-index: 1001;
-  transition: color 0.2s, background 0.2s;
-  padding: 0.2em 0.5em;
-  line-height: 1;
-  border-radius: 50%;
-  box-shadow: var(--elev-overlay);
-  width: 2.5rem;
-  height: 2.5rem;
+  top: var(--space-2xs);
+  right: var(--space-2xs);
+  width: var(--control-md);
+  height: var(--control-md);
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--overlay-control-bg);
+  color: var(--on-photo);
+  border: none;
+  border-radius: var(--r-round);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-flat);
+  box-shadow: var(--elev-overlay);
+  cursor: pointer;
+  z-index: var(--z-overlay-control);
+  transition: background-color var(--dur-1) var(--ease-out);
 }
 .lightbox-close:hover {
-  color: #ffffff;
-  background: rgba(30, 40, 60, 1);
+  background: var(--overlay-control-bg-hover);
 }
 
-/* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
-   never matched, so the opacity never animated, transitionend never fired, and
-   the overlay stayed on screen swallowing clicks after close. */
 .gallery-item.clickable:active {
-  transform: scale(0.99);
+  transform: scale(var(--press-card));
   transition-duration: var(--dur-1);
 }
 
 .gallery-item:focus-visible {
-  outline: 3px solid var(--amber);
-  outline-offset: 3px;
+  outline: var(--focus-ring) solid var(--amber);
+  outline-offset: var(--focus-ring);
 }
 
 .lightbox-close:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 3px;
+  outline: var(--focus-ring) solid var(--on-photo);
+  outline-offset: var(--focus-ring);
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease;
+/* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
+   matches nothing in Vue 3, so the overlay appeared instantly instead of fading
+   in. Closing always worked: `.fade-leave-to` is valid in both versions. */
+.fade-enter-active {
+  transition: opacity var(--dur-3) var(--ease-out);
+}
+.fade-leave-active {
+  transition: opacity var(--dur-2) var(--ease-in);
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
@@ -269,16 +270,6 @@ export default {
 @media only screen and (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-unit);
-  }
-  .lightbox-img {
-    max-width: 98vw;
-    max-height: 60vh;
-  }
-  .lightbox-close {
-    top: 0.2rem;
-    right: 0.2rem;
-    font-size: 1.5rem;
   }
 }
 </style>

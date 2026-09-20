@@ -10,7 +10,7 @@
           </div>
           <ul>
             <li>Utilities included (electric, water, sewer, trash)</li>
-            <li>35-50 amp hookups</li>
+            <li><span class="nowrap">35-50 amp</span> hookups</li>
             <li>24/7 campground access</li>
             <li>Pet friendly*</li>
           </ul>
@@ -41,20 +41,20 @@ export default {
 <style scoped>
 .rates-section {
   background-color: var(--surface);
-  padding: calc(var(--spacing-unit) * 3) 0;
+  padding: var(--section-y) 0;
 }
 
 .rates-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: calc(var(--spacing-unit) * 3);
-  margin-top: calc(var(--spacing-unit) * 3);
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min), 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--heading-gap);
 }
 
 .rates-card, .amenities-card {
   background-color: var(--surface);
-  padding: calc(var(--spacing-unit) * 2.5);
-  border-radius: var(--r-md);
+  padding: var(--card-pad);
+  border-radius: var(--r-card);
   box-shadow: var(--elev-raised);
   transition: transform var(--dur-2) var(--ease-out-snap),
               box-shadow var(--dur-2) var(--ease-out-snap);
@@ -65,7 +65,7 @@ export default {
 
 @media (hover: hover) and (pointer: fine) {
   .rates-card:hover, .amenities-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(calc(var(--lift-card) * -1));
     box-shadow: var(--elev-lifted);
   }
 }
@@ -75,71 +75,56 @@ export default {
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-s);
+  margin-bottom: var(--space-m);
 }
 
 .rates-card h3, .amenities-card h3 {
   margin: 0;
   color: var(--forest);
-  font-size: 1.35rem;
-  font-weight: 700;
-  display: inline-block;
+  font-size: var(--fs-lede);
+  font-weight: var(--fw-semi);
 }
 
 .price {
-  font-size: 1.1rem;
+  margin: 0;
   color: var(--forest);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--ls-lede);
   font-variant-numeric: tabular-nums lining-nums;
-  margin: 0 0 0 0.5rem;
-  display: inline-block;
   white-space: nowrap;
 }
 
 .rates-card ul, .amenities-card ul {
-  color: var(--gravel);
-  font-size: 0.95rem;
-  line-height: 1.6;
   margin: 0;
-  padding: 0 0 0 1.5em;
+  padding: 0;
   list-style: none;
-  text-align: left;
+  color: var(--gravel);
+  font-size: var(--fs-small);
+  line-height: var(--lh-narrow);
 }
 
 .rates-card ul li, .amenities-card ul li {
-  margin-bottom: 0.5rem;
   position: relative;
-  padding-left: 1em;
+  padding-left: var(--space-m);
+  margin-bottom: var(--space-2xs);
 }
 
 .rates-card ul li::before, .amenities-card ul li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.7em;
-  width: 0.5em;
-  height: 0.5em;
+  /* Half the line box, so the bullet centres on the first line whatever the
+     type scale does. */
+  top: calc(var(--lh-narrow) * 0.5em);
+  width: var(--bullet);
+  height: var(--bullet);
   background: var(--forest);
-  border-radius: 50%;
+  border-radius: var(--r-round);
   display: inline-block;
   transform: translateY(-50%);
 }
 
-@media only screen and (max-width: 768px) {
-  .rates-content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-unit);
-  }
-  .header-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    margin-bottom: 1.2rem;
-  }
-  .price {
-    font-size: 1rem;
-  }
-}
 </style>
