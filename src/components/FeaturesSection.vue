@@ -55,7 +55,7 @@ export default {
   text-align: center;
   padding: var(--card-pad);
   background-color: var(--surface);
-  border-radius: var(--r-md);
+  border-radius: var(--r-card);
   /* The hairline lives in the shadow stack rather than as a border: no box
      model cost, follows the radius, and cross-fades into the hover elevation
      instead of snapping an outline on. */

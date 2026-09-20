@@ -117,10 +117,14 @@ export default {
   --width-heading: 112%;
   --width-normal:  100%;
 
-  --r-sm: 4px;
-  --r-md: 10px;
-  --r-lg: 18px;
-  --r-round: 999px;
+  /* Radius by role. This is a site about land and a view, which is editorial
+     territory; 10px and 18px were consumer-app values. A photograph is a
+     window, and a heavy radius turns it into a sticker. */
+  --r-media:   3px;
+  --r-control: 6px;
+  --r-card:    8px;
+  --r-overlay: 12px;
+  --r-round:   999px;
 
   --spacing-unit: 1rem;
 

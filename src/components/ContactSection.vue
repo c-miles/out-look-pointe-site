@@ -71,7 +71,7 @@ export default {
      label, whose size barely moves. One value at every width. */
   padding: var(--space-xs);
   border: var(--border-hair) solid var(--panel-hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--r-control);
   font-size: var(--fs-small);
   font-weight: var(--fw-medium);
   transition: background-color var(--dur-2) var(--ease-out),

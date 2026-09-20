@@ -115,7 +115,7 @@ h1 {
   color: var(--on-accent);
   text-decoration: none;
   border: none;
-  border-radius: var(--r-lg);
+  border-radius: var(--r-control);
   font-size: var(--fs-small);
   font-weight: var(--fw-semi);
   letter-spacing: var(--ls-button);

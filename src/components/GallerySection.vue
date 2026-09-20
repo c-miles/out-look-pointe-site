@@ -150,7 +150,7 @@ export default {
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: var(--r-md);
+  border-radius: var(--r-media);
   aspect-ratio: 16/9;
   box-shadow: var(--shadow-md);
   transition: box-shadow var(--dur-2) var(--ease-out-snap),
@@ -169,7 +169,6 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--r-md);
   transition: transform var(--dur-3) var(--ease-out);
 }
 
@@ -210,8 +209,8 @@ export default {
 .lightbox-img {
   max-width: 90vw;
   max-height: 80vh;
-  border-radius: var(--r-lg);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-overlay);
+  box-shadow: var(--elev-overlay);
   background: var(--surface);
 }
 

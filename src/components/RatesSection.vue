@@ -54,7 +54,7 @@ export default {
 .rates-card, .amenities-card {
   background-color: var(--surface);
   padding: var(--card-pad);
-  border-radius: var(--r-md);
+  border-radius: var(--r-card);
   box-shadow: var(--elev-raised);
   transition: transform var(--dur-2) var(--ease-out-snap),
               box-shadow var(--dur-2) var(--ease-out-snap);
