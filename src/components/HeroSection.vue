@@ -6,14 +6,17 @@
       <button @click="scrollToContact" class="cta-button">Contact Us to Book</button>
     </div>
     <button @click="scrollToFeatures" class="scroll-indicator" aria-label="Scroll to features">
-      <ion-icon name="chevron-down-outline"></ion-icon>
+      <IconChevronDown :size="30" />
     </button>
   </header>
 </template>
 
 <script>
+import IconChevronDown from './icons/IconChevronDown.vue'
+
 export default {
   name: 'HeroSection',
+  components: { IconChevronDown },
   methods: {
     scrollToFeatures() {
       const featuresSection = document.getElementById('features');
@@ -48,7 +51,7 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--text-light);
+  color: #FFFFFF;
   position: relative;
 }
 
@@ -71,6 +74,7 @@ export default {
 }
 
 h1 {
+  color: #FFFFFF;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   font-size: 4rem;
   margin-bottom: var(--spacing-unit);
@@ -81,6 +85,7 @@ h1 {
 }
 
 .tagline {
+  color: rgba(255, 255, 255, 0.92);
   font-size: 1.25rem;
   font-weight: 400;
   margin-bottom: calc(var(--spacing-unit) * 2);
@@ -95,10 +100,10 @@ h1 {
 .cta-button {
   display: inline-block;
   padding: 0.875rem 2rem;
-  background-color: var(--accent-color);
-  color: var(--text-light);
+  background-color: var(--amber);
+  color: var(--on-accent);
   text-decoration: none;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--r-lg);
   font-weight: 600;
   font-size: 1rem;
   transition: all var(--transition-speed);
@@ -111,8 +116,8 @@ h1 {
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-  background-color: var(--accent-hover);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--amber-hover);
 }
 
 .scroll-indicator {
@@ -120,7 +125,7 @@ h1 {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--text-light);
+  color: #FFFFFF;
   background: none;
   border: none;
   cursor: pointer;
@@ -145,7 +150,7 @@ h1 {
   outline: none;
 }
 
-.scroll-indicator ion-icon {
+.scroll-indicator svg {
   font-size: 2rem;
   width: 2rem;
   height: 2rem;
@@ -188,7 +193,7 @@ h1 {
     height: 2.5rem;
   }
 
-  .scroll-indicator ion-icon {
+  .scroll-indicator svg {
     font-size: 1.75rem;
     width: 1.75rem;
     height: 1.75rem;

@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .rates-section {
-  background-color: white;
+  background-color: var(--surface);
   padding: calc(var(--spacing-unit) * 3) 0;
 }
 
@@ -52,9 +52,9 @@ export default {
 }
 
 .rates-card, .amenities-card {
-  background-color: #f8f9fa;
+  background-color: var(--bone);
   padding: calc(var(--spacing-unit) * 3);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--r-md);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-speed) ease;
   position: relative;
@@ -69,14 +69,14 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--accent-color);
+  background: var(--amber);
   transform: scaleX(0);
   transition: transform var(--transition-speed) ease;
 }
 
 .rates-card:hover, .amenities-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-lg);
 }
 
 .rates-card:hover::before, .amenities-card:hover::before {
@@ -93,7 +93,7 @@ export default {
 
 .rates-card h3, .amenities-card h3 {
   margin: 0;
-  color: var(--primary-color);
+  color: var(--forest);
   font-size: 1.35rem;
   font-weight: 700;
   text-align: center;
@@ -102,7 +102,7 @@ export default {
 
 .price {
   font-size: 1.1rem;
-  color: var(--accent-color);
+  color: var(--amber);
   font-weight: 700;
   letter-spacing: 0.5px;
   margin: 0 0 0 0.5rem;
@@ -111,7 +111,7 @@ export default {
 }
 
 .rates-card ul, .amenities-card ul {
-  color: var(--secondary-color);
+  color: var(--gravel);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -133,7 +133,7 @@ export default {
   top: 0.7em;
   width: 0.5em;
   height: 0.5em;
-  background: var(--accent-color);
+  background: var(--amber);
   border-radius: 50%;
   display: inline-block;
   transform: translateY(-50%);

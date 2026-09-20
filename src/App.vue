@@ -49,26 +49,75 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/fonts/CabinetGrotesk-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/fonts/CabinetGrotesk-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Palette sampled from the campground photographs: tree canopy, the gravel
+   access road, and sky haze. The amber is wayfinding, used for calls to
+   action and nothing else. */
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #34495e;
-  --accent-color: #3498db;
-  --accent-hover: #2980b9;
-  --text-light: #ecf0f1;
-  --text-dark: #2c3e50;
+  --forest: #1E3A2B;
+  --forest-deep: #142619;
+  --bone: #F6F5F2;
+  --gravel: #6F6859;
+  --ink: #1A1D1A;
+  --amber: #A8480B;
+  --amber-hover: #8A3A08;
+  --surface: #FFFFFF;
+  --hairline: #DEDAD2;
+  --on-accent: #FFFFFF;
+
+  --font-display: 'Cabinet Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Satoshi', system-ui, -apple-system, sans-serif;
+
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 18px;
+
   --spacing-unit: 1rem;
   --transition-speed: 0.3s;
 
-  /* Modern UI Variables */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
-  --card-bg: #ffffff;
-  --card-hover-bg: #f8f9fa;
+  /* Shadows are tinted with the ink hue rather than pure black. */
+  --shadow-sm: 0 1px 2px rgba(26, 29, 26, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 29, 26, 0.08);
+  --shadow-lg: 0 12px 28px rgba(26, 29, 26, 0.10);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --forest: #8FB89B;
+    --forest-deep: #0E1811;
+    --bone: #14170F;
+    --surface: #1B1F19;
+    --ink: #EDEAE2;
+    --gravel: #A39B8B;
+    --hairline: #2E332B;
+    --amber: #E8913C;
+    --amber-hover: #F2A455;
+    --on-accent: #14170F;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
 }
 
 * {
@@ -78,10 +127,10 @@ export default {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
-  color: var(--text-dark);
-  background-color: #f8f9fa;
+  color: var(--ink);
+  background-color: var(--bone);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -94,23 +143,22 @@ body {
 
 h1, h2, h3 {
   margin-bottom: var(--spacing-unit);
-  line-height: 1.2;
-  font-weight: 600;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.15;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--forest);
+  letter-spacing: -0.015em;
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 6vw, 3.9rem);
   font-weight: 700;
-  letter-spacing: -0.5px;
 }
 
 h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  text-align: center;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 700;
   margin-bottom: calc(var(--spacing-unit) * 2);
-  letter-spacing: -0.3px;
 }
 
 p {
@@ -121,19 +169,6 @@ p {
 
 section {
   padding: calc(var(--spacing-unit) * 4) 0;
-}
-
-/* Modern Card Styles */
-.card {
-  background: var(--card-bg);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-speed) ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
 }
 
 /* Scroll Animation Styles */

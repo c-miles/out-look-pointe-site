@@ -130,7 +130,7 @@ export default {
 
 <style scoped>
 .gallery-section {
-  background-color: #f8f9fa;
+  background-color: var(--bone);
   padding: calc(var(--spacing-unit) * 3) 0;
   position: static !important;
   overflow: visible !important;
@@ -151,15 +151,15 @@ export default {
 .gallery-item {
   position: relative;
   overflow: hidden;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--r-md);
   aspect-ratio: 16/9;
   box-shadow: var(--shadow-md);
   transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
-  background: #fff;
+  background: var(--surface);
 }
 
 .gallery-item:hover {
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-lg);
   z-index: 2;
 }
 
@@ -167,7 +167,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--r-md);
   transition: transform var(--transition-speed) ease;
 }
 
@@ -206,9 +206,9 @@ export default {
 .lightbox-img {
   max-width: 90vw;
   max-height: 80vh;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--r-lg);
   box-shadow: var(--shadow-lg);
-  background: #fff;
+  background: var(--surface);
 }
 
 .lightbox-close {
@@ -233,7 +233,7 @@ export default {
   justify-content: center;
 }
 .lightbox-close:hover {
-  color: var(--accent-color);
+  color: var(--amber);
   background: rgba(30, 40, 60, 1);
 }
 
@@ -241,7 +241,7 @@ export default {
    never matched, so the opacity never animated, transitionend never fired, and
    the overlay stayed on screen swallowing clicks after close. */
 .gallery-item:focus-visible {
-  outline: 3px solid var(--accent-color);
+  outline: 3px solid var(--amber);
   outline-offset: 3px;
 }
 

@@ -4,19 +4,19 @@
       <h2>Contact Us</h2>
       <div class="contact-grid">
         <a class="contact-item" href="tel:+13046174610">
-          <ion-icon name="phone-portrait-outline"></ion-icon>
+          <IconPhone :size="30" />
           <span>Call</span>
         </a>
         <a class="contact-item" href="mailto:danajenkinswalters@yahoo.com">
-          <ion-icon name="mail-outline"></ion-icon>
+          <IconMail :size="30" />
           <span>Email</span>
         </a>
         <a class="contact-item" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006" target="_blank" rel="noopener noreferrer">
-          <ion-icon name="map-outline"></ion-icon>
+          <IconMap :size="30" />
           <span>Directions</span>
         </a>
         <a class="contact-item" href="https://www.facebook.com/MiltonWV" target="_blank" rel="noopener noreferrer">
-          <ion-icon name="logo-facebook"></ion-icon>
+          <IconFacebook :size="30" />
           <span>Facebook</span>
         </a>
       </div>
@@ -28,15 +28,21 @@
 </template>
 
 <script>
+import IconPhone from './icons/IconPhone.vue'
+import IconMail from './icons/IconMail.vue'
+import IconMap from './icons/IconMap.vue'
+import IconFacebook from './icons/IconFacebook.vue'
+
 export default {
-  name: 'ContactSection'
+  name: 'ContactSection',
+  components: { IconPhone, IconMail, IconMap, IconFacebook }
 }
 </script>
 
 <style scoped>
 .contact-section {
-  background-color: var(--primary-color);
-  color: var(--text-light);
+  background-color: var(--forest);
+  color: var(--bone);
   padding: calc(var(--spacing-unit) * 3) 0;
 }
 
@@ -52,7 +58,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--text-light);
+  color: var(--bone);
   text-decoration: none;
   transition: color var(--transition-speed);
   min-width: 120px;
@@ -60,10 +66,10 @@ export default {
 }
 
 .contact-item:hover {
-  color: var(--accent-color);
+  color: var(--amber);
 }
 
-.contact-item ion-icon {
+.contact-item svg {
   font-size: 2.5rem;
   margin-bottom: calc(var(--spacing-unit) * 0.5);
 }

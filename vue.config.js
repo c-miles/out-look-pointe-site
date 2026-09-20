@@ -4,15 +4,14 @@ module.exports = defineConfig({
   // No source maps in production: this is a static marketing site, nothing debugs
   // against prod, and the vendor map alone was 635 KB of dead weight.
   productionSourceMap: false,
-  chainWebpack: config => {
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .tap(options => ({
-        ...options,
-        compilerOptions: {
-          isCustomElement: tag => tag.startsWith('ion-')
-        }
-      }))
+  css: {
+    loaderOptions: {
+      css: {
+        // Fonts live in public/ and are served from a stable, preloadable path.
+        // Without this, css-loader tries to resolve /fonts/... as a module and
+        // the build fails.
+        url: { filter: (url) => !url.startsWith('/') },
+      },
+    },
   }
 })
