@@ -84,14 +84,14 @@ export default {
   margin: 0;
   color: var(--forest);
   font-size: var(--fs-lede);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semi);
 }
 
 .price {
   margin: 0;
   color: var(--forest);
   font-size: var(--fs-body);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semi);
   letter-spacing: var(--ls-lede);
   font-variant-numeric: tabular-nums lining-nums;
   white-space: nowrap;

@@ -73,6 +73,7 @@ export default {
   border: var(--border-hair) solid var(--panel-hairline);
   border-radius: var(--r-md);
   font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
   transition: background-color var(--dur-2) var(--ease-out),
               border-color var(--dur-2) var(--ease-out),
               transform var(--dur-2) var(--ease-out-snap);

@@ -66,25 +66,24 @@ export default {
 </script>
 
 <style>
+/* Two variable fonts, both SIL OFL (licences sit beside the files in
+   public/fonts). One file per family covers every weight, and Archivo also
+   carries a width axis, which is where the display contrast comes from: same
+   family of forms as the body, but wider and heavier, like sign lettering. */
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('/fonts/CabinetGrotesk-400.woff2') format('woff2');
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-family: 'Archivo';
+  src: url('/fonts/Archivo-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-  font-family: 'Cabinet Grotesk';
-  src: url('/fonts/CabinetGrotesk-700.woff2') format('woff2');
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-400.woff2') format('woff2');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-700.woff2') format('woff2');
-  font-weight: 700; font-style: normal; font-display: swap;
+  font-family: 'Public Sans';
+  src: url('/fonts/PublicSans-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Palette sampled from the campground photographs: tree canopy, the gravel
@@ -109,8 +108,14 @@ export default {
   --on-panel: #F6F5F2;
   --on-panel-muted: #C4D2C7;
 
-  --font-display: 'Cabinet Grotesk', system-ui, -apple-system, sans-serif;
-  --font-body: 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
+
+  /* Width is the display axis. Expanded for the one hero line, slightly wide
+     for section headings, normal everywhere else. */
+  --width-display: 125%;
+  --width-heading: 112%;
+  --width-normal:  100%;
 
   --r-sm: 4px;
   --r-md: 10px;
@@ -149,7 +154,7 @@ export default {
      use fluid px so they are correct at both ends of a 2x size range; a single
      em value would be wrong at one end. */
   --ls-display: clamp(-2.8px, 0.029px - 0.221vw, -0.8px);
-  --ls-h1:      clamp(-1.8px, -0.145px - 0.129vw, -0.63px);
+  --ls-h1:      clamp(-0.9px, -0.073px - 0.0646vw, -0.315px); /* expanded cut: half the usual tightening */
   --ls-h2:      -0.022em;
   --ls-h3:      -0.015em;
   --ls-lede:    -0.011em;
@@ -162,17 +167,18 @@ export default {
      become the measure: at 1200px a paragraph runs past 110 characters.
 
      These are CALIBRATED, not nominal. The ch unit is the advance width of
-     the zero glyph, which in this face is 0.683em while a real average
-     character is 0.438em. So ch overstates a line by about 1.56x, and a
-     nominal 66ch box was rendering 97 characters. Measured in browser, not
-     assumed. The numbers below are target characters multiplied by 0.642.
+     the zero glyph, which in Public Sans is 0.612em while a real average
+     character is 0.460em. So ch overstates a line by about 1.33x. Measured in
+     the browser, not assumed: target characters multiplied by 0.752.
 
-     If the typeface changes, RE-MEASURE. The factor is font specific. */
-  --measure-display: 9ch;    /* ~14 characters */
-  --measure-heading: 15ch;   /* ~24 */
-  --measure-lede:    31ch;   /* ~48 */
-  --measure-prose:   42ch;   /* ~66 */
-  --measure-card:    30ch;   /* ~46 */
+     If the body typeface changes, RE-MEASURE. The factor is font specific; it
+     was 0.642 under the previous face, and carrying that over would have set
+     every line about 15% short. */
+  --measure-display: 11ch;   /* ~14 characters */
+  --measure-heading: 18ch;   /* ~24 */
+  --measure-lede:    36ch;   /* ~48 */
+  --measure-prose:   50ch;   /* ~66 */
+  --measure-card:    35ch;   /* ~46 */
 
   /* ---- SPACING ---------------------------------------------------------
      8pt grid with 4px half steps below 16px. Linear at the small end where
@@ -200,14 +206,16 @@ export default {
   --container:        70rem;
   --container-narrow: 45rem;
 
-  --measure-tagline: 36ch;      /* ~56 characters; the hero subhead is 49 */
+  --measure-tagline: 42ch;      /* ~56 characters; the hero subhead is 49 */
   --heading-margin-after: 0.4em; /* em on purpose: scales with the heading */
 
-  /* Only 400 and 700 are loaded. Any other number is silently substituted by
-     the browser, so components may only use these two until more weights ship
-     with the typeface decision. */
-  --fw-regular: 400;
-  --fw-bold:    700;
+  /* Five positions. 500 and 600 are where emphasis can happen without
+     shouting; a 400/700 binary has no way to say "label" or "button". */
+  --fw-regular: 400;   /* body */
+  --fw-medium:  500;   /* labels, captions that need presence */
+  --fw-semi:    600;   /* buttons, card titles, prices */
+  --fw-bold:    700;   /* h2, h3 */
+  --fw-display: 800;   /* h1 only */
 
   --lh-flat: 1;   /* single glyph controls, e.g. the lightbox close */
 
@@ -300,6 +308,18 @@ export default {
   --shadow-lg: var(--elev-lifted);
 }
 
+/* The expanded cut is wide by design, and font-stretch cannot be made fluid
+   with clamp (it will not mix vw into a percentage). So the token steps down
+   once. Measured: at 125% the first hero line is 315px, which fits a 360px
+   phone but breaks into three lines at 320px. At 106% it is 269px and fits
+   everywhere. Set on the token so no component needs its own override. */
+@media (max-width: 400px) {
+  :root {
+    --width-display: 106%;
+    --width-heading: 104%;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --forest: #8FB89B;
@@ -387,7 +407,8 @@ h1 {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-display);
+  font-stretch: var(--width-display);
 }
 
 h2 {
@@ -395,6 +416,7 @@ h2 {
   line-height: var(--lh-h2);
   letter-spacing: var(--ls-h2);
   font-weight: var(--fw-bold);
+  font-stretch: var(--width-heading);
   margin-block-start: 0;
   margin-block-end: var(--heading-gap);
 }

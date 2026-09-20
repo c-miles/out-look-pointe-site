@@ -94,6 +94,7 @@ export default {
   margin: var(--space-2xs) 0;
   color: var(--forest);
   font-size: var(--fs-lede);
+  font-weight: var(--fw-semi);
   line-height: var(--lh-h3);
 }
 

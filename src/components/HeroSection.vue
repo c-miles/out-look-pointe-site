@@ -76,7 +76,7 @@ export default {
 }
 
 .hero-content {
-  max-width: var(--container-narrow);
+  max-width: var(--container);
   padding: 0 var(--gutter);
   position: relative;
   z-index: var(--z-raised);
@@ -87,7 +87,8 @@ h1 {
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-display);
+  font-stretch: var(--width-display);
   margin-bottom: var(--space-s);
   text-shadow: var(--text-halo-display);
 }
@@ -100,7 +101,7 @@ h1 {
   font-size: var(--fs-lede);
   line-height: var(--lh-lede);
   letter-spacing: var(--ls-lede);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semi);
   text-shadow: var(--text-halo-body);
   text-wrap: balance;
   max-width: var(--measure-tagline);
@@ -116,10 +117,9 @@ h1 {
   border: none;
   border-radius: var(--r-lg);
   font-size: var(--fs-small);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semi);
   letter-spacing: var(--ls-button);
   text-transform: uppercase;
-  font-feature-settings: 'case' 1;
   box-shadow: var(--shadow-md);
   cursor: pointer;
   transition: background-color var(--dur-2) var(--ease-out),
