@@ -30,20 +30,37 @@ export default {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-in')
+          observer.unobserve(entry.target)
         }
       })
     }, {
-      threshold: 0.1
+      // A threshold on a tall section fires when almost nothing is visible.
+      // A bottom root margin is independent of element height.
+      threshold: 0,
+      rootMargin: '0px 0px -12% 0px'
     })
 
     // Observe all sections except the footer
-    document.querySelectorAll('section:not(.contact-section)').forEach(section => {
+    const animated = [...document.querySelectorAll('section:not(.contact-section)')]
+    animated.forEach(section => {
       section.classList.add('scroll-animate')
-      if (section.id === 'features' || section.id === 'rates') {
-        section.classList.add('slide-right')
-      }
       observer.observe(section)
     })
+
+    // Safety net. The hidden state is applied by JS, so a script failure leaves
+    // the page visible. But if the script runs and the observer then never
+    // fires, the content would stay at opacity 0 with no way back. Reveal
+    // everything unconditionally after a short delay; by then a working
+    // observer has already done its job and this is a no-op.
+    this.revealFallback = window.setTimeout(() => {
+      animated.forEach(section => {
+        section.classList.add('animate-in')
+        observer.unobserve(section)
+      })
+    }, 3000)
+  },
+  beforeUnmount() {
+    window.clearTimeout(this.revealFallback)
   }
 }
 </script>
@@ -79,11 +96,18 @@ export default {
   --bone: #F6F5F2;
   --gravel: #6F6859;
   --ink: #1A1D1A;
-  --amber: #A8480B;
-  --amber-hover: #8A3A08;
+  --amber: #C2410C;
+  --amber-hover: #CB450D;
   --surface: #FFFFFF;
   --hairline: #DEDAD2;
   --on-accent: #FFFFFF;
+
+  /* A deep panel reads as a panel in both schemes, so it does not invert the
+     way --forest does. --forest is a text colour; this is a background. */
+  --panel: #1E3A2B;
+  --panel-hairline: #33543F;
+  --on-panel: #F6F5F2;
+  --on-panel-muted: #C4D2C7;
 
   --font-display: 'Cabinet Grotesk', system-ui, -apple-system, sans-serif;
   --font-body: 'Satoshi', system-ui, -apple-system, sans-serif;
@@ -93,12 +117,44 @@ export default {
   --r-lg: 18px;
 
   --spacing-unit: 1rem;
-  --transition-speed: 0.3s;
+
+  /* Entrances decelerate, exits accelerate. Using one curve for both is the
+     single most common motion mistake in templates. */
+  --ease-out:      cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-out-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:       cubic-bezier(0.32, 0, 0.67, 0);
+
+  --dur-1: 120ms;  /* colour, border, opacity on small controls */
+  --dur-2: 180ms;  /* hover lift, icon state */
+  --dur-3: 260ms;  /* overlay fade, image scale */
+  --dur-4: 420ms;  /* section scroll reveal */
+
+  --reveal-distance: 16px;
+
+  --transition-speed: var(--dur-2);
 
   /* Shadows are tinted with the ink hue rather than pure black. */
-  --shadow-sm: 0 1px 2px rgba(26, 29, 26, 0.06);
-  --shadow-md: 0 4px 12px rgba(26, 29, 26, 0.08);
-  --shadow-lg: 0 12px 28px rgba(26, 29, 26, 0.10);
+  --card-border: 1px solid var(--hairline);
+  --shade: 152deg 24% 10%;
+
+  --elev-rest:
+    0 0 0 1px hsl(var(--shade) / 0.08);
+  --elev-raised:
+    0 0 0 1px hsl(var(--shade) / 0.07),
+    0 1px 2px -1px hsl(var(--shade) / 0.10),
+    0 3px 6px -3px hsl(var(--shade) / 0.08);
+  --elev-lifted:
+    0 0 0 1px hsl(var(--shade) / 0.08),
+    0 2px 4px -2px hsl(var(--shade) / 0.10),
+    0 8px 16px -6px hsl(var(--shade) / 0.10);
+  --elev-overlay:
+    0 0 0 1px hsl(var(--shade) / 0.10),
+    0 4px 8px -4px hsl(var(--shade) / 0.10),
+    0 20px 40px -12px hsl(var(--shade) / 0.18);
+
+  --shadow-sm: var(--elev-rest);
+  --shadow-md: var(--elev-raised);
+  --shadow-lg: var(--elev-lifted);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -110,13 +166,36 @@ export default {
     --ink: #EDEAE2;
     --gravel: #A39B8B;
     --hairline: #2E332B;
-    --amber: #E8913C;
-    --amber-hover: #F2A455;
-    --on-accent: #14170F;
+    --amber: #C2410C;
+    --amber-hover: #D04710;
+    --on-accent: #FFFFFF;
 
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
-    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+    --panel: #1B2C21;
+    --panel-hairline: #2F4638;
+    --on-panel: #E8EDE6;
+    --on-panel-muted: #A8BCAE;
+
+    --surface-hover: #232820;
+    --hairline-raised: #3B4239;
+
+    --elev-rest:
+      0 0 0 1px var(--hairline);
+    --elev-raised:
+      inset 0 1px 0 hsl(90deg 20% 96% / 0.05),
+      0 0 0 1px var(--hairline),
+      0 2px 6px -2px hsl(0deg 0% 0% / 0.40);
+    --elev-lifted:
+      inset 0 1px 0 hsl(90deg 20% 96% / 0.07),
+      0 0 0 1px var(--hairline-raised),
+      0 6px 16px -4px hsl(0deg 0% 0% / 0.50);
+    --elev-overlay:
+      inset 0 1px 0 hsl(90deg 20% 96% / 0.08),
+      0 0 0 1px var(--hairline-raised),
+      0 16px 40px -8px hsl(0deg 0% 0% / 0.65);
+
+    --shadow-sm: var(--elev-rest);
+    --shadow-md: var(--elev-raised);
+    --shadow-lg: var(--elev-lifted);
   }
 }
 
@@ -151,12 +230,12 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 6vw, 3.9rem);
+  font-size: clamp(2.3rem, 1.702rem + 2.552vw, 4.2rem);
   font-weight: 700;
 }
 
 h2 {
-  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-size: clamp(1.75rem, 1.396rem + 1.510vw, 2.6rem);
   font-weight: 700;
   margin-bottom: calc(var(--spacing-unit) * 2);
 }
@@ -174,17 +253,14 @@ section {
 /* Scroll Animation Styles */
 .scroll-animate {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.slide-right {
-  transform: translateX(50px);
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--dur-4) var(--ease-out),
+              transform var(--dur-4) var(--ease-out);
 }
 
 .animate-in {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 @media only screen and (max-width: 768px) {
@@ -204,12 +280,15 @@ section {
 /* The scroll reveal ran unconditionally. Anyone who has asked their OS to
    reduce motion was getting it anyway. */
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --reveal-distance: 0px;
+    --dur-4: 80ms;
+  }
+
   .scroll-animate,
-  .slide-right,
   .animate-in {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
 
   *,

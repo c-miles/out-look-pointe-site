@@ -41,57 +41,90 @@ export default {
 
 <style scoped>
 .contact-section {
-  background-color: var(--forest);
-  color: var(--bone);
-  padding: calc(var(--spacing-unit) * 3) 0;
+  background-color: var(--panel);
+  color: var(--on-panel);
+  padding: calc(var(--spacing-unit) * 3.5) 0;
+}
+
+.contact-section h2 {
+  color: var(--on-panel);
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
 }
 
 .contact-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: calc(var(--spacing-unit) * 2);
-  margin: calc(var(--spacing-unit) * 3) 0;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin: 0 0 calc(var(--spacing-unit) * 1.75);
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--bone);
+  gap: 0.5rem;
+  color: var(--on-panel);
   text-decoration: none;
-  transition: color var(--transition-speed);
-  min-width: 120px;
-  padding: var(--spacing-unit);
+  min-width: 108px;
+  padding: 0.85rem 0.75rem;
+  border: 1px solid var(--panel-hairline);
+  border-radius: var(--r-md);
+  font-size: 0.95rem;
+  transition: background-color var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out-snap);
 }
 
-.contact-item:hover {
-  color: var(--amber);
+/* Hover signals "this is interactive". It does not need to introduce a second
+   hue, which on this panel was both noisy and low contrast. */
+@media (hover: hover) and (pointer: fine) {
+  .contact-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--on-panel-muted);
+  }
+}
+
+.contact-item:focus-visible {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--on-panel-muted);
+}
+
+.contact-item:active {
+  background-color: rgba(255, 255, 255, 0.14);
+  transform: scale(0.985);
+  transition-duration: var(--dur-1);
+}
+
+.contact-item:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
 }
 
 .contact-item svg {
-  font-size: 2.5rem;
-  margin-bottom: calc(var(--spacing-unit) * 0.5);
+  margin-bottom: 0;
 }
 
 .footer-text {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  opacity: 0.9;
+  max-width: 62ch;
+  margin: 0;
+  text-align: left;
+  color: var(--on-panel-muted);
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 768px) {
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-unit);
-    justify-items: center;
-    padding: 0 var(--spacing-unit);
+    gap: 0.6rem;
+    padding: 0;
   }
   .contact-item {
-    min-width: 100px;
-    padding: var(--spacing-unit);
+    min-width: 0;
+    width: 100%;
+    padding: 0.8rem 0.5rem;
   }
 }
 
@@ -100,8 +133,7 @@ export default {
     gap: calc(var(--spacing-unit) * 0.5);
   }
   .contact-item {
-    min-width: 80px;
-    padding: calc(var(--spacing-unit) * 0.5);
+    padding: 0.7rem 0.4rem;
   }
 }
 </style>

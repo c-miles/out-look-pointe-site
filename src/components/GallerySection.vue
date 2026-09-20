@@ -158,9 +158,11 @@ export default {
   background: var(--surface);
 }
 
-.gallery-item:hover {
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover {
   box-shadow: var(--shadow-lg);
   z-index: 2;
+  }
 }
 
 .gallery-item img {
@@ -168,11 +170,13 @@ export default {
   height: 100%;
   object-fit: cover;
   border-radius: var(--r-md);
-  transition: transform var(--transition-speed) ease;
+  transition: transform var(--dur-3) var(--ease-out);
 }
 
-.gallery-item:hover img {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover img {
+  transform: scale(1.03);
+  }
 }
 
 .gallery-item.clickable {
@@ -188,12 +192,12 @@ export default {
   bottom: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
+  height: 100dvh !important;
   background: rgba(30, 40, 60, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 99999 !important;
-  animation: fadeIn 0.2s;
 }
 
 .lightbox-img-wrapper {
@@ -225,7 +229,7 @@ export default {
   padding: 0.2em 0.5em;
   line-height: 1;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  box-shadow: var(--elev-overlay);
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
@@ -233,13 +237,18 @@ export default {
   justify-content: center;
 }
 .lightbox-close:hover {
-  color: var(--amber);
+  color: #ffffff;
   background: rgba(30, 40, 60, 1);
 }
 
 /* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
    never matched, so the opacity never animated, transitionend never fired, and
    the overlay stayed on screen swallowing clicks after close. */
+.gallery-item.clickable:active {
+  transform: scale(0.99);
+  transition-duration: var(--dur-1);
+}
+
 .gallery-item:focus-visible {
   outline: 3px solid var(--amber);
   outline-offset: 3px;

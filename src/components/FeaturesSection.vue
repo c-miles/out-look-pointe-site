@@ -49,7 +49,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: calc(var(--spacing-unit) * 2);
-  margin-top: calc(var(--spacing-unit) * 3);
 }
 
 .feature-card {
@@ -57,43 +56,40 @@ export default {
   padding: calc(var(--spacing-unit) * 2);
   background-color: var(--surface);
   border-radius: var(--r-md);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-speed) ease;
+  /* The hairline lives in the shadow stack rather than as a border: no box
+     model cost, follows the radius, and cross-fades into the hover elevation
+     instead of snapping an outline on. */
+  box-shadow: var(--elev-raised);
+  transition: transform var(--dur-2) var(--ease-out-snap),
+              box-shadow var(--dur-2) var(--ease-out-snap);
   position: relative;
   overflow: hidden;
 }
 
-.feature-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--amber);
-  transform: scaleX(0);
-  transition: transform var(--transition-speed) ease;
+
+/* Hover moves exactly one elevation level. Going rest to lifted made the
+   shadow behave as if the card rose 30px while it actually rose 3px, which is
+   why it read as cheap. Gated so it does not stick after a tap on a phone. */
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--elev-lifted);
+  }
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+.feature-card:active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: var(--elev-rest);
+  transition-duration: var(--dur-1);
 }
 
-.feature-card:hover::before {
-  transform: scaleX(1);
-}
 
 .feature-card svg {
   font-size: 2.5rem;
-  color: var(--amber);
+  color: var(--forest);
   margin-bottom: var(--spacing-unit);
-  transition: transform var(--transition-speed) ease;
 }
 
-.feature-card:hover svg {
-  transform: scale(1.1);
-}
 
 .feature-card h3 {
   margin: var(--spacing-unit) 0;
