@@ -443,6 +443,12 @@ section {
   padding-block: var(--section-y);
 }
 
+/* A range or a measurement is one unit of meaning and must not break across
+   lines: "35-" on one line and "50 amp" on the next reads as a typo. */
+.nowrap {
+  white-space: nowrap;
+}
+
 /* Scroll Animation Styles */
 .scroll-animate {
   opacity: 0;

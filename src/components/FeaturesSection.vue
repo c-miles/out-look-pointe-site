@@ -5,12 +5,12 @@
         <div class="feature-card">
           <IconHome :size="28" />
           <h3>Private Lots</h3>
-          <p>Spacious, quiet graveled lots with 35-50 amp hookups</p>
+          <p>Spacious, quiet graveled lots with <span class="nowrap">35-50 amp</span> hookups</p>
         </div>
         <div class="feature-card">
           <IconClock :size="28" />
           <h3>24/7 Access</h3>
-          <p>Office hours 7am - 8pm, with 24/7 campground access</p>
+          <p>Office hours <span class="nowrap">7am - 8pm</span>, with <span class="nowrap">24/7</span> campground access</p>
         </div>
         <div class="feature-card">
           <IconLeaf :size="28" />
@@ -20,7 +20,7 @@
         <div class="feature-card">
           <IconPin :size="28" />
           <h3>Prime Location</h3>
-          <p>Just 3/10th mile from town, close to all amenities</p>
+          <p>Just <span class="nowrap">3/10th mile</span> from town, close to all amenities</p>
         </div>
       </div>
     </div>

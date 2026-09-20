@@ -10,7 +10,7 @@
           </div>
           <ul>
             <li>Utilities included (electric, water, sewer, trash)</li>
-            <li>35-50 amp hookups</li>
+            <li><span class="nowrap">35-50 amp</span> hookups</li>
             <li>24/7 campground access</li>
             <li>Pet friendly*</li>
           </ul>
