@@ -90,9 +90,9 @@ h1 {
   font-size: 4rem;
   margin-bottom: var(--spacing-unit);
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.70),
-    0 2px 10px rgba(0, 0, 0, 0.55),
-    0 6px 28px rgba(0, 0, 0, 0.45);
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 2px 10px rgba(0, 0, 0, 0.275),
+    0 6px 28px rgba(0, 0, 0, 0.225);
   letter-spacing: -0.028em;
   line-height: 1.1;
   font-weight: 800;
@@ -108,10 +108,10 @@ h1 {
   font-weight: 700;
   margin-bottom: calc(var(--spacing-unit) * 2);
   text-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.90),
-    0 1px 4px rgba(0, 0, 0, 0.80),
-    0 2px 10px rgba(0, 0, 0, 0.65),
-    0 4px 24px rgba(0, 0, 0, 0.50);
+    0 1px 1px rgba(0, 0, 0, 0.45),
+    0 1px 4px rgba(0, 0, 0, 0.40),
+    0 2px 10px rgba(0, 0, 0, 0.325),
+    0 4px 24px rgba(0, 0, 0, 0.25);
   letter-spacing: -0.005em;
   max-width: 600px;
   margin-left: auto;
@@ -140,8 +140,12 @@ h1 {
 
 @media (hover: hover) and (pointer: fine) {
   .cta-button:hover {
+    /* The base sits at the brightest orange that still carries white text at
+       4.5:1, so hover cannot go lighter. It signals with lift and elevation
+       instead, and settles a touch deeper. */
     background-color: var(--amber-hover);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: var(--elev-lifted);
   }
 
   .scroll-indicator:hover {

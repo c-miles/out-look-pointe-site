@@ -96,8 +96,8 @@ export default {
   --bone: #F6F5F2;
   --gravel: #6F6859;
   --ink: #1A1D1A;
-  --amber: #C2410C;
-  --amber-hover: #CB450D;
+  --amber: #D04710;
+  --amber-hover: #C2410C;
   --surface: #FFFFFF;
   --hairline: #DEDAD2;
   --on-accent: #FFFFFF;
@@ -166,8 +166,8 @@ export default {
     --ink: #EDEAE2;
     --gravel: #A39B8B;
     --hairline: #2E332B;
-    --amber: #C2410C;
-    --amber-hover: #D04710;
+    --amber: #D04710;
+    --amber-hover: #C2410C;
     --on-accent: #FFFFFF;
 
     --panel: #1B2C21;
