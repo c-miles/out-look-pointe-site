@@ -6,32 +6,43 @@
       <button @click="scrollToContact" class="cta-button">Contact Us to Book</button>
     </div>
     <button @click="scrollToFeatures" class="scroll-indicator" aria-label="Scroll to features">
-      <ion-icon name="chevron-down-outline"></ion-icon>
+      <IconChevronDown :size="30" />
     </button>
   </header>
 </template>
 
 <script>
+import IconChevronDown from './icons/IconChevronDown.vue'
+
 export default {
   name: 'HeroSection',
+  components: { IconChevronDown },
   methods: {
+    // Read the preference at call time, not at mount, so a mid-session change
+    // is respected. An explicit behavior here overrides CSS scroll-behavior,
+    // which is why the reduced-motion rule alone was not enough.
+    scrollBehavior() {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth';
+    },
+    scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      // Settle the destination first. While a section still holds its reveal
+      // transform it sits below its final position, and scrollIntoView measures
+      // the transformed box, so the target would shift mid-scroll.
+      target.classList.add('animate-in');
+      target.scrollIntoView({
+        behavior: this.scrollBehavior(),
+        block: 'start'
+      });
+    },
     scrollToFeatures() {
-      const featuresSection = document.getElementById('features');
-      if (featuresSection) {
-        featuresSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
+      this.scrollToSection('features');
     },
     scrollToContact() {
-      const contactSection = document.getElementById('contact');
-      if (contactSection) {
-        contactSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
+      this.scrollToSection('contact');
     }
   }
 }
@@ -39,28 +50,32 @@ export default {
 
 <style scoped>
 .hero {
-  height: 100vh;
-  background: linear-gradient(rgba(44, 62, 80, 0.5), rgba(44, 62, 80, 0.6)),
-              image-set(url('../assets/appalachian-mountains-wv.webp') type('image/webp'),
-                        url('../assets/appalachian-mountains-wv.jpg') type('image/jpeg'))
-              center/cover;
+  min-height: 100vh;
+  min-height: 100dvh;
+  /* Owner decision: the photograph stays essentially unfiltered and the text is
+     centred over it. This does not meet WCAG AA. The brightest pixel behind the
+     text measures roughly 2.2:1 against white where 4.5:1 is required, so this
+     text must not be described as accessible. The grade below is 0.10, low
+     enough to read as a light colour grade rather than a filter, and each glyph
+     carries its own halo via text-shadow.
+     A compliant version exists and was measured: anchoring the scrim to the
+     text instead of spreading it across the frame reaches 4.73:1 on the
+     headline and 11.33:1 on the tagline while leaving the sky completely
+     untouched. It was not chosen because it moves the text off centre. */
+  background:
+    linear-gradient(180deg,
+      rgba(12, 14, 12, 0.10) 0%,
+      rgba(12, 14, 12, 0.10) 72%,
+      rgba(12, 14, 12, 0.20) 100%),
+    image-set(url('../assets/appalachian-mountains-wv.webp') type('image/webp'),
+              url('../assets/appalachian-mountains-wv.jpg') type('image/jpeg'))
+    center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--text-light);
+  color: #FFFFFF;
   position: relative;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.3));
-  z-index: 1;
 }
 
 .hero-content {
@@ -71,22 +86,33 @@ export default {
 }
 
 h1 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #FFFFFF;
   font-size: 4rem;
   margin-bottom: var(--spacing-unit);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: -0.5px;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 2px 10px rgba(0, 0, 0, 0.275),
+    0 6px 28px rgba(0, 0, 0, 0.225);
+  letter-spacing: -0.028em;
   line-height: 1.1;
   font-weight: 800;
 }
 
 .tagline {
-  font-size: 1.25rem;
-  font-weight: 400;
+  /* Was rgba(255,255,255,0.92) AND opacity 0.9, compounding to 83% white,
+     with the element opacity also weakening its own shadow. Over an
+     unfiltered photograph, thin dimmed text does not survive. Full white,
+     heavier strokes, and a tighter halo do. */
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  font-weight: 700;
   margin-bottom: calc(var(--spacing-unit) * 2);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.3px;
-  opacity: 0.9;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.45),
+    0 1px 4px rgba(0, 0, 0, 0.40),
+    0 2px 10px rgba(0, 0, 0, 0.325),
+    0 4px 24px rgba(0, 0, 0, 0.25);
+  letter-spacing: -0.005em;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -95,24 +121,49 @@ h1 {
 .cta-button {
   display: inline-block;
   padding: 0.875rem 2rem;
-  background-color: var(--accent-color);
-  color: var(--text-light);
+  background-color: var(--amber);
+  color: var(--on-accent);
   text-decoration: none;
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--r-lg);
   font-weight: 600;
   font-size: 1rem;
-  transition: all var(--transition-speed);
+  transition: background-color var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out),
+              box-shadow var(--dur-2) var(--ease-out);
   box-shadow: var(--shadow-md);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-feature-settings: 'case' 1;
   border: none;
   cursor: pointer;
 }
 
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-  background-color: var(--accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .cta-button:hover {
+    /* The base sits at the brightest orange that still carries white text at
+       4.5:1, so hover cannot go lighter. It signals with lift and elevation
+       instead, and settles a touch deeper. */
+    background-color: var(--amber-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--elev-lifted);
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
+    transform: translateX(-50%) translateY(2px);
+  }
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: var(--dur-1);
+}
+
+.scroll-indicator:active {
+  /* Must repeat translateX(-50%): the element is centred by transform, so a
+     bare translateY here replaces the centering and the chevron jumps right. */
+  transform: translateX(-50%) translateY(3px);
+  transition-duration: var(--dur-1);
 }
 
 .scroll-indicator {
@@ -120,14 +171,14 @@ h1 {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  color: var(--text-light);
+  color: #FFFFFF;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 2;
   opacity: 0.8;
-  transition: all var(--transition-speed) ease;
-  animation: bounce 2s infinite;
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out);
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -136,32 +187,16 @@ h1 {
   height: 3rem;
 }
 
-.scroll-indicator:hover {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-5px);
-}
-
 .scroll-indicator:focus {
   outline: none;
 }
 
-.scroll-indicator ion-icon {
+.scroll-indicator svg {
   font-size: 2rem;
   width: 2rem;
   height: 2rem;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-  60% {
-    transform: translateX(-50%) translateY(-5px);
-  }
-}
 
 @media only screen and (max-width: 768px) {
   h1 {
@@ -188,7 +223,7 @@ h1 {
     height: 2.5rem;
   }
 
-  .scroll-indicator ion-icon {
+  .scroll-indicator svg {
     font-size: 1.75rem;
     width: 1.75rem;
     height: 1.75rem;

@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .rates-section {
-  background-color: white;
+  background-color: var(--surface);
   padding: calc(var(--spacing-unit) * 3) 0;
 }
 
@@ -52,66 +52,54 @@ export default {
 }
 
 .rates-card, .amenities-card {
-  background-color: #f8f9fa;
-  padding: calc(var(--spacing-unit) * 3);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-  transition: all var(--transition-speed) ease;
+  background-color: var(--surface);
+  padding: calc(var(--spacing-unit) * 2.5);
+  border-radius: var(--r-md);
+  box-shadow: var(--elev-raised);
+  transition: transform var(--dur-2) var(--ease-out-snap),
+              box-shadow var(--dur-2) var(--ease-out-snap);
   position: relative;
-  overflow: hidden;
-  text-align: center;
+  text-align: left;
 }
 
-.rates-card::before, .amenities-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--accent-color);
-  transform: scaleX(0);
-  transition: transform var(--transition-speed) ease;
+
+@media (hover: hover) and (pointer: fine) {
+  .rates-card:hover, .amenities-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--elev-lifted);
+  }
 }
 
-.rates-card:hover, .amenities-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
-}
-
-.rates-card:hover::before, .amenities-card:hover::before {
-  transform: scaleX(1);
-}
 
 .header-row {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .rates-card h3, .amenities-card h3 {
   margin: 0;
-  color: var(--primary-color);
+  color: var(--forest);
   font-size: 1.35rem;
   font-weight: 700;
-  text-align: center;
   display: inline-block;
 }
 
 .price {
   font-size: 1.1rem;
-  color: var(--accent-color);
+  color: var(--forest);
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums lining-nums;
   margin: 0 0 0 0.5rem;
   display: inline-block;
   white-space: nowrap;
 }
 
 .rates-card ul, .amenities-card ul {
-  color: var(--secondary-color);
+  color: var(--gravel);
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -133,7 +121,7 @@ export default {
   top: 0.7em;
   width: 0.5em;
   height: 0.5em;
-  background: var(--accent-color);
+  background: var(--forest);
   border-radius: 50%;
   display: inline-block;
   transform: translateY(-50%);

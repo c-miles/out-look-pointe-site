@@ -4,19 +4,19 @@
       <h2>Contact Us</h2>
       <div class="contact-grid">
         <a class="contact-item" href="tel:+13046174610">
-          <ion-icon name="phone-portrait-outline"></ion-icon>
+          <IconPhone :size="30" />
           <span>Call</span>
         </a>
         <a class="contact-item" href="mailto:danajenkinswalters@yahoo.com">
-          <ion-icon name="mail-outline"></ion-icon>
+          <IconMail :size="30" />
           <span>Email</span>
         </a>
         <a class="contact-item" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006" target="_blank" rel="noopener noreferrer">
-          <ion-icon name="map-outline"></ion-icon>
+          <IconMap :size="30" />
           <span>Directions</span>
         </a>
         <a class="contact-item" href="https://www.facebook.com/MiltonWV" target="_blank" rel="noopener noreferrer">
-          <ion-icon name="logo-facebook"></ion-icon>
+          <IconFacebook :size="30" />
           <span>Facebook</span>
         </a>
       </div>
@@ -28,64 +28,103 @@
 </template>
 
 <script>
+import IconPhone from './icons/IconPhone.vue'
+import IconMail from './icons/IconMail.vue'
+import IconMap from './icons/IconMap.vue'
+import IconFacebook from './icons/IconFacebook.vue'
+
 export default {
-  name: 'ContactSection'
+  name: 'ContactSection',
+  components: { IconPhone, IconMail, IconMap, IconFacebook }
 }
 </script>
 
 <style scoped>
 .contact-section {
-  background-color: var(--primary-color);
-  color: var(--text-light);
-  padding: calc(var(--spacing-unit) * 3) 0;
+  background-color: var(--panel);
+  color: var(--on-panel);
+  padding: calc(var(--spacing-unit) * 3.5) 0;
+}
+
+.contact-section h2 {
+  color: var(--on-panel);
+  margin-bottom: calc(var(--spacing-unit) * 1.5);
 }
 
 .contact-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: calc(var(--spacing-unit) * 2);
-  margin: calc(var(--spacing-unit) * 3) 0;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin: 0 0 calc(var(--spacing-unit) * 1.75);
 }
 
 .contact-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--text-light);
+  gap: 0.5rem;
+  color: var(--on-panel);
   text-decoration: none;
-  transition: color var(--transition-speed);
-  min-width: 120px;
-  padding: var(--spacing-unit);
+  min-width: 108px;
+  padding: 0.85rem 0.75rem;
+  border: 1px solid var(--panel-hairline);
+  border-radius: var(--r-md);
+  font-size: 0.95rem;
+  transition: background-color var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out-snap);
 }
 
-.contact-item:hover {
-  color: var(--accent-color);
+/* Hover signals "this is interactive". It does not need to introduce a second
+   hue, which on this panel was both noisy and low contrast. */
+@media (hover: hover) and (pointer: fine) {
+  .contact-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--on-panel-muted);
+  }
 }
 
-.contact-item ion-icon {
-  font-size: 2.5rem;
-  margin-bottom: calc(var(--spacing-unit) * 0.5);
+.contact-item:focus-visible {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--on-panel-muted);
+}
+
+.contact-item:active {
+  background-color: rgba(255, 255, 255, 0.14);
+  transform: scale(0.985);
+  transition-duration: var(--dur-1);
+}
+
+.contact-item:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+.contact-item svg {
+  margin-bottom: 0;
 }
 
 .footer-text {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  opacity: 0.9;
+  max-width: 62ch;
+  margin: 0;
+  text-align: left;
+  color: var(--on-panel-muted);
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 768px) {
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-unit);
-    justify-items: center;
-    padding: 0 var(--spacing-unit);
+    gap: 0.6rem;
+    padding: 0;
   }
   .contact-item {
-    min-width: 100px;
-    padding: var(--spacing-unit);
+    min-width: 0;
+    width: 100%;
+    padding: 0.8rem 0.5rem;
   }
 }
 
@@ -94,8 +133,7 @@ export default {
     gap: calc(var(--spacing-unit) * 0.5);
   }
   .contact-item {
-    min-width: 80px;
-    padding: calc(var(--spacing-unit) * 0.5);
+    padding: 0.7rem 0.4rem;
   }
 }
 </style>
