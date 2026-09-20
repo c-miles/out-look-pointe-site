@@ -41,7 +41,9 @@ export default {
 .hero {
   height: 100vh;
   background: linear-gradient(rgba(44, 62, 80, 0.5), rgba(44, 62, 80, 0.6)),
-              url('../assets/appalachia.jpg') center/cover;
+              image-set(url('../assets/appalachian-mountains-wv.webp') type('image/webp'),
+                        url('../assets/appalachian-mountains-wv.jpg') type('image/jpeg'))
+              center/cover;
   display: flex;
   align-items: center;
   justify-content: center;

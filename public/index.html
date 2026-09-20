@@ -6,32 +6,56 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="description"
-    content="Outlook Pointe RV Campground - A premier RV camping destination in Milton, West Virginia. Featuring private lots, 24/7 access, and modern amenities. Book your stay today!">
-  <meta name="keywords"
-    content="RV campground, Milton WV, West Virginia camping, RV lots, private camping, RV park, Milton campground">
+    content="Monthly RV lots in Milton, West Virginia. Full hookups, all utilities included, 35-50 amp service. Pipeline and travel-nurse friendly. Call (304) 617-4610.">
   <meta name="author" content="Outlook Pointe Campground">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Outlook Pointe RV Campground - Milton, West Virginia">
+  <link rel="canonical" href="https://www.outlookcampground.com/">
+
+  <meta property="og:title" content="Outlook Pointe RV Campground | Milton, West Virginia">
   <meta property="og:description"
-    content="Experience the perfect blend of comfort and nature at Outlook Pointe Campground. Private RV lots with modern amenities in beautiful Milton, WV.">
+    content="Monthly RV lots in Milton, WV. Full hookups, all utilities included. No deposit required.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://outlookpointe.com">
+  <meta property="og:url" content="https://www.outlookcampground.com/">
+  <meta property="og:image" content="https://www.outlookcampground.com/og-outlook-pointe.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Aerial view of Outlook Pointe Campground above Milton, West Virginia">
+
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Outlook Pointe RV Campground">
-  <meta name="twitter:description" content="Your premier RV camping destination in Milton, West Virginia">
-  <link rel="icon" href="<%= BASE_URL %>outlook.ico">
+  <meta name="twitter:description" content="Monthly RV lots in Milton, West Virginia. Utilities included.">
+  <meta name="twitter:image" content="https://www.outlookcampground.com/og-outlook-pointe.jpg">
+
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<%= BASE_URL %>icon.svg">
+  <link rel="apple-touch-icon" href="<%= BASE_URL %>apple-touch-icon.png">
   <title>Outlook Pointe RV Campground | Milton, West Virginia</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
   <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Campground",
-      "name": "Outlook Pointe RV Campground",
-      "description": "A premier RV camping destination in Milton, West Virginia featuring private lots and modern amenities.",
+      "name": "Outlook Pointe Campground",
+      "description": "Monthly RV lots in Milton, West Virginia with full hookups and all utilities included.",
+      "url": "https://www.outlookcampground.com/",
+      "image": "https://www.outlookcampground.com/og-outlook-pointe.jpg",
+      "telephone": "+13046174610",
+      "email": "danajenkinswalters@yahoo.com",
+      "priceRange": "$600-$700",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "184 Outlook Pointe",
         "addressLocality": "Milton",
         "addressRegion": "WV",
+        "postalCode": "25541",
         "addressCountry": "US"
       },
       "geo": {
@@ -39,25 +63,26 @@
         "latitude": "38.4390366",
         "longitude": "-82.1385006"
       },
-      "priceRange": "$500-$600",
+      "sameAs": ["https://www.facebook.com/MiltonWV/"],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "07:00",
+        "closes": "20:00",
+        "name": "Office hours"
+      }],
       "amenityFeature": [
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "RV Hookups",
-          "value": "35-50 amp"
-        },
-        {
-          "@type": "LocationFeatureSpecification",
-          "name": "Utilities",
-          "value": "Electric, Water, Sewer, Trash"
-        }
-      ],
-      "openingHours": "Mo-Su 00:00-23:59",
-      "telephone": "+13046174610",
-      "email": "danajenkinswalters@yahoo.com",
-      "url": "https://outlookpointe.com"
+        { "@type": "LocationFeatureSpecification", "name": "RV Hookups", "value": "35-50 amp" },
+        { "@type": "LocationFeatureSpecification", "name": "Utilities Included", "value": "Electric, Water, Sewer, Trash" },
+        { "@type": "LocationFeatureSpecification", "name": "24/7 Campground Access", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Mail and Package Delivery", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Pets Allowed", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Showers", "value": false },
+        { "@type": "LocationFeatureSpecification", "name": "Laundry", "value": false },
+        { "@type": "LocationFeatureSpecification", "name": "WiFi", "value": false }
+      ]
     }
-    </script>
+  </script>
 </head>
 
 <body>

@@ -10,16 +10,14 @@
                @click="maybeOpenLightbox(i)"
                tabindex="0"
                @keyup.enter="maybeOpenLightbox(i)">
-            <picture>
-              <source :srcset="img.webp" type="image/webp" />
-              <img
-                :src="img.png"
-                :alt="img.alt"
-                loading="lazy"
-                width="800"
-                height="450"
-              />
-            </picture>
+            <img
+              :src="img.src"
+              :alt="img.alt"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450"
+            />
           </div>
         </div>
       </div>
@@ -29,7 +27,7 @@
         <div class="lightbox-img-wrapper">
           <img
             class="lightbox-img"
-            :src="images[lightboxIndex].png"
+            :src="images[lightboxIndex].src"
             :alt="images[lightboxIndex].alt"
           />
           <button class="lightbox-close" @click="closeLightbox" aria-label="Close">&times;</button>
@@ -46,24 +44,20 @@ export default {
     return {
       images: [
         {
-          png: require('../assets/camp1.png'),
-          webp: require('../assets/camp1.webp'),
-          alt: 'Spacious RV lots at Outlook Pointe Campground with modern hookups',
+          src: require('../assets/outlook-pointe-aerial-milton-wv.webp'),
+          alt: 'Aerial view of Outlook Pointe Campground showing the graveled lots, the access road and the owners house on site',
         },
         {
-          png: require('../assets/camp2.png'),
-          webp: require('../assets/camp2.webp'),
-          alt: 'Aerial view of Outlook Pointe Campground showing the beautiful natural setting',
+          src: require('../assets/outlook-pointe-rv-lots-aerial.webp'),
+          alt: 'The graveled RV lots at Outlook Pointe seen from above, with rigs parked along the loop',
         },
         {
-          png: require('../assets/camp3.png'),
-          webp: require('../assets/camp3.webp'),
-          alt: 'Modern amenities and facilities at Outlook Pointe Campground',
+          src: require('../assets/outlook-pointe-hillside-milton-wv.webp'),
+          alt: 'Outlook Pointe Campground on the hillside above Milton, West Virginia, surrounded by trees and open fields',
         },
         {
-          png: require('../assets/camp4.png'),
-          webp: require('../assets/camp4.webp'),
-          alt: 'Scenic views and natural surroundings of Outlook Pointe Campground',
+          src: require('../assets/outlook-pointe-rv-sites.webp'),
+          alt: 'Fifth-wheel trailers parked on the level gravel sites at Outlook Pointe under an open sky',
         },
       ],
       lightboxIndex: null,
@@ -216,10 +210,13 @@ export default {
   background: rgba(30, 40, 60, 1);
 }
 
+/* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
+   never matched, so the opacity never animated, transitionend never fired, and
+   the overlay stayed on screen swallowing clicks after close. */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
 

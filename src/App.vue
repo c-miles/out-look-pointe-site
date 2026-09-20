@@ -1,12 +1,4 @@
 <template>
-  <head>
-    <title>Outlook Pointe RV CampGrounds in Milton, West Virginia</title>
-    <meta
-      name="description"
-      content="Private RV campground in beautiful Milton, West Virginia"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
-  </head>
   <div id="app">
     <HeroSection />
     <FeaturesSection />
