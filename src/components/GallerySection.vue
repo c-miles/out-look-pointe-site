@@ -7,9 +7,12 @@
           <div class="gallery-item"
                v-for="(img, i) in images" :key="i"
                :class="{ clickable: !isMobile }"
+               :role="isMobile ? null : 'button'"
+               :tabindex="isMobile ? null : 0"
+               :aria-label="isMobile ? null : `Open larger view: ${img.alt}`"
                @click="maybeOpenLightbox(i)"
-               tabindex="0"
-               @keyup.enter="maybeOpenLightbox(i)">
+               @keyup.enter="maybeOpenLightbox(i)"
+               @keyup.space.prevent="maybeOpenLightbox(i)">
             <img
               :src="img.src"
               :alt="img.alt"
@@ -23,7 +26,9 @@
       </div>
     </section>
     <transition name="fade">
-      <div v-if="lightboxIndex !== null && !isMobile" class="lightbox-overlay" @click.self="closeLightbox">
+      <div v-if="lightboxIndex !== null && !isMobile" class="lightbox-overlay"
+           role="dialog" aria-modal="true" aria-label="Photo viewer"
+           @click.self="closeLightbox">
         <div class="lightbox-img-wrapper">
           <img
             class="lightbox-img"
@@ -62,6 +67,7 @@ export default {
       ],
       lightboxIndex: null,
       isMobile: false,
+      lastFocused: null,
     };
   },
   methods: {
@@ -71,16 +77,37 @@ export default {
       }
     },
     openLightbox(i) {
+      this.lastFocused = document.activeElement;
       this.lightboxIndex = i;
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', this.handleKeydown);
+      this.$nextTick(() => {
+        const close = this.$el.querySelector('.lightbox-close');
+        if (close) close.focus();
+      });
     },
     closeLightbox() {
       this.lightboxIndex = null;
       document.body.style.overflow = '';
       window.removeEventListener('keydown', this.handleKeydown);
+      // Send focus back where it came from, otherwise a keyboard user lands
+      // at the top of the document every time they close a photo.
+      if (this.lastFocused && typeof this.lastFocused.focus === 'function') {
+        this.lastFocused.focus();
+        this.lastFocused = null;
+      }
+    },
+    trapFocus(e) {
+      if (this.lightboxIndex === null) return;
+      const close = this.$el.querySelector('.lightbox-close');
+      if (!close) return;
+      // The dialog holds exactly one focusable control, so the trap is simply
+      // to keep focus on it.
+      e.preventDefault();
+      close.focus();
     },
     handleKeydown(e) {
+      if (e.key === 'Tab') this.trapFocus(e);
       if (e.key === 'Escape') this.closeLightbox();
       if (e.key === 'ArrowRight' && this.lightboxIndex < this.images.length - 1) this.lightboxIndex++;
       if (e.key === 'ArrowLeft' && this.lightboxIndex > 0) this.lightboxIndex--;
@@ -213,6 +240,16 @@ export default {
 /* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
    never matched, so the opacity never animated, transitionend never fired, and
    the overlay stayed on screen swallowing clicks after close. */
+.gallery-item:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+.lightbox-close:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.2s ease;
 }

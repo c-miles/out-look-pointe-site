@@ -165,4 +165,25 @@ section {
     padding: calc(var(--spacing-unit) * 3) 0;
   }
 }
+
+/* The scroll reveal ran unconditionally. Anyone who has asked their OS to
+   reduce motion was getting it anyway. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .slide-right,
+  .animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
