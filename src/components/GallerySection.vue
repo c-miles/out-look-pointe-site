@@ -216,10 +216,13 @@ export default {
   background: rgba(30, 40, 60, 1);
 }
 
+/* Vue 3 transition class names. The original used Vue 2's `.fade-enter`, which
+   never matched, so the opacity never animated, transitionend never fired, and
+   the overlay stayed on screen swallowing clicks after close. */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s;
+  transition: opacity 0.2s ease;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
 
