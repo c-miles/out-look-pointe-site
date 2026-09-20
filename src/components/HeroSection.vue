@@ -63,10 +63,7 @@ export default {
      headline and 11.33:1 on the tagline while leaving the sky completely
      untouched. It was not chosen because it moves the text off centre. */
   background:
-    linear-gradient(180deg,
-      rgba(12, 14, 12, 0.10) 0%,
-      rgba(12, 14, 12, 0.10) 72%,
-      rgba(12, 14, 12, 0.20) 100%),
+    var(--hero-grade),
     image-set(url('../assets/appalachian-mountains-wv.webp') type('image/webp'),
               url('../assets/appalachian-mountains-wv.jpg') type('image/jpeg'))
     center/cover;
@@ -74,68 +71,60 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #FFFFFF;
+  color: var(--on-photo);
   position: relative;
 }
 
 .hero-content {
-  max-width: 800px;
-  padding: 0 var(--spacing-unit);
+  max-width: var(--container-narrow);
+  padding: 0 var(--gutter);
   position: relative;
-  z-index: 2;
+  z-index: var(--z-raised);
 }
 
 h1 {
-  color: #FFFFFF;
-  font-size: 4rem;
-  margin-bottom: var(--spacing-unit);
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.35),
-    0 2px 10px rgba(0, 0, 0, 0.275),
-    0 6px 28px rgba(0, 0, 0, 0.225);
-  letter-spacing: -0.028em;
-  line-height: 1.1;
-  font-weight: 800;
+  color: var(--on-photo);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-s);
+  text-shadow: var(--text-halo-display);
 }
 
 .tagline {
-  /* Was rgba(255,255,255,0.92) AND opacity 0.9, compounding to 83% white,
-     with the element opacity also weakening its own shadow. Over an
-     unfiltered photograph, thin dimmed text does not survive. Full white,
-     heavier strokes, and a tighter halo do. */
-  color: #FFFFFF;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: calc(var(--spacing-unit) * 2);
-  text-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.45),
-    0 1px 4px rgba(0, 0, 0, 0.40),
-    0 2px 10px rgba(0, 0, 0, 0.325),
-    0 4px 24px rgba(0, 0, 0, 0.25);
-  letter-spacing: -0.005em;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  /* Full white and bold on purpose. It was once rgba(255,255,255,0.92) plus
+     opacity 0.9, compounding to 83% white with the element opacity weakening
+     its own shadow, and thin dimmed text does not survive an unfiltered photo. */
+  color: var(--on-photo);
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  letter-spacing: var(--ls-lede);
+  font-weight: var(--fw-bold);
+  text-shadow: var(--text-halo-body);
+  text-wrap: balance;
+  max-width: var(--measure-tagline);
+  margin: 0 auto var(--space-l);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 0.875rem 2rem;
+  padding: var(--space-xs) var(--space-l);
   background-color: var(--amber);
   color: var(--on-accent);
   text-decoration: none;
+  border: none;
   border-radius: var(--r-lg);
-  font-weight: 600;
-  font-size: 1rem;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-button);
+  text-transform: uppercase;
+  font-feature-settings: 'case' 1;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
   transition: background-color var(--dur-2) var(--ease-out),
               transform var(--dur-2) var(--ease-out),
               box-shadow var(--dur-2) var(--ease-out);
-  box-shadow: var(--shadow-md);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-feature-settings: 'case' 1;
-  border: none;
-  cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -144,47 +133,47 @@ h1 {
        4.5:1, so hover cannot go lighter. It signals with lift and elevation
        instead, and settles a touch deeper. */
     background-color: var(--amber-hover);
-    transform: translateY(-2px);
+    transform: translateY(calc(var(--lift-control) * -1));
     box-shadow: var(--elev-lifted);
   }
 
   .scroll-indicator:hover {
     opacity: 1;
-    transform: translateX(-50%) translateY(2px);
+    transform: translateX(-50%) translateY(var(--lift-control));
   }
 }
 
 .cta-button:active {
-  transform: translateY(0) scale(0.985);
+  transform: translateY(0) scale(var(--press-control));
   transition-duration: var(--dur-1);
 }
 
 .scroll-indicator:active {
   /* Must repeat translateX(-50%): the element is centred by transform, so a
      bare translateY here replaces the centering and the chevron jumps right. */
-  transform: translateX(-50%) translateY(3px);
+  transform: translateX(-50%) translateY(var(--lift-card));
   transition-duration: var(--dur-1);
 }
 
 .scroll-indicator {
   position: absolute;
-  bottom: 2rem;
+  bottom: var(--space-l);
   left: 50%;
   transform: translateX(-50%);
-  color: #FFFFFF;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2;
-  opacity: 0.8;
-  transition: opacity var(--dur-2) var(--ease-out),
-              transform var(--dur-2) var(--ease-out);
-  padding: 0.5rem;
+  width: var(--control-lg);
+  height: var(--control-lg);
+  padding: var(--space-2xs);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  color: var(--on-photo);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: var(--z-raised);
+  opacity: var(--opacity-muted);
+  transition: opacity var(--dur-2) var(--ease-out),
+              transform var(--dur-2) var(--ease-out);
 }
 
 .scroll-indicator:focus {
@@ -192,41 +181,24 @@ h1 {
 }
 
 .scroll-indicator svg {
-  font-size: 2rem;
-  width: 2rem;
-  height: 2rem;
+  width: var(--icon-lg);
+  height: var(--icon-lg);
 }
 
 
-@media only screen and (max-width: 768px) {
-  h1 {
-    font-size: 2.75rem;
-  }
-
-  .tagline {
-    font-size: 1.125rem;
-  }
-}
-
+/* No font sizes here. The type scale is fluid, and the two media queries that
+   used to live below re-set h1 and the tagline at 768px and 480px, which fought
+   it. Only the control still steps down on a phone. */
 @media only screen and (max-width: 480px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
   .scroll-indicator {
-    bottom: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    bottom: var(--space-m);
+    width: var(--control-md);
+    height: var(--control-md);
   }
 
   .scroll-indicator svg {
-    font-size: 1.75rem;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: var(--icon-md);
+    height: var(--icon-md);
   }
 }
 </style>

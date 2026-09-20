@@ -42,18 +42,18 @@ export default {
 <style scoped>
 .features-section {
   background-color: var(--bone);
-  padding: calc(var(--spacing-unit) * 3) 0;
+  padding: var(--section-y) 0;
 }
 
 .features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: calc(var(--spacing-unit) * 2);
+  gap: var(--grid-gap);
 }
 
 .feature-card {
   text-align: center;
-  padding: calc(var(--spacing-unit) * 2);
+  padding: var(--card-pad);
   background-color: var(--surface);
   border-radius: var(--r-md);
   /* The hairline lives in the shadow stack rather than as a border: no box
@@ -72,40 +72,41 @@ export default {
    why it read as cheap. Gated so it does not stick after a tap on a phone. */
 @media (hover: hover) and (pointer: fine) {
   .feature-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(calc(var(--lift-card) * -1));
     box-shadow: var(--elev-lifted);
   }
 }
 
 .feature-card:active {
-  transform: translateY(0) scale(0.99);
+  transform: translateY(0) scale(var(--press-card));
   box-shadow: var(--elev-rest);
   transition-duration: var(--dur-1);
 }
 
 
 .feature-card svg {
-  font-size: 2.5rem;
   color: var(--forest);
-  margin-bottom: var(--spacing-unit);
+  margin-bottom: var(--space-2xs);
 }
 
 
 .feature-card h3 {
-  margin: var(--spacing-unit) 0;
+  margin: var(--space-2xs) 0;
   color: var(--forest);
+  font-size: var(--fs-lede);
+  line-height: var(--lh-h3);
 }
 
 .feature-card p {
   color: var(--gravel);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: var(--fs-small);
+  line-height: var(--lh-narrow);
 }
 
 @media only screen and (max-width: 768px) {
   .features-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-unit);
   }
 }
+
 </style>
