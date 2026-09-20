@@ -17,7 +17,6 @@ export const site = Object.freeze({
   },
   officeHours: '7am - 8pm',
   links: {
-    facebook: 'https://www.facebook.com/MiltonWV/',
     // Place ID and coordinates, so the pin lands on the campground whatever the
     // listing's address text says.
     maps: 'https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006',

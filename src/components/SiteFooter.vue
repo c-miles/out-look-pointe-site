@@ -8,10 +8,7 @@
         <strong class="footer-name">{{ site.name }}</strong>
         <span class="muted">{{ site.address.place }}</span>
       </p>
-      <p class="footer-meta muted">
-        <a :href="site.links.facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <span>&copy; {{ year }}</span>
-      </p>
+      <p class="muted">&copy; {{ year }}</p>
     </div>
   </footer>
 </template>
@@ -50,15 +47,5 @@ export default {
   font-family: var(--font-display);
   font-weight: var(--fw-semi);
   margin-right: var(--space-2xs);
-}
-
-.footer-meta {
-  display: flex;
-  gap: var(--space-m);
-}
-
-.site-footer a {
-  color: var(--on-panel);
-  text-underline-offset: var(--space-3xs);
 }
 </style>

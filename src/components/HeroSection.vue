@@ -132,16 +132,18 @@ h1 {
   text-decoration: none;
   cursor: pointer;
   transition: background-color var(--dur-2) var(--ease-out),
-              transform var(--dur-2) var(--ease-out),
-              box-shadow var(--dur-2) var(--ease-out);
+              transform var(--dur-2) var(--ease-out);
 }
 
+/* No box-shadow on either button. The elevation tokens are built for cards on
+   a page surface and carry a hairline ring, which in dark mode is a solid dark
+   line. Around an orange button on a photograph that reads as a black border.
+   Over a photo the fill is all the separation a button needs. */
 .cta--primary {
   --cta-fill: var(--amber);
   --cta-fill-hover: var(--amber-hover);
   --cta-edge: var(--amber);
   --cta-text: var(--on-accent);
-  box-shadow: var(--elev-raised);
 }
 
 .cta--secondary {
@@ -157,10 +159,6 @@ h1 {
   .cta:hover {
     background-color: var(--cta-fill-hover);
     transform: translateY(calc(var(--lift-control) * -1));
-  }
-
-  .cta--primary:hover {
-    box-shadow: var(--elev-lifted);
   }
 
   .scroll-indicator:hover {
