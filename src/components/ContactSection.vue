@@ -1,129 +1,101 @@
 <template>
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <a class="contact-item" href="tel:+13046174610">
-          <IconPhone :size="30" />
-          <span>Call</span>
-        </a>
-        <a class="contact-item" href="mailto:danajenkinswalters@yahoo.com">
-          <IconMail :size="30" />
-          <span>Email</span>
-        </a>
-        <a class="contact-item" href="https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006" target="_blank" rel="noopener noreferrer">
-          <IconMap :size="30" />
-          <span>Directions</span>
-        </a>
-        <a class="contact-item" href="https://www.facebook.com/MiltonWV" target="_blank" rel="noopener noreferrer">
-          <IconFacebook :size="30" />
-          <span>Facebook</span>
+  <section id="contact" class="on-panel">
+    <div class="container auto-grid">
+      <div>
+        <h2>Call to check availability</h2>
+        <p class="lede muted">
+          We are often full, so the fastest way to get a lot is a phone call. A couple
+          of weeks of notice is ideal, though a same-day call sometimes works out.
+        </p>
+        <!-- The number is the call to action, so it is set as type rather than
+             hidden behind an icon. This page converts by phone. -->
+        <a class="phone figure type-h2" :href="site.phone.href">
+          <AppIcon name="phone" class="muted" />
+          <span class="nowrap">{{ site.phone.display }}</span>
         </a>
       </div>
-      <p class="footer-text">
-        Located in beautiful Milton, West Virginia. We pride ourselves in providing quiet and safe campgrounds. *Aggressive dogs not permitted
-      </p>
+
+      <dl class="details ruled">
+        <div>
+          <dt class="type-caption muted">Office hours</dt>
+          <dd><span class="nowrap">{{ site.officeHours }}</span>, every day. Campground access is 24/7.</dd>
+        </div>
+        <div>
+          <dt class="type-caption muted">Address</dt>
+          <dd>
+            <address>{{ site.address.street }}<br />{{ site.address.cityLine }}</address>
+            <a :href="site.links.maps" target="_blank" rel="noopener noreferrer">Get directions</a>
+          </dd>
+        </div>
+        <div>
+          <dt class="type-caption muted">Email</dt>
+          <dd><a :href="`mailto:${site.email}`">{{ site.email }}</a></dd>
+        </div>
+      </dl>
     </div>
   </section>
 </template>
 
 <script>
-import IconPhone from './icons/IconPhone.vue'
-import IconMail from './icons/IconMail.vue'
-import IconMap from './icons/IconMap.vue'
-import IconFacebook from './icons/IconFacebook.vue'
+import AppIcon from './AppIcon.vue'
+import { site } from '../data/site'
 
 export default {
   name: 'ContactSection',
-  components: { IconPhone, IconMail, IconMap, IconFacebook }
+  components: { AppIcon },
+  data() {
+    return { site }
+  },
 }
 </script>
 
 <style scoped>
-.contact-section {
-  background-color: var(--panel);
-  color: var(--on-panel);
-  padding: var(--section-y) 0;
+h2 {
+  margin-bottom: var(--space-s);
 }
 
-.contact-section h2 {
-  color: var(--on-panel);
-  margin-bottom: var(--heading-gap);
+.lede {
+  margin-bottom: var(--space-l);
 }
 
-.contact-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: var(--grid-gap);
-  margin: 0 0 var(--space-l);
-}
-
-.contact-item {
-  display: flex;
-  flex-direction: column;
+.phone {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-2xs);
-  color: var(--on-panel);
+  gap: var(--space-xs);
+  padding-bottom: var(--space-3xs);
+  border-bottom: var(--border-rule) solid var(--amber);
+  color: inherit;
   text-decoration: none;
-  min-width: var(--chip-min);
-  /* Text-adjacent padding does not scale with the viewport; it is tied to the
-     label, whose size barely moves. One value at every width. */
-  padding: var(--space-xs);
-  border: var(--border-hair) solid var(--panel-hairline);
-  border-radius: var(--r-control);
-  font-size: var(--fs-small);
-  font-weight: var(--fw-medium);
-  transition: background-color var(--dur-2) var(--ease-out),
-              border-color var(--dur-2) var(--ease-out),
-              transform var(--dur-2) var(--ease-out-snap);
+  transition: border-color var(--dur-2) var(--ease-out);
 }
 
-/* Hover signals "this is interactive". It does not need to introduce a second
-   hue, which on this panel was both noisy and low contrast. */
 @media (hover: hover) and (pointer: fine) {
-  .contact-item:hover {
-    background-color: var(--panel-hover);
-    border-color: var(--on-panel-muted);
+  .phone:hover {
+    border-bottom-color: currentColor;
   }
 }
 
-.contact-item:focus-visible {
-  background-color: var(--panel-hover);
-  border-color: var(--on-panel-muted);
-}
-
-.contact-item:active {
-  background-color: var(--panel-active);
-  transform: scale(var(--press-control));
-  transition-duration: var(--dur-1);
-}
-
-.contact-item:focus-visible {
-  outline: var(--focus-ring) solid var(--amber);
-  outline-offset: var(--focus-ring);
-}
-
-.contact-item svg {
-  margin-bottom: 0;
-}
-
-.footer-text {
-  max-width: var(--measure-prose);
+.details {
   margin: 0;
-  text-align: left;
-  color: var(--on-panel-muted);
-  font-size: var(--fs-small);
-  margin-bottom: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .contact-item {
-    min-width: 0;
-  }
+.details dt {
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--space-3xs);
+}
+
+.details dd {
+  margin: 0;
+  line-height: var(--lh-narrow);
+}
+
+.details address {
+  font-style: normal;
+}
+
+.details a {
+  color: inherit;
+  text-underline-offset: var(--space-3xs);
+  overflow-wrap: anywhere;
 }
 </style>
