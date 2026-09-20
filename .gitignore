@@ -26,3 +26,4 @@ pnpm-debug.log*
 # should ever be committed.
 docs/superpowers/
 .claude/
+CLAUDE.md
