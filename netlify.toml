@@ -4,9 +4,10 @@
   publish = "dist"
   functions = "netlify/functions"
 
-# The rating function needs Node 18 or newer.
+# Latest LTS Node. Without this Netlify keeps the site on the Node 16 it was
+# created with, which is too old for the rating function.
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "lts/*"
 
 # Font files never change under the same name.
 [[headers]]
