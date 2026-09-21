@@ -23,8 +23,8 @@ export default {
       rating,
       // Values come from the owners. Don't round or invent.
       ownerFacts: [
-        { label: 'Monthly rate', value: '$600-$700', note: 'Every utility included' },
-        { label: 'Hookups', value: '35-50 amp', note: 'Electric, water, sewer, trash' },
+        { label: 'Monthly rate', value: '$600-$700', note: 'Electric, water, sewer, trash included' },
+        { label: 'Hookups', value: '35-50 amp', note: 'Full hookups at every lot' },
         { label: 'Biggest rig so far', value: '46 ft', note: 'We have never turned one away' },
         { label: 'Deposit', value: 'None', note: 'Call and we hold your lot' },
         { label: 'To town', value: '3/10 mile', note: 'Groceries, post office, doctor' },
