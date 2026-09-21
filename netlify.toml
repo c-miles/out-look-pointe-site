@@ -4,6 +4,10 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# The rating function needs Node 18 or newer.
+[build.environment]
+  NODE_VERSION = "22"
+
 # Font files never change under the same name.
 [[headers]]
   for = "/fonts/*"

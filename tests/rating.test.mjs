@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import handler from './rating.mjs'
+import handler from '../netlify/functions/rating.mjs'
 
 const okResponse = (body) => ({ ok: true, json: async () => body })
 const read = async (res) => ({ status: res.status, body: await res.json(), headers: res.headers })
