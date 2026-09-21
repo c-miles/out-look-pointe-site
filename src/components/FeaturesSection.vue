@@ -78,7 +78,7 @@ export default {
 
 .feature-card {
   padding: var(--card-pad);
-  background-color: var(--bone);
+  background-color: var(--card-bg);
   border-radius: var(--r-card);
   box-shadow: var(--elev-rest);
 }

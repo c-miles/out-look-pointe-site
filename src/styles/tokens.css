@@ -29,6 +29,7 @@
   --amber: #D04710;
   --amber-hover: #C2410C;
   --surface: #FFFFFF;
+  --card-bg: var(--bone);
   --hairline: #DEDAD2;
   --on-accent: #FFFFFF;
 
@@ -239,17 +240,20 @@
     --forest-deep: #0E1811;
     --bone: #14170F;
     --surface: #1B1F19;
+    /* Lighter than the section it sits on: in the dark, raised means lighter. */
+    --card-bg: #242A22;
     --ink: #EDEAE2;
-    --gravel: #A39B8B;
+    --gravel: #B8B0A0;
     --hairline: #2E332B;
     --amber: #D04710;
     --amber-hover: #C2410C;
     --on-accent: #FFFFFF;
 
-    --panel: #1B2C21;
-    --panel-hairline: #2F4638;
+    /* Same forest green as light mode. A darker one disappeared into the page. */
+    --panel: #1E3A2B;
+    --panel-hairline: #33543F;
     --on-panel: #E8EDE6;
-    --on-panel-muted: #A8BCAE;
+    --on-panel-muted: #B9CABD;
 
     --hairline-raised: #3B4239;
 
