@@ -15,6 +15,8 @@
           >
             <img
               :src="photo.src"
+              :srcset="`${photo.small} 720w, ${photo.src} ${photo.width}w`"
+              :sizes="i === 0 ? LEAD_SIZES : SUPPORT_SIZES"
               :alt="photo.alt"
               :width="photo.width"
               :height="photo.height"
@@ -55,9 +57,18 @@ import lotsAerial from '../assets/outlook-pointe-rv-lots-aerial.webp'
 import aerial from '../assets/outlook-pointe-aerial-milton-wv.webp'
 import hillside from '../assets/outlook-pointe-hillside-milton-wv.webp'
 import rvSites from '../assets/outlook-pointe-rv-sites.webp'
+import lotsAerialSmall from '../assets/outlook-pointe-rv-lots-aerial-720.webp'
+import aerialSmall from '../assets/outlook-pointe-aerial-milton-wv-720.webp'
+import hillsideSmall from '../assets/outlook-pointe-hillside-milton-wv-720.webp'
+import rvSitesSmall from '../assets/outlook-pointe-rv-sites-720.webp'
 
 // Photos are already full width below this, so no viewer.
 const VIEWER_QUERY = '(min-width: 769px)'
+
+// How wide each photo renders, so the browser can pick the 720px file when
+// that's enough. The lead fills the container; the rest are a third of it.
+const LEAD_SIZES = '(max-width: 768px) 100vw, 1120px'
+const SUPPORT_SIZES = '(max-width: 768px) 100vw, 360px'
 
 export default {
   name: 'GallerySection',
@@ -66,30 +77,32 @@ export default {
       // The first photo is the wide lead.
       photos: [
         {
-          src: lotsAerial,
+          src: lotsAerial, small: lotsAerialSmall,
           alt: 'The graveled RV lots at Outlook Pointe seen from above, with rigs parked along the loop',
           caption: 'Level gravel lots, with rigs in for the season.',
           width: 1104, height: 850, position: '50% 40%',
         },
         {
-          src: aerial,
+          src: aerial, small: aerialSmall,
           alt: 'Aerial view of Outlook Pointe Campground showing the graveled lots, the access road and the owners house on site',
           caption: 'From above: the gravel road in, and the owners’ house on site.',
           width: 1026, height: 804, position: '50% 55%',
         },
         {
-          src: hillside,
+          src: hillside, small: hillsideSmall,
           alt: 'Outlook Pointe Campground on the hillside above Milton, West Virginia, surrounded by trees and open fields',
           caption: 'On the hill above Milton, with open ground all around.',
           width: 1104, height: 848, position: '50% 45%',
         },
         {
-          src: rvSites,
+          src: rvSites, small: rvSitesSmall,
           alt: 'Fifth-wheel trailers parked on the level gravel sites at Outlook Pointe under an open sky',
           caption: 'Fifth-wheels on the gravel, under a big sky.',
           width: 796, height: 572, position: '50% 60%',
         },
       ],
+      LEAD_SIZES,
+      SUPPORT_SIZES,
       openIndex: null,
       viewerEnabled: false,
       lastFocused: null,
