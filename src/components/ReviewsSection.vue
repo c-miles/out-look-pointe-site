@@ -15,7 +15,7 @@
         </li>
       </ul>
       <p class="all-reviews">
-        <a :href="site.links.reviews" target="_blank" rel="noopener noreferrer">Read all reviews on Google</a>
+        <a class="tap" :href="site.links.reviews" target="_blank" rel="noopener noreferrer">Read all reviews on Google</a>
       </p>
     </div>
   </section>

@@ -157,6 +157,19 @@ section {
   gap: var(--space-l) var(--grid-gap);
 }
 
+/* Grows a link's touch area to --tap-min without moving anything: the invisible
+   ::after extends above and below by whatever the link is short. */
+.tap {
+  position: relative;
+}
+
+.tap::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block: min(0px, calc((100% - var(--tap-min)) / 2));
+}
+
 /* One focus ring for everything. Surfaces over photos set --focus-color. */
 :where(a, button, [tabindex]):focus-visible {
   outline: var(--focus-ring) solid var(--focus-color);

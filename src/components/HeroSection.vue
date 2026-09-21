@@ -8,8 +8,8 @@
         Three tenths of a mile from town.
       </p>
       <div class="hero-actions">
-        <button type="button" class="cta cta--primary" @click="scrollTo('contact')">Check availability</button>
-        <a class="cta cta--secondary" :href="site.phone.href">
+        <button type="button" class="cta cta--primary tap" @click="scrollTo('contact')">Check availability</button>
+        <a class="cta cta--secondary tap" :href="site.phone.href">
           Call <span class="nowrap">{{ site.phone.display }}</span>
         </a>
       </div>
