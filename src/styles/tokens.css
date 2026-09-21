@@ -145,7 +145,6 @@
   --border-hair: 1px;
   --border-rule: 2px;       /* the short rule above each at-a-glance fact */
   --grid-lead:  1.4fr;      /* how much wider the lead feature card is */
-  --fact-min:   9rem;       /* two columns must survive a 360px phone: 2 x 144 + gap = 300 of 328 */
   --icon-sm:    1.25rem;    /* list markers */
 
   /* Photo ratios. Every source photo is landscape. */

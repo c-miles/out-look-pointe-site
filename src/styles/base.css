@@ -128,6 +128,12 @@ section {
   --rule-color:    var(--panel-hairline);
 }
 
+/* A short forest rule above each item, instead of a card. */
+.ledger > * {
+  padding-top: var(--space-xs);
+  border-top: var(--border-rule) solid var(--forest);
+}
+
 /* Rows separated by hairlines, closed off at the bottom. */
 .ruled > * {
   padding-block: var(--space-s);
