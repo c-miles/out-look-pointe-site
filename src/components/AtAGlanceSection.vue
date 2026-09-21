@@ -63,6 +63,8 @@ export default {
 .fact {
   display: grid;
   gap: var(--space-3xs);
+  /* Or a fact with a shorter note spreads out to match its taller neighbour. */
+  align-content: start;
 }
 
 .fact dt {
