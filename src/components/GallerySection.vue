@@ -28,9 +28,9 @@
       </div>
     </div>
 
-    <!-- On body so no ancestor transform or overflow can trap the fixed
-         overlay. -->
-    <Teleport to="body">
+    <!-- On body so no ancestor transform or overflow can trap the fixed overlay.
+         Client only: viewerEnabled is false until mounted. -->
+    <Teleport v-if="viewerEnabled" to="body">
       <Transition name="fade">
         <div
           v-if="current"
