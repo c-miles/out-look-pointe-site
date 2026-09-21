@@ -21,6 +21,8 @@
 
 /* Palette. Amber is for calls to action only. */
 :root {
+  color-scheme: light dark;
+
   --forest: #1E3A2B;
   --forest-deep: #142619;
   --bone: #F6F5F2;
@@ -162,6 +164,7 @@
 
   /* Over photos and in the lightbox. These never theme. */
   --on-photo: #FFFFFF;
+  --photo-filter: none;
   --hero-grade:
     linear-gradient(180deg,
       rgb(12 14 12 / 0.10) 0%,
@@ -259,6 +262,9 @@
     --on-panel-muted: #B9CABD;
 
     --hairline-raised: #3B4239;
+
+    /* Daylight photos glare against a dark page. */
+    --photo-filter: brightness(0.9);
 
     --elev-rest:
       0 0 0 1px var(--hairline);

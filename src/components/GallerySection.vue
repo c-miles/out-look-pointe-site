@@ -204,6 +204,7 @@ button.shot-frame {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: var(--photo-filter);
   transition: transform var(--dur-3) var(--ease-out);
 }
 
