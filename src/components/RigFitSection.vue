@@ -9,8 +9,7 @@
       </p>
       <ul class="specs auto-grid auto-grid--tight">
         <li v-for="spec in specs" :key="spec.label">
-          <!-- The h2 step, not h1: at the h1 step "35-50 amp" measured wider
-               than a one-third column and ran into its neighbour. -->
+          <!-- h2 step: at h1, "35-50 amp" overflows its column. -->
           <span class="figure type-h2 nowrap">{{ spec.value }}</span>
           <span class="type-small muted">{{ spec.label }}</span>
         </li>
@@ -40,8 +39,7 @@ export default {
   margin-bottom: var(--space-xl);
 }
 
-/* The default card minimum, not the fact minimum: these values are set large and
-   must never share a phone-width row. Three across on desktop, stacked on a phone. */
+/* Default card minimum: these are too big to share a row on a phone. */
 .specs {
   list-style: none;
   margin: 0 0 var(--space-xl);

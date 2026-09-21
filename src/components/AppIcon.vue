@@ -1,6 +1,5 @@
 <template>
-  <!-- Decorative by default: every icon here sits beside text that already says
-       what it means, so it is hidden from assistive technology. Sized by CSS. -->
+  <!-- Decorative: always sits next to text, so hidden from screen readers. -->
   <svg
     class="app-icon"
     xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +16,7 @@
 </template>
 
 <script>
-// Feather icon paths (MIT). One stroke weight for the whole set.
+// Feather icon paths (MIT).
 const ICONS = {
   'chevron-down': '<polyline points="6 9 12 15 18 9"/>',
   check: '<polyline points="20 6 9 17 4 12"/>',
@@ -39,7 +38,7 @@ export default {
     },
   },
   computed: {
-    // Static, trusted strings from the table above, never user input.
+    // Safe: static strings from the table above.
     paths() {
       return ICONS[this.name]
     },

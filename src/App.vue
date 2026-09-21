@@ -8,6 +8,7 @@
       <RigFitSection />
       <WhatsHereSection />
       <RatesSection />
+      <ReviewsSection />
       <ContactSection />
     </main>
     <SiteFooter />
@@ -22,9 +23,11 @@ import FeaturesSection from './components/FeaturesSection.vue'
 import RigFitSection from './components/RigFitSection.vue'
 import WhatsHereSection from './components/WhatsHereSection.vue'
 import RatesSection from './components/RatesSection.vue'
+import ReviewsSection from './components/ReviewsSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import { startScrollReveal } from './utils/scrollReveal'
+import { refreshRating } from './data/rating'
 
 export default {
   name: 'App',
@@ -36,10 +39,12 @@ export default {
     RigFitSection,
     WhatsHereSection,
     RatesSection,
+    ReviewsSection,
     ContactSection,
     SiteFooter
   },
   mounted() {
+    refreshRating()
     this.stopReveal = startScrollReveal(this.$el.querySelectorAll('main > section'))
   },
   beforeUnmount() {

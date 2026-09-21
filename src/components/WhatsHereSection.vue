@@ -41,8 +41,8 @@ export default {
           ],
         },
         {
-          // Stated plainly on purpose. This audience travels in self-contained
-          // rigs and minds a missing bathhouse far less than finding out on arrival.
+          // Be upfront about what's missing. Better than finding out on
+          // arrival.
           title: 'Not on site',
           icon: 'minus',
           items: [
@@ -68,7 +68,7 @@ export default {
   margin-bottom: var(--space-xl);
 }
 
-/* A title at the lede size still wants heading leading, not paragraph leading. */
+/* Lede size, heading leading. */
 h3 {
   font-weight: var(--fw-semi);
   line-height: var(--lh-h3);
@@ -94,7 +94,7 @@ h3 {
 .marker {
   width: var(--icon-sm);
   height: var(--icon-sm);
-  /* Sit the icon on the first line of text rather than at the top of the box. */
+  /* Line the icon up with the first line of text. */
   margin-top: calc((var(--lh-narrow) * 1em - var(--icon-sm)) / 2);
 }
 

@@ -1,7 +1,5 @@
 <template>
-  <!-- A sign-off, not a second contact block. The section directly above gives
-       the phone, address and hours; on a single page, repeating them here adds
-       nothing for visitors or for search. -->
+  <!-- Just a sign-off. Contact details are in the section right above. -->
   <footer class="site-footer on-panel type-small">
     <div class="container footer-row">
       <p>

@@ -2,7 +2,7 @@
   <section id="at-a-glance" class="glance" aria-labelledby="glance-heading">
     <div class="container">
       <h2 id="glance-heading" class="visually-hidden">At a glance</h2>
-      <dl class="glance-facts auto-grid auto-grid--tight">
+      <dl class="glance-facts ledger">
         <div v-for="fact in facts" :key="fact.label" class="fact">
           <dt class="type-caption muted">{{ fact.label }}</dt>
           <dd class="figure type-h3 nowrap">{{ fact.value }}</dd>
@@ -14,13 +14,15 @@
 </template>
 
 <script>
+import { rating } from '../data/rating'
+
 export default {
   name: 'AtAGlanceSection',
   data() {
     return {
-      // The five things a caller asks before anything else. Every value comes
-      // from the owners; none is rounded up or invented.
-      facts: [
+      rating,
+      // Values come from the owners. Don't round or invent.
+      ownerFacts: [
         { label: 'Monthly rate', value: '$600-$700', note: 'Every utility included' },
         { label: 'Hookups', value: '35-50 amp', note: 'Electric, water, sewer, trash' },
         { label: 'Biggest rig so far', value: '46 ft', note: 'We have never turned one away' },
@@ -28,6 +30,19 @@ export default {
         { label: 'To town', value: '3/10 mile', note: 'Groceries, post office, doctor' },
       ],
     }
+  },
+  computed: {
+    // The guests' rating goes last, after the owners' own facts.
+    facts() {
+      return [
+        ...this.ownerFacts,
+        {
+          label: 'Google rating',
+          value: `${this.rating.value.toFixed(1)} of 5`,
+          note: `From ${this.rating.count} guest reviews`,
+        },
+      ]
+    },
   },
 }
 </script>
@@ -37,18 +52,17 @@ export default {
   background-color: var(--surface);
 }
 
+/* Fixed columns, not auto-fit: six across is too narrow for "$600-$700". */
 .glance-facts {
-  --auto-min: var(--fact-min);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl) var(--grid-gap);
   margin: 0;
 }
 
-/* A short rule above each fact instead of a box around it. Five bordered cards
-   directly under the hero would be the template move; this reads as a ledger. */
 .fact {
   display: grid;
   gap: var(--space-3xs);
-  padding-top: var(--space-xs);
-  border-top: var(--border-rule) solid var(--forest);
 }
 
 .fact dt {
@@ -61,5 +75,12 @@ export default {
 
 .fact .figure {
   color: var(--forest);
+}
+
+@media only screen and (max-width: 768px) {
+  .glance-facts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l) var(--grid-gap);
+  }
 }
 </style>

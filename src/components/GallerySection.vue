@@ -4,8 +4,8 @@
       <h2>Take a look around</h2>
       <div class="gallery-grid">
         <figure v-for="(photo, i) in photos" :key="photo.src" class="shot" :class="{ 'shot--lead': i === 0 }">
-          <!-- A real button where it opens the viewer. On a phone the viewer is
-               off, so it is a plain div and does not claim to be interactive. -->
+          <!-- A button only when the viewer is on. On phones it's a plain
+               div. -->
           <component
             :is="viewerEnabled ? 'button' : 'div'"
             class="shot-frame"
@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <!-- Teleported to body so no ancestor's transform, overflow or stacking
-         context can trap a position: fixed overlay. -->
+    <!-- On body so no ancestor transform or overflow can trap the fixed
+         overlay. -->
     <Teleport to="body">
       <Transition name="fade">
         <div
@@ -51,15 +51,14 @@
 </template>
 
 <script>
-// Below this width the viewer adds nothing: the photos are already full width.
+// Photos are already full width below this, so no viewer.
 const VIEWER_QUERY = '(min-width: 769px)'
 
 export default {
   name: 'GallerySection',
   data() {
     return {
-      // Order matters: the first photo is the wide lead. Captions say only what
-      // is visibly in the frame, which is something a stock photo cannot carry.
+      // The first photo is the wide lead.
       photos: [
         {
           src: require('../assets/outlook-pointe-rv-lots-aerial.webp'),
@@ -123,8 +122,7 @@ export default {
       this.openIndex = null
       document.body.style.overflow = ''
       window.removeEventListener('keydown', this.onKeydown)
-      // Send focus back where it came from, otherwise a keyboard user lands at
-      // the top of the document every time they close a photo.
+      // Put focus back where it was.
       this.lastFocused?.focus?.()
       this.lastFocused = null
     },
@@ -134,8 +132,7 @@ export default {
       else if (e.key === 'ArrowRight') this.openIndex = Math.min(this.openIndex + 1, last)
       else if (e.key === 'ArrowLeft') this.openIndex = Math.max(this.openIndex - 1, 0)
       else if (e.key === 'Tab') {
-        // The dialog holds exactly one focusable control, so the trap is simply
-        // to keep focus on it.
+        // Only one focusable control, so the trap just keeps focus on it.
         e.preventDefault()
         this.$refs.closeButton?.focus()
       }
@@ -149,8 +146,6 @@ export default {
   background-color: var(--bone);
 }
 
-/* One wide lead, three supporting. All four photos are landscape, so the lead
-   earns its place by width, not by a tall crop it could not survive. */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -215,7 +210,6 @@ figcaption {
   text-wrap: pretty;
 }
 
-/* The lead caption has the whole photo width to sit under. */
 .shot--lead figcaption {
   max-width: var(--measure-prose);
 }
@@ -263,8 +257,6 @@ figcaption {
   background: var(--overlay-control-bg-hover);
 }
 
-/* Vue 3 class names. The original used Vue 2's .fade-enter, which matches
-   nothing in Vue 3, so the overlay appeared instantly instead of fading in. */
 .fade-enter-active {
   transition: opacity var(--dur-3) var(--ease-out);
 }

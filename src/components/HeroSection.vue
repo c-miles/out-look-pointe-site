@@ -34,13 +34,11 @@ export default {
     scrollTo(id) {
       const target = document.getElementById(id)
       if (!target) return
-      // Settle the destination first. While a section still holds its reveal
-      // transform it sits below its final position, and scrollIntoView measures
-      // the transformed box, so the target would shift mid-scroll.
+      // Reveal the target first, or its leftover transform shifts it while the
+      // page scrolls.
       target.classList.add('animate-in')
-      // Read at call time so a mid-session preference change is respected. An
-      // explicit behavior here overrides CSS scroll-behavior, which is why the
-      // reduced-motion stylesheet rule alone was not enough.
+      // An explicit behavior overrides CSS scroll-behavior, so reduced motion
+      // has to be checked here.
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
     },
@@ -58,16 +56,11 @@ export default {
   justify-content: center;
   text-align: center;
   color: var(--on-photo);
-  /* Everything in here sits on a photograph, which is a fixed-contrast context:
-     the backdrop never themes, so neither do headings or focus rings. */
+  /* Always on a photo, so these never theme. */
   --heading-color: var(--on-photo);
   --focus-color: var(--on-photo);
-  /* Owner decision: the photograph stays essentially unfiltered with the text
-     centred over it. This does not meet WCAG AA. The brightest pixel behind the
-     text measures roughly 2.2:1 against white where 4.5:1 is required, so this
-     text must not be described as accessible. A compliant version was built and
-     measured (scrim anchored to the text: 4.73:1 headline, 11.33:1 tagline, sky
-     untouched) and was rejected because it moves the text off centre. */
+  /* Owner's call: no scrim, text centred. This fails WCAG AA (about 2.2:1 at
+     the brightest spot), so don't describe it as accessible. */
   background:
     var(--hero-grade),
     image-set(url('../assets/appalachian-mountains-wv.webp') type('image/webp'),
@@ -82,9 +75,7 @@ export default {
   padding-inline: var(--gutter);
 }
 
-/* One short line, so no measure cap: a capped block does not centre itself. It
-   is the brand name over bright cloud, so it takes the small step and the semi
-   weight rather than the caption defaults. */
+/* No max-width: a capped block doesn't centre itself. */
 .hero-eyebrow {
   max-width: none;
   font-size: var(--fs-small);
@@ -98,8 +89,7 @@ h1 {
   text-shadow: var(--text-halo-display);
 }
 
-/* Full white and semi-bold on purpose: thin or dimmed text does not survive an
-   unfiltered photograph. */
+/* Full white and semi-bold so it survives the unfiltered photo. */
 .tagline {
   max-width: var(--measure-tagline);
   margin: 0 auto var(--space-l);
@@ -115,8 +105,6 @@ h1 {
   gap: var(--space-xs);
 }
 
-/* Both buttons share one shape. The primary is the only filled orange thing on
-   the page; the secondary is an outline so the two never compete. */
 .cta {
   display: inline-block;
   padding: var(--space-xs) var(--space-l);
@@ -135,10 +123,8 @@ h1 {
               transform var(--dur-2) var(--ease-out);
 }
 
-/* No box-shadow on either button. The elevation tokens are built for cards on
-   a page surface and carry a hairline ring, which in dark mode is a solid dark
-   line. Around an orange button on a photograph that reads as a black border.
-   Over a photo the fill is all the separation a button needs. */
+/* No box-shadow: the elevation tokens carry a ring that shows as a dark
+   border over a photo. */
 .cta--primary {
   --cta-fill: var(--amber);
   --cta-fill-hover: var(--amber-hover);
@@ -153,8 +139,8 @@ h1 {
   --cta-text: var(--on-photo);
 }
 
-/* The primary sits at the brightest orange that still carries white text at
-   4.5:1, so hover cannot go lighter. Both buttons signal with lift instead. */
+/* --amber is the lightest orange that passes with white text, so hover goes
+   darker. */
 @media (hover: hover) and (pointer: fine) {
   .cta:hover {
     background-color: var(--cta-fill-hover);
@@ -176,8 +162,8 @@ h1 {
   position: absolute;
   bottom: var(--space-l);
   left: 50%;
-  /* Centred by transform, so every other transform on this element must repeat
-     translateX(-50%) or it jumps right by half its width. */
+  /* Centred by transform, so every other transform here must repeat
+     translateX(-50%). */
   transform: translateX(-50%);
   z-index: var(--z-raised);
   display: grid;
