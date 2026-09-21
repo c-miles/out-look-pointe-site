@@ -1,10 +1,7 @@
-/* Design tokens: fonts, colour, type, space, motion. Components use these and
-   nothing else; a scan for raw values in component styles should find none. */
+/* Design tokens. Components use these, never raw values. */
 
-/* Two variable fonts, both SIL OFL (licences sit beside the files in
-   public/fonts). One file per family covers every weight, and Archivo also
-   carries a width axis, which is where the display contrast comes from: same
-   family of forms as the body, but wider and heavier, like sign lettering. */
+/* Two variable fonts, both SIL OFL (licences in public/fonts). Archivo's
+   width axis is what gives the display look. */
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/Archivo-Variable.woff2') format('woff2');
@@ -21,9 +18,7 @@
   font-display: swap;
 }
 
-/* Palette sampled from the campground photographs: tree canopy, the gravel
-   access road, and sky haze. The amber is wayfinding, used for calls to
-   action and nothing else. */
+/* Palette. Amber is for calls to action only. */
 :root {
   --forest: #1E3A2B;
   --forest-deep: #142619;
@@ -36,16 +31,14 @@
   --hairline: #DEDAD2;
   --on-accent: #FFFFFF;
 
-  /* A deep panel reads as a panel in both schemes, so it does not invert the
-     way --forest does. --forest is a text colour; this is a background. */
+  /* Panel background. Unlike --forest, it doesn't invert in dark mode. */
   --panel: #1E3A2B;
   --panel-hairline: #33543F;
   --on-panel: #F6F5F2;
   --on-panel-muted: #C4D2C7;
 
-  /* Contextual tokens. Components ask for "the muted text colour" or "the rule
-     colour" and get the right one for where they are: .on-panel re-points these,
-     so no component needs its own dark-panel overrides. */
+  /* Contextual tokens. .on-panel and the hero re-point these, so components
+     never write their own dark-panel overrides. */
   --heading-color: var(--forest);
   --text-muted:    var(--gravel);
   --rule-color:    var(--hairline);
@@ -54,15 +47,12 @@
   --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
   --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;
 
-  /* Width is the display axis. Expanded for the one hero line, slightly wide
-     for section headings, normal everywhere else. */
+  /* Font width: wide for the hero line, slightly wide for headings. */
   --width-display: 125%;
   --width-heading: 112%;
   --width-normal:  100%;
 
-  /* Radius by role. This is a site about land and a view, which is editorial
-     territory; 10px and 18px were consumer-app values. A photograph is a
-     window, and a heavy radius turns it into a sticker. */
+  /* Radius by role. */
   --r-media:   3px;
   --r-control: 6px;
   --r-card:    8px;
@@ -70,13 +60,8 @@
   --r-round:   999px;
 
 
-  /* ---- TYPE SCALE ------------------------------------------------------
-     Two ratios, not one: 1.2 at 375px so headings do not blow out a phone,
-     1.333 at 1280px so the display has room to be a display. Every preferred
-     value carries a rem term, which is what keeps browser zoom working; a
-     bare vw is W3C failure F94 against WCAG 1.4.4.
-       slope = (max - min) / (1280 - 375);  y = min - slope * 375
-  --------------------------------------------------------------------- */
+  /* Type scale. Ratio 1.2 at 375px, 1.333 at 1280px. Every clamp keeps a rem
+     term so browser zoom still works. */
   --fs-caption: clamp(0.8438rem, 0.8049rem + 0.166vw, 0.9375rem);
   --fs-small:   clamp(0.9375rem, 0.8857rem + 0.221vw, 1.0625rem);
   --fs-body:    clamp(1.0625rem, 1.0107rem + 0.221vw, 1.1875rem);
@@ -86,7 +71,6 @@
   --fs-h1:      clamp(2.1875rem, 1.5399rem + 2.762vw, 3.7500rem);
   --fs-display: clamp(2.6250rem, 1.6409rem + 4.199vw, 5.0000rem);
 
-  /* Leading falls as size rises, and tightens again on a narrow measure. */
   --lh-display: 1.02;
   --lh-h1:      1.06;
   --lh-h2:      1.14;
@@ -96,9 +80,8 @@
   --lh-narrow:  1.5;
   --lh-caption: 1.4;
 
-  /* Tracking is a curve against size, not a constant. The two largest steps
-     use fluid px so they are correct at both ends of a 2x size range; a single
-     em value would be wrong at one end. */
+  /* Tracking. The two largest steps are fluid px, because one em value can't
+     be right at both ends. */
   --ls-display: clamp(-2.8px, 0.029px - 0.221vw, -0.8px);
   --ls-h1:      clamp(-0.9px, -0.073px - 0.0646vw, -0.315px); /* expanded cut: half the usual tightening */
   --ls-h2:      -0.022em;
@@ -109,27 +92,16 @@
   --ls-eyebrow:  0.1em;
   --ls-button:   0.08em;
 
-  /* Measure per role. The container is a layout constraint and must never
-     become the measure: at 1200px a paragraph runs past 110 characters.
-
-     These are CALIBRATED, not nominal. The ch unit is the advance width of
-     the zero glyph, which in Public Sans is 0.612em while a real average
-     character is 0.460em. So ch overstates a line by about 1.33x. Measured in
-     the browser, not assumed: target characters multiplied by 0.752.
-
-     If the body typeface changes, RE-MEASURE. The factor is font specific; it
-     was 0.642 under the previous face, and carrying that over would have set
-     every line about 15% short. */
+  /* Measures, calibrated: ch overstates Public Sans line length by about
+     1.33x, so each value is target characters x 0.752. Re-measure if the
+     body font changes. */
   --measure-display: 11ch;   /* ~14 characters */
   --measure-heading: 18ch;   /* ~24 */
   --measure-lede:    36ch;   /* ~48 */
   --measure-prose:   50ch;   /* ~66 */
   --measure-card:    35ch;   /* ~46 */
 
-  /* ---- SPACING ---------------------------------------------------------
-     8pt grid with 4px half steps below 16px. Linear at the small end where
-     4px is visible, roughly 1.5x at the layout end where you need real jumps.
-  --------------------------------------------------------------------- */
+  /* Spacing: 8pt grid, 4px half steps below 16px. */
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
   --space-xs:  0.75rem;
@@ -140,8 +112,7 @@
   --space-2xl: 4rem;
   --space-3xl: 6rem;
 
-  /* Role tokens. Components reference these, never the raw scale, so density
-     is one edit in one place instead of a grep across five files. */
+  /* Role tokens. Components use these, not the raw scale. */
   --section-y:       clamp(2rem,   1.296rem + 3.005vw, 4rem);
   --section-y-loose: clamp(3rem,   1.944rem + 4.507vw, 6rem);
   --gutter:          clamp(1rem,   0.648rem + 1.502vw, 2rem);
@@ -157,8 +128,6 @@
   --heading-margin-after: 0.4em;
   --paragraph-gap: 0.85em;      /* em on purpose: scales with the text */ /* em on purpose: scales with the heading */
 
-  /* Five positions. 500 and 600 are where emphasis can happen without
-     shouting; a 400/700 binary has no way to say "label" or "button". */
   --fw-regular: 400;   /* body */
   --fw-medium:  500;   /* labels, captions that need presence */
   --fw-semi:    600;   /* buttons, card titles, prices */
@@ -179,17 +148,14 @@
   --fact-min:   9rem;       /* two columns must survive a 360px phone: 2 x 144 + gap = 300 of 328 */
   --icon-sm:    1.25rem;    /* list markers */
 
-  /* Photo shapes. Every source photo is landscape, so hierarchy comes from
-     width: one wide lead, three supporting. A tall slot would force a portrait
-     crop out of an aerial and wreck it. Two ratio families, no more. */
+  /* Photo ratios. Every source photo is landscape. */
   --ratio-lead:         21 / 9;
   --ratio-lead-mobile:  16 / 9;
   --ratio-photo:        4 / 3;
   --ratio-photo-mobile: 3 / 2;
   --focus-ring: 3px;
 
-  /* Fixed-contrast colours. Content over a photograph or inside the lightbox
-     does not theme: the backdrop is always dark, so these never invert. */
+  /* Over photos and in the lightbox. These never theme. */
   --on-photo: #FFFFFF;
   --hero-grade:
     linear-gradient(180deg,
@@ -205,21 +171,19 @@
     0 1px 4px rgb(0 0 0 / 0.40),
     0 2px 10px rgb(0 0 0 / 0.325),
     0 4px 24px rgb(0 0 0 / 0.25);
-  /* Was rgba(30, 40, 60), the old slate blue, long after the palette moved. */
   --overlay-bg:               rgb(10 16 11 / 0.92);
   --overlay-control-bg:       rgb(10 16 11 / 0.80);
   --overlay-control-bg-hover: rgb(10 16 11);
 
   --opacity-muted: 0.8;
 
-  /* One z scale instead of 2, 1001 and 99999 !important. */
+  /* Z-index */
   --z-raised:          2;
   --z-overlay:         1000;
   --z-overlay-control: 1001;
 
 
-  /* Entrances decelerate, exits accelerate. Using one curve for both is the
-     single most common motion mistake in templates. */
+  /* Entrances ease out, exits ease in. */
   --ease-out:      cubic-bezier(0.33, 1, 0.68, 1);
   --ease-out-snap: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in:       cubic-bezier(0.32, 0, 0.67, 0);
@@ -231,7 +195,7 @@
 
   --reveal-distance: 16px;
 
-  /* Distances and scales for hover and press, so every lift agrees. */
+  /* Hover and press distances. */
   --lift-control: 2px;
   --lift-card:    3px;
   --press-control: 0.985;
@@ -239,7 +203,7 @@
   --zoom-image:    1.03;
 
 
-  /* Shadows are tinted with the ink hue rather than pure black. */
+  /* Shadows are tinted with the ink hue, not black. */
   --shade: 152deg 24% 10%;
 
   --elev-rest:
@@ -259,11 +223,8 @@
 
 }
 
-/* The expanded cut is wide by design, and font-stretch cannot be made fluid
-   with clamp (it will not mix vw into a percentage). So the token steps down
-   once. Measured: at 125% the first hero line is 315px, which fits a 360px
-   phone but breaks into three lines at 320px. At 106% it is 269px and fits
-   everywhere. Set on the token so no component needs its own override. */
+/* font-stretch can't be fluid, so it steps down once. At 125% the hero line
+   breaks into three at 320px. */
 @media (max-width: 400px) {
   :root {
     --width-display: 106%;
@@ -309,8 +270,7 @@
   }
 }
 
-/* Reduce, do not remove: distance goes to zero and a short fade survives,
-   because an instant cut loses the continuity cue motion-sensitive users rely on. */
+/* Reduce, don't remove: no movement, but a short fade stays. */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --reveal-distance: 0px;

@@ -1,8 +1,6 @@
-// The facts about the business, in one place. Components read from here, so a
-// new phone number or new hours is a one-line change.
-//
-// One copy cannot import this: the JSON-LD block in public/index.html is static
-// HTML. If anything here changes, change it there too.
+// Business facts in one place. The JSON-LD in public/index.html is static, so
+// update it by hand too.
+
 export const site = Object.freeze({
   name: 'Outlook Pointe Campground',
   phone: {
@@ -17,8 +15,7 @@ export const site = Object.freeze({
   },
   officeHours: '7am - 8pm',
   links: {
-    // Place ID and coordinates, so the pin lands on the campground whatever the
-    // listing's address text says.
+    // Points at the listing itself, not the address text.
     maps: 'https://www.google.com/maps/place/Outlook+Pointe+Campground/@38.4390408,-82.1406893,17z/data=!3m1!4b1!4m5!3m4!1s0x8848ab0641a631cd:0x5e1853b64787ab79!8m2!3d38.4390366!4d-82.1385006',
   },
 })

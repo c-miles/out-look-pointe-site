@@ -7,8 +7,6 @@
           We are often full, so the fastest way to get a lot is a phone call. A couple
           of weeks of notice is ideal, though a same-day call sometimes works out.
         </p>
-        <!-- The number is the call to action, so it is set as type rather than
-             hidden behind an icon. This page converts by phone. -->
         <a class="phone figure type-h2" :href="site.phone.href">
           <AppIcon name="phone" class="muted" />
           <span class="nowrap">{{ site.phone.display }}</span>

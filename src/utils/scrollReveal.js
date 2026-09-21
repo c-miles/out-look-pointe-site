@@ -1,12 +1,6 @@
-// Fades sections in as they scroll into view, once each.
-//
-// The hidden state is applied here, by script, so if the script never runs the
-// page is simply visible. The timeout covers the other failure: the script runs
-// but the observer never fires, which would otherwise leave content at opacity 0
-// with no way back. By the time it fires, a working observer has already
-// revealed everything and it is a no-op.
-//
-// Returns a function that stops observing and cancels the timeout.
+// Fades sections in once as they scroll into view. The hidden class is added by
+// script, so no script means a visible page. The timeout reveals everything if
+// the observer never fires. Returns a teardown.
 export function startScrollReveal(elements, { fallbackMs = 3000 } = {}) {
   const targets = [...elements]
 
@@ -15,8 +9,7 @@ export function startScrollReveal(elements, { fallbackMs = 3000 } = {}) {
     observer.unobserve(el)
   }
 
-  // A threshold on a tall section fires when almost nothing is visible. A bottom
-  // root margin is independent of element height.
+  // Bottom root margin, not a threshold: a threshold misfires on tall sections.
   const observer = new IntersectionObserver(
     (entries) => entries.filter((e) => e.isIntersecting).forEach((e) => reveal(e.target)),
     { threshold: 0, rootMargin: '0px 0px -12% 0px' }

@@ -4,7 +4,6 @@
       <div>
         <h2>Monthly rates</h2>
         <p class="price-line">
-          <!-- The number is the headline of this section, so it takes the display step. -->
           <span class="price figure type-display nowrap">$600-$700</span>
           <span class="type-lede muted">per month</span>
         </p>
@@ -25,8 +24,7 @@ export default {
   name: 'RatesSection',
   data() {
     return {
-      // Only what is true today and would stay true. The new lots will be
-      // metered, so there is deliberately no promise that nothing is ever added.
+      // The new lots will be metered, so never promise "nothing added on top".
       terms: [
         'No deposit required. Call and we will hold your lot.',
         'No long lease and no paperwork.',

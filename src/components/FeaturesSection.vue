@@ -31,8 +31,7 @@ export default {
   components: { AppIcon },
   data() {
     return {
-      // The first entry is the lead card. "Quiet" leads because it is the word
-      // guests reach for most often in their own reviews.
+      // The first entry is the lead card.
       features: [
         {
           icon: 'home',
@@ -66,9 +65,8 @@ export default {
   background-color: var(--surface);
 }
 
-/* Four items, four cells, deliberately unequal. One card leads and spans both
-   rows, the last spans two columns. A row of identical cards is the most
-   templated layout on the web. */
+/* Deliberately unequal: the lead spans both rows, the last spans two
+   columns. */
 .features-grid {
   display: grid;
   grid-template-columns: var(--grid-lead) 1fr 1fr;
@@ -90,9 +88,7 @@ export default {
 .feature-card:nth-child(3) { grid-area: c; }
 .feature-card:nth-child(4) { grid-area: d; }
 
-/* Content starts at the top so its icon shares a line with the cards beside it.
-   The card is two rows tall, and rather than leave that height empty the stat
-   is pinned to the bottom. Colours come from .on-panel. */
+/* The stat is pinned to the bottom so the tall card doesn't leave a gap. */
 .feature-card--lead {
   display: flex;
   flex-direction: column;
@@ -109,7 +105,7 @@ export default {
   color: var(--text-muted);
 }
 
-/* A title at the lede size still wants heading leading, not paragraph leading. */
+/* Lede size, heading leading. */
 h3 {
   font-weight: var(--fw-semi);
   line-height: var(--lh-h3);
@@ -129,8 +125,8 @@ h3 {
   gap: var(--space-3xs);
 }
 
-/* Room between the body copy and the stat's rule when the card is short, as it
-   is once the grid stacks on a phone. */
+/* Keeps the stat off the body copy when the card is short (stacked on a
+   phone). */
 .feature-card--lead > p:not(.feature-stat) {
   margin-bottom: var(--space-l);
 }

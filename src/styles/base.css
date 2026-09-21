@@ -1,5 +1,4 @@
-/* Element defaults and the few shared patterns. Anything that appears in more
-   than one component lives here once. */
+/* Element defaults and shared patterns. */
 
 * {
   margin: 0;
@@ -29,23 +28,14 @@ h1, h2, h3 {
   font-family: var(--font-display);
   color: var(--heading-color);
   text-wrap: balance;
-  /* No measure cap on headings. Measure is a prose concern: headings are short
-     by nature and balance already shapes them. A cap here did three bad things
-     at once. It made the box narrower than a centred card, and since a block
-     with max-width does not centre itself the title sat flush left. It forced
-     the hero headline to wrap at any viewport, because a ch cap is deliberately
-     viewport independent. And it wrapped some card titles but not others, which
-     read as uneven. Prose keeps its cap, on p. */
-  /* Asymmetric: a heading belongs to the text below it, so it takes far more
-     space above than below. Equal margins on every level is the templated
-     signature, and it leaves every heading floating equidistant. */
+  /* No max-width on headings: a capped block doesn't centre itself, and it
+     forced the hero headline to wrap. Prose gets its cap on p. */
+  /* More space above a heading than below, so it belongs to its text. */
   margin-block: 0 var(--heading-margin-after);
 }
 
-/* Type steps. Size, leading and tracking always travel together, so they are
-   one class each. The elements share their step with the class of the same
-   name, which lets a non-heading (a price, a phone number) sit on the scale
-   without restating three declarations. */
+/* Type steps: size, leading and tracking together. The classes let a price or
+   a phone number use the scale without being a heading. */
 .type-display { font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: var(--ls-display); }
 h1, .type-h1  { font-size: var(--fs-h1);      line-height: var(--lh-h1);      letter-spacing: var(--ls-h1); }
 h2, .type-h2  { font-size: var(--fs-h2);      line-height: var(--lh-h2);      letter-spacing: var(--ls-h2); }
@@ -80,8 +70,7 @@ section {
   padding-block: var(--section-y);
 }
 
-/* The one small label allowed above a headline. Budgeted: at most one per three
-   sections, or it becomes its own template rhythm. */
+/* Small label above a headline. Use sparingly. */
 .eyebrow {
   font-family: var(--font-body);
   font-size: var(--fs-caption);
@@ -92,15 +81,13 @@ section {
   margin-block-end: var(--space-xs);
 }
 
-/* The paragraph that introduces a section. Narrower measure than body so it
-   reads as a different register even at a similar size. */
+/* Intro paragraph for a section. */
 .lede {
   max-width: var(--measure-lede);
 }
 
-/* Standard visually-hidden pattern: present for screen readers and the heading
-   outline, absent visually. The 1px values are the technique itself, not a
-   design decision, which is why they are literal. */
+/* Visually hidden, still read by screen readers. The 1px values are the
+   technique, not design values. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -113,14 +100,12 @@ section {
   border: 0;
 }
 
-/* A range or a measurement is one unit of meaning and must not break across
-   lines: "35-" on one line and "50 amp" on the next reads as a typo. */
+/* Keeps a range or measurement on one line ("35-50 amp"). */
 .nowrap {
   white-space: nowrap;
 }
 
-/* A number set as display type: price, phone, rig length, a stat. Tabular
-   figures so digits align, the display face, its wide cut and heaviest weight. */
+/* A number set as display type: price, phone, rig length. */
 .figure {
   font-family: var(--font-display);
   font-weight: var(--fw-display);
@@ -133,9 +118,8 @@ section {
   color: var(--text-muted);
 }
 
-/* A deep green surface. It re-points the contextual tokens, so headings, muted
-   text, rules and focus rings inside it are right without per-component
-   overrides. */
+/* Deep green surface. Re-points the contextual tokens for everything inside
+   it. */
 .on-panel {
   background-color: var(--panel);
   color: var(--on-panel);
@@ -154,9 +138,8 @@ section {
   border-bottom: var(--border-hair) solid var(--rule-color);
 }
 
-/* Columns that wrap on their own, with no breakpoints. --auto-min is the
-   narrowest a column may get. The default gap suits two wide columns; --tight
-   suits a row of small facts. */
+/* Columns that wrap without breakpoints. --auto-min is the narrowest a
+   column gets. */
 .auto-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--auto-min, var(--card-min)), 1fr));
@@ -168,14 +151,13 @@ section {
   gap: var(--space-l) var(--grid-gap);
 }
 
-/* One focus ring for everything interactive. Surfaces over photography set
-   --focus-color to white; nothing else needs to restate the ring. */
+/* One focus ring for everything. Surfaces over photos set --focus-color. */
 :where(a, button, [tabindex]):focus-visible {
   outline: var(--focus-ring) solid var(--focus-color);
   outline-offset: var(--focus-ring);
 }
 
-/* Scroll Animation Styles */
+/* Scroll reveal */
 .scroll-animate {
   opacity: 0;
   transform: translateY(var(--reveal-distance));
@@ -183,17 +165,13 @@ section {
               transform var(--dur-4) var(--ease-out);
 }
 
-/* none, not translateY(0). A zero transform is still a transform, and any
-   transform makes the element the containing block for position: fixed
-   descendants, which is how overlays end up needing !important to escape. */
+/* none, not translateY(0): any transform traps position: fixed descendants. */
 .animate-in {
   opacity: 1;
   transform: none;
 }
 
 
-/* The scroll reveal ran unconditionally. Anyone who has asked their OS to
-   reduce motion was getting it anyway. */
 @media (prefers-reduced-motion: reduce) {
   .scroll-animate,
   .animate-in {
