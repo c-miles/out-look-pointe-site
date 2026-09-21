@@ -4,6 +4,7 @@ node_modules
 
 
 # local env files
+.env
 .env.local
 .env.*.local
 
@@ -27,3 +28,6 @@ pnpm-debug.log*
 docs/superpowers/
 .claude/
 CLAUDE.md
+
+# Netlify CLI local state
+.netlify
