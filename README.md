@@ -34,12 +34,12 @@ src/
 ```
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Vue.js 3.2.31
-- **Build Tool**: Vue CLI 5.0
+- **Frontend Framework**: Vue 3
+- **Build Tool**: Vite
 - **Language**: JavaScript (ES6+)
 - **Styling**: CSS3 with custom properties
 - **Linting**: ESLint with Vue.js rules
-- **Browser Support**: Modern browsers (> 1%, last 2 versions, not IE 11)
+- **Tests**: Vitest
 
 ## 🎨 Design System
 
