@@ -51,6 +51,11 @@
 </template>
 
 <script>
+import lotsAerial from '../assets/outlook-pointe-rv-lots-aerial.webp'
+import aerial from '../assets/outlook-pointe-aerial-milton-wv.webp'
+import hillside from '../assets/outlook-pointe-hillside-milton-wv.webp'
+import rvSites from '../assets/outlook-pointe-rv-sites.webp'
+
 // Photos are already full width below this, so no viewer.
 const VIEWER_QUERY = '(min-width: 769px)'
 
@@ -61,25 +66,25 @@ export default {
       // The first photo is the wide lead.
       photos: [
         {
-          src: require('../assets/outlook-pointe-rv-lots-aerial.webp'),
+          src: lotsAerial,
           alt: 'The graveled RV lots at Outlook Pointe seen from above, with rigs parked along the loop',
           caption: 'Level gravel lots, with rigs in for the season.',
           width: 1104, height: 850, position: '50% 40%',
         },
         {
-          src: require('../assets/outlook-pointe-aerial-milton-wv.webp'),
+          src: aerial,
           alt: 'Aerial view of Outlook Pointe Campground showing the graveled lots, the access road and the owners house on site',
           caption: 'From above: the gravel road in, and the owners’ house on site.',
           width: 1026, height: 804, position: '50% 55%',
         },
         {
-          src: require('../assets/outlook-pointe-hillside-milton-wv.webp'),
+          src: hillside,
           alt: 'Outlook Pointe Campground on the hillside above Milton, West Virginia, surrounded by trees and open fields',
           caption: 'On the hill above Milton, with open ground all around.',
           width: 1104, height: 848, position: '50% 45%',
         },
         {
-          src: require('../assets/outlook-pointe-rv-sites.webp'),
+          src: rvSites,
           alt: 'Fifth-wheel trailers parked on the level gravel sites at Outlook Pointe under an open sky',
           caption: 'Fifth-wheels on the gravel, under a big sky.',
           width: 796, height: 572, position: '50% 60%',

@@ -1,4 +1,4 @@
-// Business facts in one place. The JSON-LD in public/index.html is static, so
+// Business facts in one place. The JSON-LD in index.html is static, so
 // update it by hand too.
 
 // Public, not a secret. Netlify has the same value as GOOGLE_PLACE_ID.
