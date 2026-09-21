@@ -32,6 +32,8 @@
   --card-bg: var(--bone);
   --hairline: #DEDAD2;
   --on-accent: #FFFFFF;
+  /* Amber as a line on the green panel. The button amber is only 2.7:1 there. */
+  --amber-on-panel: #E8642B;
 
   /* Panel background. Unlike --forest, it doesn't invert in dark mode. */
   --panel: #1E3A2B;
@@ -45,6 +47,7 @@
   --text-muted:    var(--gravel);
   --rule-color:    var(--hairline);
   --focus-color:   var(--amber);
+  --accent-line:   var(--amber);
 
   --font-display: 'Archivo', system-ui, -apple-system, sans-serif;
   --font-body: 'Public Sans', system-ui, -apple-system, sans-serif;

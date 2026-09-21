@@ -126,6 +126,8 @@ section {
   --heading-color: var(--on-panel);
   --text-muted:    var(--on-panel-muted);
   --rule-color:    var(--panel-hairline);
+  --focus-color:   var(--on-panel);
+  --accent-line:   var(--amber-on-panel);
 }
 
 /* A short forest rule above each item, instead of a card. */

@@ -61,7 +61,7 @@ h2 {
   align-items: center;
   gap: var(--space-xs);
   padding-bottom: var(--space-3xs);
-  border-bottom: var(--border-rule) solid var(--amber);
+  border-bottom: var(--border-rule) solid var(--accent-line);
   color: inherit;
   text-decoration: none;
   transition: border-color var(--dur-2) var(--ease-out);
