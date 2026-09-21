@@ -140,6 +140,7 @@
   /* Controls and icons */
   --control-lg: 3rem;
   --control-md: 2.5rem;
+  --tap-min:    2.75rem;   /* 44px, the smallest comfortable touch target */
   --icon-lg:    2rem;
   --icon-md:    1.75rem;
   --card-min:   18rem;      /* narrowest a card may get before the grid wraps */

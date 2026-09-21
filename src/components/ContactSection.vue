@@ -7,7 +7,7 @@
           We are often full, so the fastest way to get a lot is a phone call. A couple
           of weeks of notice is ideal, though a same-day call sometimes works out.
         </p>
-        <a class="phone figure type-h2" :href="site.phone.href">
+        <a class="phone tap figure type-h2" :href="site.phone.href">
           <AppIcon name="phone" class="muted" />
           <span class="nowrap">{{ site.phone.display }}</span>
         </a>
@@ -22,12 +22,12 @@
           <dt class="type-caption muted">Address</dt>
           <dd>
             <address>{{ site.address.street }}<br />{{ site.address.cityLine }}</address>
-            <a :href="site.links.maps" target="_blank" rel="noopener noreferrer">Get directions</a>
+            <a class="tap" :href="site.links.maps" target="_blank" rel="noopener noreferrer">Get directions</a>
           </dd>
         </div>
         <div>
           <dt class="type-caption muted">Email</dt>
-          <dd><a :href="`mailto:${site.email}`">{{ site.email }}</a></dd>
+          <dd><a class="tap" :href="`mailto:${site.email}`">{{ site.email }}</a></dd>
         </div>
       </dl>
     </div>

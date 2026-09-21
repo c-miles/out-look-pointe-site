@@ -271,8 +271,10 @@ figcaption {
   transition: background-color var(--dur-1) var(--ease-out);
 }
 
-.lightbox-close:hover {
-  background: var(--overlay-control-bg-hover);
+@media (hover: hover) and (pointer: fine) {
+  .lightbox-close:hover {
+    background: var(--overlay-control-bg-hover);
+  }
 }
 
 .fade-enter-active {
