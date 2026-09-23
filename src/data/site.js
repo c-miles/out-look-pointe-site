@@ -10,7 +10,7 @@ export const site = Object.freeze({
     display: '(304) 617-4610',
     href: 'tel:+13046174610',
   },
-  email: 'danajenkinswalters@yahoo.com',
+  email: 'outlookpointecampground@yahoo.com',
   address: {
     street: '184 Outlook Pointe',
     cityLine: 'Milton, WV 25541',
